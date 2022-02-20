@@ -16,8 +16,8 @@ namespace TeacherWebSiteApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
+            public Startup(IConfiguration configuration)
+            {
             Configuration = configuration;
         }
 
@@ -32,6 +32,7 @@ namespace TeacherWebSiteApp
             services.AddDbContextFactory<TeacherContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
+            services.AddAntDesign();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
