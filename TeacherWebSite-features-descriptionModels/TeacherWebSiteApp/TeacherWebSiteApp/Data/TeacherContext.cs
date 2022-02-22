@@ -27,7 +27,7 @@ namespace TeacherWebSiteApp.Data
         public TeacherContext(DbContextOptions<TeacherContext> options)
             : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
