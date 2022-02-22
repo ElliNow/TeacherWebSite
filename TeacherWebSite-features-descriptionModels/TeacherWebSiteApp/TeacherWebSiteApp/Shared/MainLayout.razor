@@ -1,4 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using System.Linq
+@inherits LayoutComponentBase
+@inject IDbContextFactory<TeacherContext> Context
+@inject NavigationManager Nav
 
 <div class="page">
     <div class="sidebar">
@@ -15,3 +18,7 @@
         </div>
     </div>
 </div>
+
+@code{
+    
+}

@@ -22,9 +22,12 @@ namespace TeacherWebSiteApp.Data
 
         public DbSet<MainPage> MainPages { get; set; }
 
-        public TeacherContext()
+       
+
+        public TeacherContext(DbContextOptions<TeacherContext> options)
+            : base(options)
         {
-            Database.EnsureCreated();
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
