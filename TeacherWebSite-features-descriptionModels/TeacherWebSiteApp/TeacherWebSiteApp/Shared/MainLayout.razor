@@ -5,29 +5,31 @@
 
 @{ 
     string root = "/";
-    string newsfeed = "/newfeed";
+    string newsfeed = "/newsfeed";
     string articles = "/articles";
     string about = "/about";
     string contacts = "/contacts";
 }
 
+
 <Layout>
-    <Header Style="position: fixed; z-index: 1; width: 100%; ">
-        <div class="logo" />
-        <Menu Theme="MenuTheme.Light" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
-            <MenuItem Key="/">Главная</MenuItem>
-            <MenuItem Key="/newfeed">Лента</MenuItem>
-            <MenuItem Key="/articles">Статьи</MenuItem>
-            <MenuItem Key="/about">О себе</MenuItem>
-            <MenuItem Key="/contacts">Контакты</MenuItem>
-        </Menu>
+    <Header Style="position: fixed; background: #00BFFF; width: 100%; ">
+        <div class="container">
+            <div class="logo" style="width:100%" />
+            <Menu Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
+                <MenuItem @onclick="() => { Nav.NavigateTo(root, true); }">Главная</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(newsfeed, true); }">Лента</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(articles, true); }">Статьи</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(about, true); }">О себе</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(contacts, true); }">Контакты</MenuItem>
+            </Menu>
+        </div>  
     </Header>
     <Content Class="site-layout" Style="padding:0 50px; margin-top: 64px; ">
         <div class="site-layout-background" style="padding: 24px; min-height: 380px ">
             Content
         </div>
     </Content>
-    <Footer Style="text-align: center;">Ant Design ©2018 Created by Ant UED</Footer>
 </Layout>
 
 @code{ }

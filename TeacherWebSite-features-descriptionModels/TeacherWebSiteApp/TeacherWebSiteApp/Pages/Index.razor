@@ -1,7 +1,21 @@
 ﻿@page "/"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@inject NavigationManager NavManager
+@layout MainLayout
+@namespace TeacherWebSiteApp.Pages
 
-<h1>Hello, world!</h1>
+@code{
+    private MainPage data = new MainPage();
+    protected override Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
 
-Welcome to your new app.
+        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActive.Value);
+        if(data == null)
+        {
+            NavManager.NavigateTo("/newsfeed");
+        }
+    }
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+}
+

@@ -13,5 +13,6 @@ namespace TeacherWebSiteApp.Data.Models
     public class Entity : IEntity
     {
         public int Id { get; set; }
+        public bool? IsActive { get; set; } = true;
     }
 }
