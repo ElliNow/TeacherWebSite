@@ -6,11 +6,13 @@
 
 @code{
     private MainPage data = new MainPage();
-    protected override Task OnInitializedAsync()
+
+    protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
 
         data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActive.Value);
+     
         if(data == null)
         {
             NavManager.NavigateTo("/newsfeed");
