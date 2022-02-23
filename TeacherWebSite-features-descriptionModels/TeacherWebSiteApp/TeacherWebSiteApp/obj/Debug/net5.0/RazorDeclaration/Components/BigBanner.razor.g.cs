@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Pages
+namespace TeacherWebSiteApp.Components
 {
     #line hidden
     using System;
@@ -144,9 +144,7 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class BigBanner : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -154,28 +152,18 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 7 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Index.razor"
-      
-    private MainPage data = new MainPage();
-
-    protected override async Task OnInitializedAsync()
-    {
-        using var context = DbFactory.CreateDbContext();
-
-        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActive.Value);
-     
-        if(data == null)
-        {
-            NavManager.NavigateTo("/newsfeed");
-        }
-    }
-
+#line 16 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
+       
+    [Parameter]
+    public byte[] Picture { get; set; }
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string Text { get; set; }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> DbFactory { get; set; }
     }
 }
 #pragma warning restore 1591
