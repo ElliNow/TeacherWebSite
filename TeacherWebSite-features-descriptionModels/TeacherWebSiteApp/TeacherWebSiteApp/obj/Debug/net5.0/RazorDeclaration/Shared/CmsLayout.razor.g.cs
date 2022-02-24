@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page_CMS.Publication
+namespace TeacherWebSiteApp.Shared
 {
     #line hidden
     using System;
@@ -151,15 +151,30 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publications")]
-    public partial class List : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class CmsLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> Context { get; set; }
+#nullable restore
+#line 47 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
+       
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider provider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager Nav { get; set; }
     }
 }
 #pragma warning restore 1591

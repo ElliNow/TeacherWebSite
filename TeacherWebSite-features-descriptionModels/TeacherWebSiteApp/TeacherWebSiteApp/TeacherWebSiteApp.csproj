@@ -28,8 +28,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Page.CMS\NewsFeed\" />
-  </ItemGroup>
-
 </Project>
