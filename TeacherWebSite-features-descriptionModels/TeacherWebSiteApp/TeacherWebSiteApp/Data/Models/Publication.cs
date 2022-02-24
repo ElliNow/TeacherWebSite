@@ -9,7 +9,6 @@ namespace TeacherWebSiteApp.Data.Models
     {
         public string Name { get; set; }
         public string Text { get; set; }
-        //public byte[]? Image { get; set; }
         public DateTime Date { get; set; }
         public IEnumerable<Attachment> Attachments { get; set; }
 

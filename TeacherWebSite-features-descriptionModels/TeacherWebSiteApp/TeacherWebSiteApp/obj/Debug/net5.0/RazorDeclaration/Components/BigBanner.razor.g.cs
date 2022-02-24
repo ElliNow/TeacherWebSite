@@ -104,41 +104,48 @@ using TeacherWebSiteApp;
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using TeacherWebSiteApp.Shared;
+using TeacherWebSiteApp.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using TeacherWebSiteApp.Data.Models;
+using TeacherWebSiteApp.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using TeacherWebSiteApp.Data.PageModels;
+using TeacherWebSiteApp.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 17 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using TeacherWebSiteApp.Pages;
+using TeacherWebSiteApp.Data.PageModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using TeacherWebSiteApp.Data;
+using TeacherWebSiteApp.Pages;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
 using AntDesign;
 
 #line default
@@ -152,7 +159,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 16 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
+#line 15 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
        
     [Parameter]
     public byte[] Picture { get; set; }

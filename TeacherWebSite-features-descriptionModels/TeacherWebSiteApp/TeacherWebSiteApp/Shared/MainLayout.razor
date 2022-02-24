@@ -11,12 +11,11 @@
     string contacts = "/contacts";
 }
 
-
 <Layout>
     <Header Style="position: fixed; background: #00BFFF; width: 100%; ">
         <div class="container">
             <div class="logo" style="width:100%" />
-            <Menu Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
+            <Menu Mode="MenuMode.Horizontal"DefaultSelectedKeys=@(new[]{"/"})>
                 <MenuItem @onclick="() => { Nav.NavigateTo(root, true); }">Главная</MenuItem>
                 <MenuItem @onclick="() => { Nav.NavigateTo(newsfeed, true); }">Лента</MenuItem>
                 <MenuItem @onclick="() => { Nav.NavigateTo(articles, true); }">Статьи</MenuItem>
@@ -25,11 +24,7 @@
             </Menu>
         </div>  
     </Header>
-    <Content Class="site-layout" Style="padding:0 50px; margin-top: 64px; ">
-        <div class="site-layout-background" style="padding: 24px; min-height: 380px ">
-            Content
-        </div>
-    </Content>
+    
 </Layout>
 
 @code{ }

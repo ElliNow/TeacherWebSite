@@ -1,0 +1,40 @@
+﻿@inject IDbContextFactory<TeacherContext> Context
+<div class="container">
+    <div class="col" style="width:80%">
+        <Icon Type="snippets" Theme="outline" />
+        <div class="row" style="margin-left:auto">
+            <h5>@Data</h5>
+            <h4>@Name . @Text</h4>
+        </div>
+        <div class="row">
+            @foreach (var attachment in attachments)
+            {
+                <Attachment Name="@attachment.Name" Link="@attachment.Link"/>
+            }
+
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public string Name { get; set; }
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public DateTime Data { get; set; }
+
+    List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var context = Context.CreateDbContext();
+        foreach (var i in context.Attachments.Where(item => item.Id == Id))
+        {
+           attachments.Add(i);    
+        }
+
+    }
+}
