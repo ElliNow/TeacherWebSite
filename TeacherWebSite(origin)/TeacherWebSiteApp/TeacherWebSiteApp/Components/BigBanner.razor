@@ -1,0 +1,22 @@
+﻿
+<div class="row" style="height: 100%">
+    <div class="col" style="background-color: aquamarine;
+        background: url(‪data:image/jpg;base64,@Convert.ToBase64String(Picture))">
+        background-position: center; background-repeat: no-repeat;">
+        <div class="row">
+            <div class="col-4 offset-8">
+                <h3>@Title</h3>
+                <p>@Text</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public byte[] Picture { get; set; }
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string Text { get; set; }
+}
