@@ -1,7 +1,29 @@
-﻿@page "/"
+﻿@page "/index"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@inject NavigationManager NavManager
+@layout MainLayout
+@namespace TeacherWebSiteApp.Pages
 
-<h1>Hello, world!</h1>
+@if (data != null && data.IsBannerEnabled)
+{
+    <div style="height: 100%">
+        <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
+    </div>
+}
 
-Welcome to your new app.
+@code{
+    private MainPage data = new MainPage();
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+
+        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActive.Value);
+
+        if (data == null)
+        {
+            NavManager.NavigateTo("/newsfeed");
+        }
+    }
+}
+
