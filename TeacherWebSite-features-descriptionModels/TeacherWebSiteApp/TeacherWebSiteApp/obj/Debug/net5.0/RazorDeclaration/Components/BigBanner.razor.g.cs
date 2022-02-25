@@ -4,13 +4,12 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Shared
+namespace TeacherWebSiteApp.Components
 {
     #line hidden
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
 #line 1 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
@@ -21,75 +20,138 @@ using System.Net.Http;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using Microsoft.AspNetCore.Components.Web.Virtualization;
+using Microsoft.EntityFrameworkCore;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using Microsoft.JSInterop;
+using Microsoft.EntityFrameworkCore.Design;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 9 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using TeacherWebSiteApp;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 10 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
-using TeacherWebSiteApp.Shared;
+using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 11 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using Microsoft.AspNetCore.Components.Web.Virtualization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using Microsoft.JSInterop;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data.PageModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Pages;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
 using AntDesign;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class BigBanner : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -97,11 +159,14 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 12 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\Shared\SurveyPrompt.razor"
+#line 15 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite-features-descriptionModels\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
        
-    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public byte[] Picture { get; set; }
     [Parameter]
     public string Title { get; set; }
+    [Parameter]
+    public string Text { get; set; }
 
 #line default
 #line hidden

@@ -1,17 +1,30 @@
-﻿@inherits LayoutComponentBase
+﻿@using System.Linq
+@inherits LayoutComponentBase
+@inject IDbContextFactory<TeacherContext> Context
+@inject NavigationManager Nav
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+@{ 
+    string root = "/";
+    string newsfeed = "/newsfeed";
+    string articles = "/articles";
+    string about = "/about";
+    string contacts = "/contacts";
+}
 
-    <div class="main">
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+<Layout>
+    <Header Style="position: fixed; background: #00BFFF; width: 100%; ">
+        <div class="container">
+            <div class="logo" style="width:100%" />
+            <Menu Mode="MenuMode.Horizontal"DefaultSelectedKeys=@(new[]{"/"})>
+                <MenuItem @onclick="() => { Nav.NavigateTo(root, true); }">Главная</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(newsfeed, true); }">Лента</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(articles, true); }">Статьи</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(about, true); }">О себе</MenuItem>
+                <MenuItem @onclick="() => { Nav.NavigateTo(contacts, true); }">Контакты</MenuItem>
+            </Menu>
+        </div>  
+    </Header>   
+</Layout>
 
-        <div class="content px-4">
-            @Body
-        </div>
-    </div>
-</div>
+
+@code{ }

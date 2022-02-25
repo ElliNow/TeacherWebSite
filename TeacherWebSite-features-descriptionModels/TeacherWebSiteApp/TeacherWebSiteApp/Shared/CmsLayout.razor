@@ -1,0 +1,56 @@
+﻿@inject NavigationManager Nav
+@inherits LayoutComponentBase
+@inject AuthenticationStateProvider provider
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm position-static navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <div class="container">
+            @{ string newsfeed = "/newsfeed"; }
+            <a class="navbar-brand text-light" href="/cms">CMS</a>
+            <a @onclick="() => { Nav.NavigateTo(newsfeed, true); }">
+                <span class="badge badge-secondary">На сайт</span>
+            </a>
+
+            <div class="navbar-collapse @NavMenuCssClass d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/cms/category">Публикации</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/cms/products">Статьи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/cms/calculator">О себе</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/cms/articles">Контакты</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Настройки
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/cms/mainPage">&laquo;Главная&raquo; настройка</a>
+                            <a class="dropdown-item" href="/cms/infoPage">&laquo;Контакты&raquo; настройка</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>       
+        </div>
+    </nav>
+</header>
+
+<div class="container content" style="margin-bottom:60px">
+    @Body
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
