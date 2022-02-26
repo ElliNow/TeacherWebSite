@@ -1,0 +1,75 @@
+﻿@page "/cms/publication/{id:int}"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@inject NavigationManager NavManager
+@layout CmsLayout
+@namespace TeacherWebSiteApp.Page_CMS.Publications
+@inject MessageService _message
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-6">
+            <Form Layout="@FormLayout.Vertical"
+             Model="@publication" OnFinish="SaveAsync">
+                <FormItem Label="Заголовок">
+                    <Input @bind-Value="@context.Name" placeholder="Введите заголовок статьи" />
+                </FormItem>
+                <FormItem Label="Описание">
+                    <TextArea Placeholder="Введите описание статьи" AutoSize="true" @bind-Value="@context.Text" />
+                </FormItem>
+               
+
+            </Form>
+        </div>
+    </div>
+</div>
+           
+   
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private TeacherWebSiteApp.Data.Models.Publication publication = new TeacherWebSiteApp.Data.Models.Publication()
+    {
+        Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(Id != 0)
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
+            if(publication == null)
+            {
+                _message.Error("Публикация не найдена!");
+                NavManager.NavigateTo("/cms/publication/0");
+            }
+        }
+    }
+
+    private async Task SaveAsync()
+    {
+        if (!publication.Attachments.Any())
+        {
+            _message.Error("Публикация должна содержать хотя бы одно вложение!");
+        }
+
+        try
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            var selectedPublication = context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
+
+            if(selectedPublication != null)
+            {
+                
+            }
+        }
+        catch
+        {
+
+        }
+    }
+
+
+}
