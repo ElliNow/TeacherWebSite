@@ -134,7 +134,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 73 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+#line 71 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
        
     [Parameter]
     public int Id { get; set; }
@@ -222,12 +222,14 @@ using AntDesign;
 
     private void AddAttachment()
     {
-        //
+        publication.Attachments.Add(attachment);
+        attachment = new();
     }
 
     private void DeleteAttachment(string name, string link)
     {
-        //
+        var selectedAttachment = publication.Attachments.FirstOrDefault(x => x.Name == name && x.Link == link);
+        publication.Attachments.Remove(selectedAttachment);
     }
 
     private void DeletePublication()

@@ -52,7 +52,7 @@
                 <Column @bind-Field="@context.IsActive" TData="bool?">
                     <Button
                             @onclick="() => DeleteAttachment(context.Name, context.Link)"
-                            Class="btn btn-danger">
+                            Class="bg-danger">
                         Удалить
                     </Button>
                 </Column>
@@ -66,9 +66,7 @@
     </div>
     
 </div>
-
-           
-   
+  
 
 @code {
     [Parameter]
@@ -157,12 +155,14 @@
 
     private void AddAttachment()
     {
-        //
+        publication.Attachments.Add(attachment);
+        attachment = new();
     }
 
     private void DeleteAttachment(string name, string link)
     {
-        //
+        var selectedAttachment = publication.Attachments.FirstOrDefault(x => x.Name == name && x.Link == link);
+        publication.Attachments.Remove(selectedAttachment);
     }
 
     private void DeletePublication()
