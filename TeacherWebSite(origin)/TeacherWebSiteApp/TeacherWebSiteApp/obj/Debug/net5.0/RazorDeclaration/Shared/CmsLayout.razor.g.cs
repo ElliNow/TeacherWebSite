@@ -132,8 +132,8 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
-        
+#line 45 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
+       
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -141,7 +141,7 @@ using AntDesign;
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
-    } 
+    }
 
 #line default
 #line hidden

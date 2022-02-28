@@ -2,7 +2,7 @@
 @inherits LayoutComponentBase
 @inject AuthenticationStateProvider provider
 
-@{ 
+@{
     string cms = "/cms";
     string cmsNewsfeed = "/cms/publications";
     string cmsArticles = "/cms/articles";
@@ -13,7 +13,7 @@
 
 <div class="container" style="margin-bottom: 70px">
     <Layout>
-        <Header Style="position: fixed; background: #00BFFF; width: 100%; margin-bottom:50px ">
+        <Header Style="position: fixed; background: #00BFFF; width: 100%; margin-bottom:50px; z-index: 999999; ">
             <div class="container">
                 <div class="logo" style="width:100%" />
                 <Menu Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
@@ -31,11 +31,18 @@
     </Layout>
 </div>
 
-<div class="container content" style="margin-bottom:30px; margin-top: 35px">
+<style>
+    body {
+        background-size: contain;
+        background-repeat: repeat-y;
+    }
+</style>
+
+<div class="container content" style="padding: 60px 15px 60px;  height: 100%">
     @Body
 </div>
 
-@code { 
+@code {
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -43,5 +50,5 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
-    } 
+    }
 }
