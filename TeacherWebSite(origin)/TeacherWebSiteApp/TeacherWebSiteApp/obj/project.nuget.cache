@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "BmBJFQMpqLdLxnZe+CJ1F1xmXBfAWzq2GNN2ICtZOe6OfYllId+o9PPg4a4D7Ult/RMCzGv/bAiVFUZ6z8FEjA==",
+  "dgSpecHash": "gv/7bq3/UBHfPdnmZ2p3lvzqqzosKZLi7T3FniIaEQAp1wxegy9IMbksRv+Uw20vJnG4ST2GwViF89iWULoL/w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite(origin)\\TeacherWebSiteApp\\TeacherWebSiteApp\\TeacherWebSiteApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Эля\\.nuget\\packages\\antdesign\\0.10.3.1\\antdesign.0.10.3.1.nupkg.sha512",
+    "C:\\Users\\Эля\\.nuget\\packages\\bootstrap\\5.1.3\\bootstrap.5.1.3.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.0\\microsoft.aspnetcore.authorization.5.0.0.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.0\\microsoft.aspnetcore.components.5.0.0.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.0\\microsoft.aspnetcore.components.analyzers.5.0.0.nupkg.sha512",

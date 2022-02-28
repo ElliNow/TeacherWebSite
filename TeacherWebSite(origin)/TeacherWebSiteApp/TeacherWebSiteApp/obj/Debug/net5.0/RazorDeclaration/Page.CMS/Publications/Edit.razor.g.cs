@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page_CMS.Publications
+namespace TeacherWebSiteApp.Data.Models
 {
     #line hidden
     using System;
@@ -124,6 +124,8 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publication/{id:int}")]
     public partial class Edit : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -131,6 +133,117 @@ using AntDesign;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 68 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+       
+    [Parameter]
+    public int Id { get; set; }
+
+    private Attachment attachment = new Attachment();
+    private TeacherWebSiteApp.Data.Models.Publication publication = new Publication()
+    {
+        Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(Id != 0)
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
+            if(publication == null)
+            {
+                _message.Error("Публикация не найдена!");
+                NavManager.NavigateTo("/cms/publication/0");
+            }
+        }
+    }
+
+    private async Task SaveAsync()
+    {
+        if (!publication.Attachments.Any())
+        {
+            _message.Error("Публикация должна содержать хотя бы одно вложение!");
+        }
+
+        try
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            var selectedPublication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
+
+            if(selectedPublication != null)
+            {
+                selectedPublication.Name = publication.Name;
+                selectedPublication.Text = publication.Text;
+                foreach(var i in selectedPublication.Attachments)
+                {
+                    publication.Attachments.Add(i);
+                }
+
+
+                var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
+
+                var newAttachments = publication.Attachments.Where(b => !selectedPublication.Attachments.Any(x => x.Id == b.Id));
+
+                var updBlocks = selectedPublication.Attachments.Where(b => publication.Attachments.Any(x => x.Id == b.Id))
+                    .Select(db => new { Source = publication.Attachments.FirstOrDefault(x => x.Id == db.Id), Target = db });
+
+                context.Attachments.RemoveRange(delAttachments);
+                await context.Attachments.AddRangeAsync(newAttachments);
+                updBlocks.ForEach(x =>
+                {
+                    x.Target.Name = x.Source.Name;
+                    x.Target.Link = x.Source.Link;
+                    x.Target.PublicationId = x.Source.PublicationId;
+                    x.Target.ContentType = x.Source.ContentType;
+                });
+
+                await context.SaveChangesAsync();
+                _message.Success("Публикация сохранена!");
+            }
+            else
+            {
+                publication.Date = DateTime.Now;
+                context.Publications.Add(publication);
+                await context.SaveChangesAsync();
+                _message.Success("Публикация добавлена!");
+            }
+
+            NavManager.NavigateTo($"/cms/publication/{publication.Id}");
+        }
+        catch(Exception ex)
+        {
+            _message.Error(ex.Message, 60);
+            _message.Error(ex.InnerException?.Message, 60);
+            _message.Error("Во время сохранения публикации произошла ошибка", 60);
+        }
+
+    }
+
+    private void AddAttachment()
+    {
+        //
+    }
+
+    private void DeleteAttachment(string name, string link)
+    {
+        //
+    }
+
+    private void DeletePublication()
+    {
+        using TeacherContext context = DbFactory.CreateDbContext();
+        context.Publications.Remove(publication);
+        context.SaveChanges();
+        NavManager.NavigateTo($"/publications");
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private MessageService _message { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> DbFactory { get; set; }
     }
 }
 #pragma warning restore 1591

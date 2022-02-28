@@ -10,6 +10,8 @@ namespace TeacherWebSiteApp.Data.Models
         public string Name { get; set; }
         public string Link { get; set; }
         public ContentType ContentType { get; set; }
+        public int PublicationId { get; set; }
+        public Publication Publication { get; set; }
     }
 
     public enum ContentType

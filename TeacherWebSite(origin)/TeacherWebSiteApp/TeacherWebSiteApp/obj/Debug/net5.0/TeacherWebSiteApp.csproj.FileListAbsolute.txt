@@ -93,7 +93,6 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWe
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Components\Attachment.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Components\BigBanner.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Components\Publication.razor.g.cs
-C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Page.CMS\Publication\List.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Shared\CmsLayout.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -153,7 +152,6 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWe
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Components\Attachment.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Components\BigBanner.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Components\Publication.razor.g.cs
-C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Page.CMS\Publication\List.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Shared\CmsLayout.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
@@ -177,3 +175,7 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWe
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\scopedcss\projectbundle\TeacherWebSiteApp.bundle.scp.css
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Page.CMS\Publications\Edit.razor.g.cs
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Page.CMS\Publications\List.razor.g.cs
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Page.CMS\Publications\Edit.razor.g.cs
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Page.CMS\Publications\List.razor.g.cs

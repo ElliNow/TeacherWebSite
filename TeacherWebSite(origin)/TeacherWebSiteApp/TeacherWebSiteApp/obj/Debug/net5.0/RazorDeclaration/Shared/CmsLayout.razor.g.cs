@@ -132,7 +132,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
+#line 38 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
         
     private bool collapseNavMenu = true;
 

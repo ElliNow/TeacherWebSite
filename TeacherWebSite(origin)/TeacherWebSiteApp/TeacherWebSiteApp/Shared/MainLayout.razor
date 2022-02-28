@@ -11,20 +11,21 @@
     string contacts = "/contacts";
 }
 
-<Layout>
-    <Header Style="position: fixed; background: #00BFFF; width: 100%; ">
-        <div class="container">
-            <div class="logo" style="width:100%" />
-            <Menu Mode="MenuMode.Horizontal"DefaultSelectedKeys=@(new[]{"/"})>
-                <MenuItem @onclick="() => { Nav.NavigateTo(root, true); }">Главная</MenuItem>
-                <MenuItem @onclick="() => { Nav.NavigateTo(newsfeed, true); }">Лента</MenuItem>
-                <MenuItem @onclick="() => { Nav.NavigateTo(articles, true); }">Статьи</MenuItem>
-                <MenuItem @onclick="() => { Nav.NavigateTo(about, true); }">О себе</MenuItem>
-                <MenuItem @onclick="() => { Nav.NavigateTo(contacts, true); }">Контакты</MenuItem>
-            </Menu>
-        </div>  
-    </Header>   
-</Layout>
-
+<div class="container" style="margin-bottom:70px">
+    <Layout>
+        <Header Style="position: fixed; background: #00BFFF; width: 100%; margin-bottom:50px ">
+            <div class="container">
+                <div class="logo" style="width:100%" />
+                <Menu Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
+                    <MenuItem @onclick="() => { Nav.NavigateTo(root, true); }">Главная</MenuItem>
+                    <MenuItem @onclick="() => { Nav.NavigateTo(newsfeed, true); }">Лента</MenuItem>
+                    <MenuItem @onclick="() => { Nav.NavigateTo(articles, true); }">Статьи</MenuItem>
+                    <MenuItem @onclick="() => { Nav.NavigateTo(about, true); }">О себе</MenuItem>
+                    <MenuItem @onclick="() => { Nav.NavigateTo(contacts, true); }">Контакты</MenuItem>
+                </Menu>
+            </div>
+        </Header>
+    </Layout>
+</div>
 
 @code{ }
