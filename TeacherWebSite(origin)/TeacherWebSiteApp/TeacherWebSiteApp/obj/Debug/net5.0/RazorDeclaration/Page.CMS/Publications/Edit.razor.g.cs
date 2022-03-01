@@ -134,16 +134,21 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 84 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+#line 112 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
        
     [Parameter]
     public int Id { get; set; }
 
-    private Attachment attachment = new Attachment();
+    public Attachment attachment = new Attachment();
     private TeacherWebSiteApp.Data.Models.Publication publication = new Publication()
     {
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
+
+    private void GetStatus(int contentType)
+    {
+        attachment.ContentType = (ContentType)contentType;
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -171,11 +176,11 @@ using AntDesign;
             using TeacherContext context = DbFactory.CreateDbContext();
             var selectedPublication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
 
-            if(selectedPublication != null)
+            if (selectedPublication != null)
             {
                 selectedPublication.Name = publication.Name;
                 selectedPublication.Text = publication.Text;
-                foreach(var i in selectedPublication.Attachments)
+                foreach (var i in selectedPublication.Attachments)
                 {
                     publication.Attachments.Add(i);
                 }
@@ -186,7 +191,7 @@ using AntDesign;
                 var newAttachments = publication.Attachments.Where(b => !selectedPublication.Attachments.Any(x => x.Id == b.Id));
 
                 var updBlocks = selectedPublication.Attachments.Where(b => publication.Attachments.Any(x => x.Id == b.Id))
-                    .Select(db => new { Source = publication.Attachments.FirstOrDefault(x => x.Id == db.Id), Target = db });
+                .Select(db => new { Source = publication.Attachments.FirstOrDefault(x => x.Id == db.Id), Target = db });
 
                 context.Attachments.RemoveRange(delAttachments);
                 await context.Attachments.AddRangeAsync(newAttachments);
@@ -197,7 +202,6 @@ using AntDesign;
                     x.Target.PublicationId = x.Source.PublicationId;
                     x.Target.ContentType = x.Source.ContentType;
                 });
-
                 await context.SaveChangesAsync();
                 _message.Success("Публикация сохранена!");
             }
@@ -208,10 +212,9 @@ using AntDesign;
                 await context.SaveChangesAsync();
                 _message.Success("Публикация добавлена!");
             }
-
             NavManager.NavigateTo($"/cms/publication/{publication.Id}");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _message.Error(ex.Message, 60);
             _message.Error(ex.InnerException?.Message, 60);
@@ -219,6 +222,7 @@ using AntDesign;
         }
 
     }
+
 
     private void AddAttachment()
     {
@@ -239,6 +243,7 @@ using AntDesign;
         context.SaveChanges();
         NavManager.NavigateTo($"/cms/publications");
     }
+ 
 
 #line default
 #line hidden
