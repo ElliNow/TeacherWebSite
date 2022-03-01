@@ -134,7 +134,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 71 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+#line 84 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
        
     [Parameter]
     public int Id { get; set; }
@@ -237,7 +237,7 @@ using AntDesign;
         using TeacherContext context = DbFactory.CreateDbContext();
         context.Publications.Remove(publication);
         context.SaveChanges();
-        NavManager.NavigateTo($"/publications");
+        NavManager.NavigateTo($"/cms/publications");
     }
 
 #line default
