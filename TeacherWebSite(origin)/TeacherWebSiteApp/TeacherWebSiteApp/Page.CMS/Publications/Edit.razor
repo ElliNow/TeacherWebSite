@@ -8,17 +8,14 @@
 <div class="container" style="margin-left:80px; margin-right:40%">
 
     <div class="col-md-6">
-        <Form Layout="@FormLayout.Vertical"
-              Model="@publication">
+       
             <div class="col-md-6">
-                <FormItem Label="Название">
-                    <Input @bind-Value="@context.Name" placeholder="Введите название публикации" />
-                </FormItem>
+                <label>Название</label>
+                <Input @bind-Value="@publication.Name" placeholder="Введите название публикации" />    
             </div>
             <div class="col-md-6">
-                <FormItem Label="Описание">
-                    <TextArea Rows="4" Placeholder="Введите описание публикации" AutoSize="true" @bind-Value="@context.Text" />
-                </FormItem>
+                <label>Описание</label>
+                <TextArea Rows="4" Placeholder="Введите описание публикации" AutoSize="true" @bind-Value="@publication.Text" /> 
             </div>
             <div class="container" style="margin-top:30px">
                 <label>Вложение</label>
@@ -37,7 +34,7 @@
                         </span>
                         <Input Type="text" @bind-Value="attachment.Link" Class="form-control" Placeholder="Введите ссылку">
                     </AntDesign.Col>
-                    <AntDesign.Col style="margin-left:200px">
+                    <AntDesign.Col style="margin-left:500px">
                         <Dropdown Trigger="@(new Trigger[] { Trigger.Click })">
                             <Overlay>
                                 <Menu>
@@ -59,9 +56,18 @@
                                 </Menu>
                             </Overlay>
                             <ChildContent>
-                                <a class="ant-dropdown-link" @onclick:preventDefault>
-                                    Тип вложения <Icon Type="down" />
-                                </a>
+                                @if (attachment.ContentType == 0)
+                                {
+                                    <a class="ant-dropdown-link" @onclick:preventDefault>
+                                       Тип вложения<Icon Type="down" />
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="ant-dropdown-link" @onclick:preventDefault>
+                                        @attachment.ContentType <Icon Type="down" />
+                                     </a>
+                                }   
                             </ChildContent>
                         </Dropdown>
                     </AntDesign.Col>
@@ -71,21 +77,19 @@
                 <Button Type="button" Class="btn btn-success" @onclick="@AddAttachment">Добавить</Button>
                 @*<ValidationBlock Messages="validationMessages" />*@
             </div>
-        </Form>
-       
-        <div class="form-block">
-            <Table DataSource="publication.Attachments" TItem="Attachment" HidePagination="false">
-                <Column Title="Название" @bind-Field="@context.Name" TData="string" />
-                <Column Title="Ссылка" @bind-Field="@context.Link" TData="string" />
-                <Column Title="Тип вложения" @bind-Field="@context.ContentType" TData="ContentType" />
-                <Column Title=" " @bind-Field="@context.IsActive">
-                    <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">
-                        Удалить
-                    </Button>
-                </Column>
-            </Table>
-        </div>
-   
+            <div class="form-block">
+                <Table DataSource="publication.Attachments" TItem="Attachment" HidePagination="false">
+                    <Column Title="Название" @bind-Field="@context.Name" TData="string" />
+                    <Column Title="Ссылка" @bind-Field="@context.Link" TData="string" />
+                    <Column Title="Тип вложения" @bind-Field="@context.ContentType" TData="ContentType" />
+                    <Column Title=" " @bind-Field="@context.IsActive">
+                        <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">
+                            Удалить
+                        </Button>
+                    </Column>
+                </Table>
+            </div>
+        
 
         @if (Id <= 0)
         {
@@ -117,11 +121,14 @@
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
+
+    // установление типа вложения
     private void GetStatus(int contentType)
     {
         attachment.ContentType = (ContentType)contentType;
     }
 
+   
     protected override async Task OnInitializedAsync()
     {
         if(Id != 0)
@@ -136,6 +143,7 @@
         }
     }
 
+    // Сохранение
     private async Task SaveAsync()
     {
         if (!publication.Attachments.Any())
@@ -147,13 +155,15 @@
         {
             using TeacherContext context = DbFactory.CreateDbContext();
             var selectedPublication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
-
+       
             if (selectedPublication != null)
             {
+                selectedPublication.Id = publication.Id;
                 selectedPublication.Name = publication.Name;
                 selectedPublication.Text = publication.Text;
                 selectedPublication.Attachments = publication.Attachments;
                 selectedPublication.Date = publication.Date;
+
 
 
                 var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
@@ -167,6 +177,7 @@
                 await context.Attachments.AddRangeAsync(newAttachments);
                 updBlocks.ForEach(x =>
                 {
+                    x.Target.Id = x.Source.Id;
                     x.Target.Name = x.Source.Name;
                     x.Target.Link = x.Source.Link;
                     x.Target.PublicationId = x.Source.PublicationId;
@@ -195,18 +206,27 @@
     }
 
 
+    // Добавление вложения
     private void AddAttachment()
     {
+        using TeacherContext context = DbFactory.CreateDbContext();
         publication.Attachments.Add(attachment);
         attachment = new();
+        context.SaveChanges();
     }
 
+
+    // Удаление вложения
     private void DeleteAttachment(string name, string link)
     {
+        using TeacherContext context = DbFactory.CreateDbContext();
         var selectedAttachment = publication.Attachments.FirstOrDefault(x => x.Name == name && x.Link == link);
         publication.Attachments.Remove(selectedAttachment);
+        context.SaveChanges();
     }
 
+
+    // Удаление публикации
     private void DeletePublication()
     {
         using TeacherContext context = DbFactory.CreateDbContext();

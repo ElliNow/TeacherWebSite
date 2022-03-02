@@ -134,7 +134,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 110 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+#line 114 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
        
     [Parameter]
     public int Id { get; set; }
@@ -145,11 +145,14 @@ using AntDesign;
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
+
+    // установление типа вложения
     private void GetStatus(int contentType)
     {
         attachment.ContentType = (ContentType)contentType;
     }
 
+   
     protected override async Task OnInitializedAsync()
     {
         if(Id != 0)
@@ -164,6 +167,7 @@ using AntDesign;
         }
     }
 
+    // Сохранение
     private async Task SaveAsync()
     {
         if (!publication.Attachments.Any())
@@ -175,13 +179,15 @@ using AntDesign;
         {
             using TeacherContext context = DbFactory.CreateDbContext();
             var selectedPublication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
-
+       
             if (selectedPublication != null)
             {
+                selectedPublication.Id = publication.Id;
                 selectedPublication.Name = publication.Name;
                 selectedPublication.Text = publication.Text;
                 selectedPublication.Attachments = publication.Attachments;
                 selectedPublication.Date = publication.Date;
+
 
 
                 var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
@@ -195,6 +201,7 @@ using AntDesign;
                 await context.Attachments.AddRangeAsync(newAttachments);
                 updBlocks.ForEach(x =>
                 {
+                    x.Target.Id = x.Source.Id;
                     x.Target.Name = x.Source.Name;
                     x.Target.Link = x.Source.Link;
                     x.Target.PublicationId = x.Source.PublicationId;
@@ -223,18 +230,27 @@ using AntDesign;
     }
 
 
+    // Добавление вложения
     private void AddAttachment()
     {
+        using TeacherContext context = DbFactory.CreateDbContext();
         publication.Attachments.Add(attachment);
         attachment = new();
+        context.SaveChanges();
     }
 
+
+    // Удаление вложения
     private void DeleteAttachment(string name, string link)
     {
+        using TeacherContext context = DbFactory.CreateDbContext();
         var selectedAttachment = publication.Attachments.FirstOrDefault(x => x.Name == name && x.Link == link);
         publication.Attachments.Remove(selectedAttachment);
+        context.SaveChanges();
     }
 
+
+    // Удаление публикации
     private void DeletePublication()
     {
         using TeacherContext context = DbFactory.CreateDbContext();
