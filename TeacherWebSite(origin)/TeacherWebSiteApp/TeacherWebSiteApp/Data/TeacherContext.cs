@@ -22,14 +22,21 @@ namespace TeacherWebSiteApp.Data
 
         public DbSet<MainPage> MainPages { get; set; }
 
-        public TeacherContext()
+
+        public TeacherContext(DbContextOptions<TeacherContext> options)
+            : base(options) 
         {
             Database.EnsureCreated();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(TeacherContext).Assembly);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=teacherdb;Trusted_Connection=True;");
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }

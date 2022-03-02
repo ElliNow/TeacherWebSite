@@ -134,7 +134,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 112 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+#line 110 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
        
     [Parameter]
     public int Id { get; set; }
@@ -180,10 +180,8 @@ using AntDesign;
             {
                 selectedPublication.Name = publication.Name;
                 selectedPublication.Text = publication.Text;
-                foreach (var i in selectedPublication.Attachments)
-                {
-                    publication.Attachments.Add(i);
-                }
+                selectedPublication.Attachments = publication.Attachments;
+                selectedPublication.Date = publication.Date;
 
 
                 var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
@@ -201,6 +199,7 @@ using AntDesign;
                     x.Target.Link = x.Source.Link;
                     x.Target.PublicationId = x.Source.PublicationId;
                     x.Target.ContentType = x.Source.ContentType;
+                    x.Target.Publication = x.Source.Publication;
                 });
                 await context.SaveChangesAsync();
                 _message.Success("Публикация сохранена!");

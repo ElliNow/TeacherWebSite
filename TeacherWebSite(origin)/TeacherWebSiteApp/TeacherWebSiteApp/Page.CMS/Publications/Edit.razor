@@ -9,7 +9,7 @@
 
     <div class="col-md-6">
         <Form Layout="@FormLayout.Vertical"
-              Model="@publication" OnFinish="SaveAsync">
+              Model="@publication">
             <div class="col-md-6">
                 <FormItem Label="Название">
                     <Input @bind-Value="@context.Name" placeholder="Введите название публикации" />
@@ -42,17 +42,17 @@
                             <Overlay>
                                 <Menu>
                                     <MenuItem>
-                                        <a target="_blank" @onclick="()=> GetStatus(1)" @key="attachment.ContentType" rel="noopener noreferrer">
-                                            Презентация 
+                                        <a target="_blank" @onclick="()=> GetStatus(1)" rel="noopener noreferrer">
+                                            Презентация
                                         </a>
                                     </MenuItem>
                                     <MenuItem>
-                                        <a target="_blank" @onclick="()=> GetStatus(2)" @key="attachment.ContentType" rel="noopener noreferrer">
+                                        <a target="_blank" @onclick="()=> GetStatus(2)" rel="noopener noreferrer">
                                             Видео
                                         </a>
                                     </MenuItem>
                                     <MenuItem>
-                                        <a target="_blank" @onclick="()=> GetStatus(3)" @key="attachment.ContentType" rel="noopener noreferrer">
+                                        <a target="_blank" @onclick="()=> GetStatus(3)" rel="noopener noreferrer">
                                             Методичка
                                         </a>
                                     </MenuItem>
@@ -72,22 +72,20 @@
                 @*<ValidationBlock Messages="validationMessages" />*@
             </div>
         </Form>
-        @if (publication.Attachments.Any())
-        {
-            <div class="form-block">
-                <Table DataSource="publication.Attachments" TItem="Attachment" HidePagination="false">
-                    <Column Title="Название" @bind-Field="@context.Name" TData="string" />
-                    <Column Title="Ссылка" @bind-Field="@context.Link" TData="string" />
-                    <Column Title="Тип вложения" @bind-Field="@context.ContentType" TData="ContentType"/>
-                    <Column Title=" " @bind-Field="@context.IsActive">
-                        <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">
-                            Удалить
-                        </Button>
-                    </Column>
-
-                </Table>
-            </div>
-        }
+       
+        <div class="form-block">
+            <Table DataSource="publication.Attachments" TItem="Attachment" HidePagination="false">
+                <Column Title="Название" @bind-Field="@context.Name" TData="string" />
+                <Column Title="Ссылка" @bind-Field="@context.Link" TData="string" />
+                <Column Title="Тип вложения" @bind-Field="@context.ContentType" TData="ContentType" />
+                <Column Title=" " @bind-Field="@context.IsActive">
+                    <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">
+                        Удалить
+                    </Button>
+                </Column>
+            </Table>
+        </div>
+   
 
         @if (Id <= 0)
         {
@@ -154,10 +152,8 @@
             {
                 selectedPublication.Name = publication.Name;
                 selectedPublication.Text = publication.Text;
-                foreach (var i in selectedPublication.Attachments)
-                {
-                    publication.Attachments.Add(i);
-                }
+                selectedPublication.Attachments = publication.Attachments;
+                selectedPublication.Date = publication.Date;
 
 
                 var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
@@ -175,6 +171,7 @@
                     x.Target.Link = x.Source.Link;
                     x.Target.PublicationId = x.Source.PublicationId;
                     x.Target.ContentType = x.Source.ContentType;
+                    x.Target.Publication = x.Source.Publication;
                 });
                 await context.SaveChangesAsync();
                 _message.Success("Публикация сохранена!");
