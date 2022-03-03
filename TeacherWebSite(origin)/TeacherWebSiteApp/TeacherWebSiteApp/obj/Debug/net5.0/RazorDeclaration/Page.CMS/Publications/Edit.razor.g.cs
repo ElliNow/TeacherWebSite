@@ -134,12 +134,14 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 114 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+#line 112 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
        
     [Parameter]
     public int Id { get; set; }
 
     public Attachment attachment = new Attachment();
+    private List<Attachment> attachments = new List<Attachment>();
+
     private TeacherWebSiteApp.Data.Models.Publication publication = new Publication()
     {
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
@@ -152,13 +154,14 @@ using AntDesign;
         attachment.ContentType = (ContentType)contentType;
     }
 
-   
+
     protected override async Task OnInitializedAsync()
     {
         if(Id != 0)
         {
             using TeacherContext context = DbFactory.CreateDbContext();
             publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
+            attachments = context.Attachments.Where(item => item.PublicationId == Id).ToList();
             if(publication == null)
             {
                 _message.Error("Публикация не найдена!");
@@ -179,7 +182,7 @@ using AntDesign;
         {
             using TeacherContext context = DbFactory.CreateDbContext();
             var selectedPublication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
-       
+
             if (selectedPublication != null)
             {
                 selectedPublication.Id = publication.Id;
@@ -187,8 +190,6 @@ using AntDesign;
                 selectedPublication.Text = publication.Text;
                 selectedPublication.Attachments = publication.Attachments;
                 selectedPublication.Date = publication.Date;
-
-
 
                 var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
 
@@ -206,7 +207,6 @@ using AntDesign;
                     x.Target.Link = x.Source.Link;
                     x.Target.PublicationId = x.Source.PublicationId;
                     x.Target.ContentType = x.Source.ContentType;
-                    x.Target.Publication = x.Source.Publication;
                 });
                 await context.SaveChangesAsync();
                 _message.Success("Публикация сохранена!");

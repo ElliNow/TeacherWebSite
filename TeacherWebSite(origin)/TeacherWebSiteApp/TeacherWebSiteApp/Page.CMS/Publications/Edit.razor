@@ -9,88 +9,87 @@
 
     <div class="col-md-6">
        
-            <div class="col-md-6">
-                <label>Название</label>
-                <Input @bind-Value="@publication.Name" placeholder="Введите название публикации" />    
-            </div>
-            <div class="col-md-6">
-                <label>Описание</label>
-                <TextArea Rows="4" Placeholder="Введите описание публикации" AutoSize="true" @bind-Value="@publication.Text" /> 
-            </div>
-            <div class="container" style="margin-top:30px">
-                <label>Вложение</label>
-                <Row>
-                    <AntDesign.Col>
-                        <label>Название</label>
-                        <Input Type="text" @bind-Value="attachment.Name" Class="form-control" Placeholder="Введите название">
-                    </AntDesign.Col>
-                    <AntDesign.Col style="margin-left: 50px">
-                        <span>
-                            <label>Ссылка</label>
-                            <svg onclick="alert('Инструкция')" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
-                            </svg>
-                        </span>
-                        <Input Type="text" @bind-Value="attachment.Link" Class="form-control" Placeholder="Введите ссылку">
-                    </AntDesign.Col>
-                    <AntDesign.Col style="margin-left:500px">
-                        <Dropdown Trigger="@(new Trigger[] { Trigger.Click })">
-                            <Overlay>
-                                <Menu>
-                                    <MenuItem>
-                                        <a target="_blank" @onclick="()=> GetStatus(1)" rel="noopener noreferrer">
-                                            Презентация
-                                        </a>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <a target="_blank" @onclick="()=> GetStatus(2)" rel="noopener noreferrer">
-                                            Видео
-                                        </a>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <a target="_blank" @onclick="()=> GetStatus(3)" rel="noopener noreferrer">
-                                            Методичка
-                                        </a>
-                                    </MenuItem>
-                                </Menu>
-                            </Overlay>
-                            <ChildContent>
-                                @if (attachment.ContentType == 0)
-                                {
-                                    <a class="ant-dropdown-link" @onclick:preventDefault>
-                                       Тип вложения<Icon Type="down" />
+        <div class="col-md-6">
+            <label>Название</label>
+            <Input @bind-Value="@publication.Name" placeholder="Введите название публикации" />    
+        </div>
+        <div class="col-md-6">
+            <label>Описание</label>
+            <TextArea Rows="4" Placeholder="Введите описание публикации" AutoSize="true" @bind-Value="@publication.Text" /> 
+        </div>
+        <div class="container" style="margin-top:30px">
+            <label>Вложение</label>
+            <Row>
+                <AntDesign.Col>
+                    <label>Название</label>
+                    <Input Type="text" @bind-Value="attachment.Name" Class="form-control" Placeholder="Введите название">
+                </AntDesign.Col>
+                <AntDesign.Col style="margin-left: 50px">
+                    <span>
+                        <label>Ссылка</label>
+                        <svg onclick="alert('Инструкция')" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                    </span>
+                    <Input Type="text" @bind-Value="attachment.Link" Class="form-control" Placeholder="Введите ссылку">
+                </AntDesign.Col>
+                <AntDesign.Col style="margin-left:500px">
+                    <Dropdown Trigger="@(new Trigger[] { Trigger.Click })">
+                        <Overlay>
+                            <Menu>
+                                <MenuItem>
+                                    <a target="_blank" @onclick="()=> GetStatus(1)" rel="noopener noreferrer">
+                                        Презентация
                                     </a>
-                                }
-                                else
-                                {
-                                    <a class="ant-dropdown-link" @onclick:preventDefault>
-                                        @attachment.ContentType <Icon Type="down" />
-                                     </a>
-                                }   
-                            </ChildContent>
-                        </Dropdown>
-                    </AntDesign.Col>
-                </Row>
-            </div>
-            <div class="form-block" style="margin-top:15px; margin-bottom:15px">
-                <Button Type="button" Class="btn btn-success" @onclick="@AddAttachment">Добавить</Button>
-                @*<ValidationBlock Messages="validationMessages" />*@
-            </div>
-            <div class="form-block">
-                <Table DataSource="publication.Attachments" TItem="Attachment" HidePagination="false">
-                    <Column Title="Название" @bind-Field="@context.Name" TData="string" />
-                    <Column Title="Ссылка" @bind-Field="@context.Link" TData="string" />
-                    <Column Title="Тип вложения" @bind-Field="@context.ContentType" TData="ContentType" />
-                    <Column Title=" " @bind-Field="@context.IsActive">
-                        <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">
-                            Удалить
-                        </Button>
-                    </Column>
-                </Table>
-            </div>
-        
-
+                                </MenuItem>
+                                <MenuItem>
+                                    <a target="_blank" @onclick="()=> GetStatus(2)" rel="noopener noreferrer">
+                                        Видео
+                                    </a>
+                                </MenuItem>
+                                <MenuItem>
+                                    <a target="_blank" @onclick="()=> GetStatus(3)" rel="noopener noreferrer">
+                                        Методичка
+                                    </a>
+                                </MenuItem>
+                            </Menu>
+                        </Overlay>
+                        <ChildContent>
+                            @if (attachment.ContentType == 0)
+                            {
+                                <a class="ant-dropdown-link" @onclick:preventDefault>
+                                    Тип вложения<Icon Type="down" />
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="ant-dropdown-link" @onclick:preventDefault>
+                                    @attachment.ContentType <Icon Type="down" />
+                                    </a>
+                            }   
+                        </ChildContent>
+                    </Dropdown>
+                </AntDesign.Col>
+            </Row>
+        </div>
+        <div class="form-block" style="margin-top:15px; margin-bottom:15px">
+            <Button Type="button" Class="btn btn-success" @onclick="@AddAttachment">Добавить</Button>
+            @*<ValidationBlock Messages="validationMessages" />*@
+        </div>
+        <div class="form-block">
+            <Table DataSource="publication.Attachments" TItem="Attachment" HidePagination="false">
+                <Column Title="Название" @bind-Field="context.Name" TData="string" />
+                <Column Title="Ссылка" @bind-Field="context.Link" TData="string" />
+                <Column Title="Тип вложения" @bind-Field="context.ContentType" TData="ContentType" />
+                <Column Title=" " @bind-Field="context.IsActive" TData="bool?">
+                    <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">
+                        Удалить
+                    </Button>
+                </Column>
+            </Table>
+            
+        </div>
         @if (Id <= 0)
         {
             <Button Type="primary" Style="margin-bottom:30px" HtmlType="submit" @onclick="SaveAsync" Class="btn btn-block">Сохранить</Button>
@@ -107,7 +106,6 @@
             </Row>
         }
     </div>
-
 </div>
 
 
@@ -116,6 +114,8 @@
     public int Id { get; set; }
 
     public Attachment attachment = new Attachment();
+    private List<Attachment> attachments = new List<Attachment>();
+
     private TeacherWebSiteApp.Data.Models.Publication publication = new Publication()
     {
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
@@ -128,13 +128,14 @@
         attachment.ContentType = (ContentType)contentType;
     }
 
-   
+
     protected override async Task OnInitializedAsync()
     {
         if(Id != 0)
         {
             using TeacherContext context = DbFactory.CreateDbContext();
             publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
+            attachments = context.Attachments.Where(item => item.PublicationId == Id).ToList();
             if(publication == null)
             {
                 _message.Error("Публикация не найдена!");
@@ -155,7 +156,7 @@
         {
             using TeacherContext context = DbFactory.CreateDbContext();
             var selectedPublication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
-       
+
             if (selectedPublication != null)
             {
                 selectedPublication.Id = publication.Id;
@@ -163,8 +164,6 @@
                 selectedPublication.Text = publication.Text;
                 selectedPublication.Attachments = publication.Attachments;
                 selectedPublication.Date = publication.Date;
-
-
 
                 var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
 
@@ -182,7 +181,6 @@
                     x.Target.Link = x.Source.Link;
                     x.Target.PublicationId = x.Source.PublicationId;
                     x.Target.ContentType = x.Source.ContentType;
-                    x.Target.Publication = x.Source.Publication;
                 });
                 await context.SaveChangesAsync();
                 _message.Success("Публикация сохранена!");

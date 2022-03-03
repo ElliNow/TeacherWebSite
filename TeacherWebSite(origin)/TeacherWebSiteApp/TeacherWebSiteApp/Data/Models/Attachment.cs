@@ -11,7 +11,6 @@ namespace TeacherWebSiteApp.Data.Models
         public string Link { get; set; }
         public ContentType ContentType { get; set; }
         public int PublicationId { get; set; }
-        public Publication Publication { get; set; }
     }
 
     public enum ContentType

@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page_CMS.Publications
+namespace TeacherWebSiteApp.Data.Models
 {
     #line hidden
     using System;
@@ -134,25 +134,20 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 27 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+#line 28 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite(origin)\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
         
-    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+    List<Publication> publications;
 
     protected override void OnInitialized()
     {
-        Reload();
-    }
-
-    private void Reload()
-    {
         using TeacherContext context = DbFactory.CreateDbContext();
-        publications = context.Publications.ToList();
+        publications = context.Publications.Include(p => p.Attachments).ToList();
     }
-
+        
     private async Task SwitchActive(int Id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();
-        var publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
+        var publication = await context.Publications.Include(p => p.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
         if (publication != null)
         {
             publication.IsActive = value;
