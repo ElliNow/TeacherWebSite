@@ -8182,11 +8182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite(origin)\\TeacherWebSiteApp\\TeacherWebSiteApp\\TeacherWebSiteApp.csproj",
+      "projectUniqueName": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\TeacherWebSiteApp\\TeacherWebSiteApp.csproj",
       "projectName": "TeacherWebSiteApp",
-      "projectPath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite(origin)\\TeacherWebSiteApp\\TeacherWebSiteApp\\TeacherWebSiteApp.csproj",
+      "projectPath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\TeacherWebSiteApp\\TeacherWebSiteApp.csproj",
       "packagesPath": "C:\\Users\\Эля\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite(origin)\\TeacherWebSiteApp\\TeacherWebSiteApp\\obj\\",
+      "outputPath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\TeacherWebSiteApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Эля\\AppData\\Roaming\\NuGet\\NuGet.Config",
