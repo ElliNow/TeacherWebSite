@@ -11,7 +11,7 @@ namespace TeacherWebSiteApp.Data.Models
         public string Text { get; set; }
         //public byte[]? Image { get; set; }
         public DateTime Date { get; set; }
-        public List<Attachment>? Attachments { get; set; }
+        public List<Attachment> Attachments { get; set; }
 
     }
 }

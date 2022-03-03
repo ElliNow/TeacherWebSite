@@ -138,12 +138,19 @@ using AntDesign;
         
     List<Publication> publications;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        using TeacherContext context = DbFactory.CreateDbContext();
-        publications = context.Publications.Include(p => p.Attachments).ToList();
+        try
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
+        }
+        catch(Exception ex)
+        {
+            _message.Error(ex.Message);
+        }
     }
-        
+
     private async Task SwitchActive(int Id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();

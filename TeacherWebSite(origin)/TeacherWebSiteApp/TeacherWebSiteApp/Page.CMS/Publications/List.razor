@@ -16,24 +16,31 @@
 
 <Table DataSource="publications" TItem="Publication" HidePagination="false">
     <Column Title="Название" @bind-Field="@context.Name" TData="string" Sortable>
-        <a href="/cms/publication/@context.Id">@context.</a>
+        <a href="/cms/publication/@context.Id">@context.Name</a>
     </Column>
     <Column Title="Описание" @bind-Field="@context.Text" TData="string" />
     <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
-    <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
+    @*<Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
         <Switch Checked="@context.IsActive.Value" OnChange="async (val) => await SwitchActive(context.Id, val)" />
-    </Column>
+    </Column>*@
 </Table>
 
 @code { 
     List<Publication> publications;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        using TeacherContext context = DbFactory.CreateDbContext();
-        publications = context.Publications.Include(p => p.Attachments).ToList();
+        try
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
+        }
+        catch(Exception ex)
+        {
+            _message.Error(ex.Message);
+        }
     }
-        
+
     private async Task SwitchActive(int Id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();
