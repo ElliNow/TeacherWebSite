@@ -1,0 +1,57 @@
+﻿@page "/cms/publications"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@inject MessageService _message
+@inject NavigationManager NavManager
+@namespace TeacherWebSiteApp.Data.Models
+@layout CmsLayout
+
+
+<Title Level="3">Публикации</Title>
+
+@{ string add = "/cms/publication/0"; }
+
+<InputGroup Style="margin-bottom: 20px">
+    <Button @onclick="() => NavManager.NavigateTo(add)">Добавить</Button>
+</InputGroup>
+
+<Table DataSource="publications" TItem="Publication" HidePagination="false">
+    <Column Title="Название" @bind-Field="@context.Name" TData="string" Sortable>
+        <a href="/cms/publication/@context.Id">@context.Name</a>
+    </Column>
+    <Column Title="Описание" @bind-Field="@context.Text" TData="string" />
+    <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
+    @*<Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
+        <Switch Checked="@context.IsActive.Value" OnChange="async (val) => await SwitchActive(context.Id, val)" />
+    </Column>*@
+</Table>
+
+@code { 
+    List<Publication> publications;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
+        }
+        catch(Exception ex)
+        {
+            _message.Error(ex.Message);
+        }
+    }
+
+    private async Task SwitchActive(int Id, bool? value)
+    {
+        using var context = DbFactory.CreateDbContext();
+        var publication = await context.Publications.Include(p => p.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
+        if (publication != null)
+        {
+            publication.IsActive = value;
+            await context.SaveChangesAsync();
+            string state = (publication.IsActive.Value) ? "активированa" : "деактивированa";
+            _message.Info($"Публикация {publication.Name} {state}.");
+        }
+
+    }
+}

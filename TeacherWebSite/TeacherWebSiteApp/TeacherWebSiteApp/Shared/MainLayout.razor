@@ -1,0 +1,45 @@
+﻿@using System.Linq
+@inherits LayoutComponentBase
+@inject IDbContextFactory<TeacherContext> Context
+@inject NavigationManager Nav
+
+@{ 
+    string root = "/";
+    string newsfeed = "/newsfeed";
+    string articles = "/articles";
+    string about = "/about";
+    string contacts = "/contacts";
+    }
+
+<div class="container" style="margin-bottom:70px">
+        <Layout>
+            <Header Style="position: fixed; background: #00BFFF; width: 100%; margin-bottom: 50px; z-index: 999999 ">
+                <div class="container">
+                    <div class="logo" style="width:100%" />
+                    <Menu Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(root, true); }">Главная</MenuItem>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(newsfeed, true); }">Лента</MenuItem>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(articles, true); }">Статьи</MenuItem>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(about, true); }">О себе</MenuItem>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(contacts, true); }">Контакты</MenuItem>
+                    </Menu>
+                </div>
+            </Header>
+        </Layout>
+    </div>
+<style>
+    body {
+        background-size: contain;
+        background-repeat: repeat-y;
+        
+    }
+</style>
+
+<div class="container content" style="padding: 60px 15px 60px; margin-top: 70px; height: 100%">
+    @Body
+</div>
+
+@code{
+
+
+ }

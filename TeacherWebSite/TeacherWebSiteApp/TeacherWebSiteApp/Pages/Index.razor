@@ -1,0 +1,29 @@
+﻿@page "/index"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@inject NavigationManager NavManager
+@layout MainLayout
+@namespace TeacherWebSiteApp.Pages
+
+@if (data != null && data.IsBannerEnabled)
+{
+    <div style="height: 100%">
+        <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
+    </div>
+}
+
+@code{
+    private MainPage data = new MainPage();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+
+        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActive.Value);
+
+        if (data == null)
+        {
+            NavManager.NavigateTo("/newsfeed");
+        }
+    }
+}
+
