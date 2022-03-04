@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
 namespace TeacherWebSiteApp.Data.Models
 {
-    public class Publication : Entity
+    public class Group : Entity
     {
         public string Name { get; set; }
-        public string Text { get; set; }
-        public DateTime Date { get; set; }
-        public List<Attachment> Attachments { get; set; }
-
+        public int CourseNumb { get; set; }
     }
 }
