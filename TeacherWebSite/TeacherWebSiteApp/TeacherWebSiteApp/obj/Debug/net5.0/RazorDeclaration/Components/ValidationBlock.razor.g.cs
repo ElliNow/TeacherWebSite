@@ -132,12 +132,21 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 10 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\ValidationBlock.razor"
+#line 17 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\ValidationBlock.razor"
        
 
     [Parameter]
     public string[] Messages { get; set; }
 
+
+    bool visible = true;
+
+    void handleClose()
+    {
+        visible = false;
+    }
+
+ 
 
 #line default
 #line hidden

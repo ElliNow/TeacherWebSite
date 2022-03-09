@@ -75,6 +75,7 @@
         </div>
         <div class="form-block" style="margin-top:15px; margin-bottom:15px">
             <Button Type="button" Class="btn btn-success" @onclick="@AddAttachment">Добавить</Button>
+            <ValidationBlock Messages="@validationMessages"/>
         </div>
         <div class="form-block">
             <Table DataSource="publication.Attachments" TItem="TeacherWebSiteApp.Data.Models.Attachment" HidePagination="false">
@@ -93,7 +94,6 @@
         {
             <div class="form-block" style="margin-bottom: 20px">
                 <Button Type="primary" Style="margin-bottom:30px" HtmlType="submit" @onclick="SaveAsync" Class="btn btn-block">Сохранить</Button>
-                <ValidationBlock Messages="validationMessages" />
             </div>    
         }
         else
@@ -104,8 +104,7 @@
                 </AntDesign.Col>
                 <AntDesign.Col Style="margin-bottom:20px">
                     <Button @onclick="DeletePublication" Type="primary" Danger>Удалить</Button>
-                </AntDesign.Col>
-                <ValidationBlock Messages="validationMessages" />         
+                </AntDesign.Col>    
             </Row>
         }
     </div>

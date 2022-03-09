@@ -1,15 +1,30 @@
-﻿<div style="margin-bottom: 20px">
-    @foreach (var message in Messages)
+﻿<div>
+    @if (visible)
     {
-        <Alert Message=@message Type="@AlertType.Error" />
-    }
+        <div style="margin-bottom: 20px; margin-top:20px">
+            @foreach (var message in Messages)
+            {
+                <div style="margin-bottom:20px">    
+                    <Alert Message=@message ShowIcon="true" Type="@AlertType.Error" Closable AfterClose="handleClose" />
+                </div>
+            }
+        </div>
+     }
+
 </div>
 
-
-
+    
 @code {
 
     [Parameter]
     public string[] Messages { get; set; }
 
-}
+
+    bool visible = true;
+
+    void handleClose()
+    {
+        visible = false;
+    }
+
+ }

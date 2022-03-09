@@ -117,17 +117,23 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
             catch (Exception ex)
             {
                 validationMessages = new string[] { ex.Message, ex.InnerException?.Message };
+                ValidationPublication();
             }
+            
            
         }
 
         // Добавление вложения
         private void AddAttachment()
         {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            publication.Attachments.Add(attachment);
-            attachment = new();
-            context.SaveChanges();
+            bool flag = ValidateAttachment();
+            if(flag == true)
+            {
+                using TeacherContext context = DbFactory.CreateDbContext();
+                publication.Attachments.Add(attachment);
+                attachment = new();
+                context.SaveChanges();
+            }    
         }
 
 
