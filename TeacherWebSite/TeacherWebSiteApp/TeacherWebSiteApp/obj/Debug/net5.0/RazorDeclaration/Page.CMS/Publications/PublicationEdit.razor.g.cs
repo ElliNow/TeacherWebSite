@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Data.Models
+namespace TeacherWebSiteApp.Page.CMS.Publications
 {
     #line hidden
     using System;
@@ -126,7 +126,7 @@ using AntDesign;
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publication/{id:int}")]
-    public partial class Edit : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class PublicationEdit : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -134,130 +134,22 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 112 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\Edit.razor"
+#line 115 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
        
     [Parameter]
     public int Id { get; set; }
 
-    public Attachment attachment = new Attachment();
-    private List<Attachment> attachments = new List<Attachment>();
+    public TeacherWebSiteApp.Data.Models.Attachment attachment = new TeacherWebSiteApp.Data.Models.Attachment();
+    private List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
+    string[] validationMessages = new string[] {};
+    
 
-    private TeacherWebSiteApp.Data.Models.Publication publication = new Publication()
+    TeacherWebSiteApp.Data.Models.Publication publication = new()
     {
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
-
-    // установление типа вложения
-    private void GetStatus(int contentType)
-    {
-        attachment.ContentType = (ContentType)contentType;
-    }
-
-
-    protected override async Task OnInitializedAsync()
-    {
-        if(Id != 0)
-        {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
-            attachments = context.Attachments.Where(item => item.PublicationId == Id).ToList();
-            if(publication == null)
-            {
-                _message.Error("Публикация не найдена!");
-                NavManager.NavigateTo("/cms/publication/0");
-            }
-        }
-    }
-
-    // Сохранение
-    private async Task SaveAsync()
-    {
-        if (!publication.Attachments.Any())
-        {
-            _message.Error("Публикация должна содержать хотя бы одно вложение!");
-        }
-
-        try
-        {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            var selectedPublication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
-
-            if (selectedPublication != null)
-            {
-                selectedPublication.Id = publication.Id;
-                selectedPublication.Name = publication.Name;
-                selectedPublication.Text = publication.Text;
-                selectedPublication.Attachments = publication.Attachments;
-                selectedPublication.Date = publication.Date;
-
-                var delAttachments = selectedPublication.Attachments.Where(b => !publication.Attachments.Any(x => x.Id == b.Id));
-
-                var newAttachments = publication.Attachments.Where(b => !selectedPublication.Attachments.Any(x => x.Id == b.Id));
-
-                var updBlocks = selectedPublication.Attachments.Where(b => publication.Attachments.Any(x => x.Id == b.Id))
-                .Select(db => new { Source = publication.Attachments.FirstOrDefault(x => x.Id == db.Id), Target = db });
-
-                context.Attachments.RemoveRange(delAttachments);
-                await context.Attachments.AddRangeAsync(newAttachments);
-                updBlocks.ForEach(x =>
-                {
-                    x.Target.Id = x.Source.Id;
-                    x.Target.Name = x.Source.Name;
-                    x.Target.Link = x.Source.Link;
-                    x.Target.PublicationId = x.Source.PublicationId;
-                    x.Target.ContentType = x.Source.ContentType;
-                });
-                await context.SaveChangesAsync();
-                _message.Success("Публикация сохранена!");
-            }
-            else
-            {
-                publication.Date = DateTime.Now;
-                context.Publications.Add(publication);
-                await context.SaveChangesAsync();
-                _message.Success("Публикация добавлена!");
-            }
-            NavManager.NavigateTo($"/cms/publication/{publication.Id}");
-        }
-        catch (Exception ex)
-        {
-            _message.Error(ex.Message, 60);
-            _message.Error(ex.InnerException?.Message, 60);
-            _message.Error("Во время сохранения публикации произошла ошибка", 60);
-        }
-
-    }
-
-
-    // Добавление вложения
-    private void AddAttachment()
-    {
-        using TeacherContext context = DbFactory.CreateDbContext();
-        publication.Attachments.Add(attachment);
-        attachment = new();
-        context.SaveChanges();
-    }
-
-
-    // Удаление вложения
-    private void DeleteAttachment(string name, string link)
-    {
-        using TeacherContext context = DbFactory.CreateDbContext();
-        var selectedAttachment = publication.Attachments.FirstOrDefault(x => x.Name == name && x.Link == link);
-        publication.Attachments.Remove(selectedAttachment);
-        context.SaveChanges();
-    }
-
-
-    // Удаление публикации
-    private void DeletePublication()
-    {
-        using TeacherContext context = DbFactory.CreateDbContext();
-        context.Publications.Remove(publication);
-        context.SaveChanges();
-        NavManager.NavigateTo($"/cms/publications");
-    }
+    
  
 
 #line default

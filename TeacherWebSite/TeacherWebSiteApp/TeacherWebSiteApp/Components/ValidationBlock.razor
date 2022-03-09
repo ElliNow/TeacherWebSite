@@ -1,0 +1,15 @@
+﻿<div style="margin-bottom: 20px">
+    @foreach (var message in Messages)
+    {
+        <Alert Message=@message Type="@AlertType.Error" />
+    }
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public string[] Messages { get; set; }
+
+}
