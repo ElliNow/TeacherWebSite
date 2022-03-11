@@ -1,0 +1,159 @@
+﻿@page "/cms/contacts"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@inject NavigationManager NavManager
+@layout CmsLayout
+@namespace TeacherWebSiteApp.Page.CMS.Publications
+@inject MessageService _message
+
+<div class="container" style="margin-left:80px; margin-right:40%">
+
+    <div class="col-md-6">
+
+        <label>Контакты</label>
+        <div class="form-block">
+            <div class="row">
+                <div class="col-md-2" style="">
+                    <label>Ключ</label>
+                    <Input Type="text" @bind-Value="contact.Key" Class="form-control" Placeholder="Введите ключ">
+                </div>
+                <div class="col-md-2">
+                    <label>Значение</label>
+                    <Input Type="text" @bind-Value="contact.Value" Class="form-control" Placeholder="Введите значение">
+                </div>
+                <div class="col-md-2">
+                    <span>
+                        <label>Ссылка</label>
+                        <svg onclick="alert('Инструкция')" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                    </span>
+
+                    <Input Type="text" @bind-Value="contact.Link" Class="form-control" Placeholder="Введите ссылку">
+                </div>
+                @*<div class="col-md-2">
+                        <UploadImage @bind-imageData="@contact.Badge" Text=""></UploadImage>
+                        @if (contact.Badge != null)
+                        {
+                            <img src="data:image/png;base64,@Convert.ToBase64String(contact.Badge)" height="40" />            }
+                    </div>*@
+            </div>
+        </div>
+
+        <div class="form-block" style="margin-top: 20px; margin-bottom:20px">
+            <Button Type="button" Class="btn btn-success" @onclick="@AddContact">Добавить</Button>
+            <ValidationBlock Messages="validationMessages" />
+        </div>
+
+        <div class="form-block">
+            <Table DataSource="contacts" TItem="Contact" HidePagination="false">
+                @*<Column Title="Значок" TData="string">
+                    <img src="data:image/png;base64,@Convert.ToBase64String(context.Badge)" height="40" />
+                </Column>*@
+                <Column Title="Ключ" @bind-Field="@context.Key" TData="string" />
+                <Column Title="Значение" @bind-Field="@context.Value" TData="string" />
+                <Column Title="Ссылка" @bind-Field="@context.Link" TData="string" />
+                <Column @bind-Field="@context.IsActive" Title=" " TData="bool?">
+                    <Button Danger
+                            @onclick="() => DeleteContact(context.Key, context.Value)">
+                        Удалить
+                    </Button>
+                </Column>
+
+            </Table>
+        </div>
+
+        <div class="form-block">
+            <Button Type="primary" Style="margin-bottom:30px" HtmlType="submit" @onclick="SaveAsync" Class="btn btn-block">Сохранить</Button>
+            <ValidationBlock Messages="validationMessages" />
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public TeacherWebSiteApp.Data.PageModels.Contact contact = new();
+    string[] validationMessages = new string[] { };
+    List<Contact> contacts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Reload();
+    }
+
+    private async Task Reload()
+    {
+        try
+        {
+            using var context = DbFactory.CreateDbContext();
+            contacts = await context.Contacts.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    private bool ValidateContact()
+    {
+        var messages = new List<string>();
+
+        if (string.IsNullOrEmpty(contact.Key)) messages.Add(@"'Ключ' не должно быть пусто.");
+        else if (contact.Key.Length > 50) messages.Add(@"'Ключ' должно быть не более 50 символов.");
+
+        if (string.IsNullOrEmpty(contact.Value)) messages.Add(@"'Значение' не должно быть пусто.");
+        else if (contact.Value.Length > 50) messages.Add(@"'Значение' должно быть не более 50 символов.");
+
+        if (!contact.Badge.Any())
+            messages.Add("Загрузите хотя бы одно изображение.");
+
+        validationMessages = messages.ToArray();
+        return !validationMessages.Any();
+    }
+
+    private void AddContact()
+    {
+        using var context = DbFactory.CreateDbContext();
+        //if (!ValidateContact()) return;
+        contacts.Add(contact);
+        _message.Success("Контакт успешно добавлен!");
+        context.Contacts.Add(contact);
+        context.SaveChanges();
+        contact = new();
+    }
+
+    private void DeleteContact(string key, string value)
+    {
+        using var context = DbFactory.CreateDbContext();
+        var selectedContact = contacts.FirstOrDefault(x => x.Key == key && x.Value == value);
+        contacts.Remove(selectedContact);
+        context.Contacts.Remove(selectedContact);
+        context.SaveChanges();
+    }
+
+    private async Task SaveAsync()
+    {
+        try
+        {
+            using var context = DbFactory.CreateDbContext();
+            foreach (var _contact in contacts)
+            {
+                context.Contacts.Add(_contact);
+            }
+
+            context.SaveChangesAsync();
+            NavManager.NavigateTo("/cms/contacts", true);
+            Reload();
+
+        }
+        catch (Exception ex)
+        {
+            validationMessages = new string[] { ex.Message, ex.InnerException?.Message };
+        }
+    }
+}
+
+
+
+
+
