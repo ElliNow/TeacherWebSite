@@ -1,0 +1,31 @@
+﻿<label for="@HtmlId" style="color:cornflowerblue; cursor:pointer">@Text</label>
+<InputFile OnChange="@OnInputFileChange" type="file" id="@HtmlId" style="display:none" />
+
+
+@code { 
+    [Parameter]
+    public string HtmlId { get; set; } = "imageUploader";
+
+    [Parameter]
+    public string Text { get; set; } = "Загрузить изображение";
+
+    [Parameter]
+    public byte[] ImageData { get; set; }
+
+    [Parameter]
+    public EventCallback<byte[]> ImageDataChanged { get; set; }
+
+    private string imageDataUrl { get; set; }
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var format = "image/jpg";
+        var imageFile = e.File;
+
+        var resizedImageFile = await imageFile.RequestImageFileAsync(format, 2000, 2000);
+        var buffer = new byte[resizedImageFile.Size];
+        await resizedImageFile.OpenReadStream(5000000).ReadAsync(buffer);
+        ImageData = buffer;
+        await ImageDataChanged.InvokeAsync(ImageData);
+    }
+}
