@@ -143,7 +143,15 @@ using AntDesign;
 
     protected override async Task OnInitializedAsync()
     {
-        Reload();
+        try
+        {
+            using var context = DbFactory.CreateDbContext();
+            contacts = await context.Contacts.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
     private async Task Reload()
@@ -208,7 +216,7 @@ using AntDesign;
 
             context.SaveChangesAsync();
             NavManager.NavigateTo("/cms/contacts", true);
-            Reload();
+            //Reload();
 
         }
         catch (Exception ex)

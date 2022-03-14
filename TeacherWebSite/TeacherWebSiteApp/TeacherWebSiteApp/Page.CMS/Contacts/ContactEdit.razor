@@ -78,11 +78,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Reload();
-    }
-
-    private async Task Reload()
-    {
         try
         {
             using var context = DbFactory.CreateDbContext();
@@ -93,6 +88,7 @@
             Console.WriteLine(ex.Message);
         }
     }
+
 
     private bool ValidateContact()
     {
@@ -143,7 +139,6 @@
 
             context.SaveChangesAsync();
             NavManager.NavigateTo("/cms/contacts", true);
-            Reload();
 
         }
         catch (Exception ex)
