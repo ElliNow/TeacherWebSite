@@ -154,18 +154,6 @@ using AntDesign;
         }
     }
 
-    private async Task Reload()
-    {
-        try
-        {
-            using var context = DbFactory.CreateDbContext();
-            contacts = await context.Contacts.ToListAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-    }
 
     private bool ValidateContact()
     {
@@ -189,9 +177,9 @@ using AntDesign;
         using var context = DbFactory.CreateDbContext();
         //if (!ValidateContact()) return;
         contacts.Add(contact);
-        _message.Success("Контакт успешно добавлен!");
         context.Contacts.Add(contact);
         context.SaveChanges();
+        _message.Success("Контакт успешно добавлен!");
         contact = new();
     }
 
@@ -202,6 +190,7 @@ using AntDesign;
         contacts.Remove(selectedContact);
         context.Contacts.Remove(selectedContact);
         context.SaveChanges();
+        _message.Success("Контакт успешно удален!");
     }
 
     private async Task SaveAsync()
@@ -216,7 +205,6 @@ using AntDesign;
 
             context.SaveChangesAsync();
             NavManager.NavigateTo("/cms/contacts", true);
-            //Reload();
 
         }
         catch (Exception ex)

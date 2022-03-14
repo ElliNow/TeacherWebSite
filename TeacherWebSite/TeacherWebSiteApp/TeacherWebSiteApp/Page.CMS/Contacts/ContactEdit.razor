@@ -112,9 +112,9 @@
         using var context = DbFactory.CreateDbContext();
         //if (!ValidateContact()) return;
         contacts.Add(contact);
-        _message.Success("Контакт успешно добавлен!");
         context.Contacts.Add(contact);
         context.SaveChanges();
+        _message.Success("Контакт успешно добавлен!");
         contact = new();
     }
 
@@ -125,6 +125,7 @@
         contacts.Remove(selectedContact);
         context.Contacts.Remove(selectedContact);
         context.SaveChanges();
+        _message.Success("Контакт успешно удален!");
     }
 
     private async Task SaveAsync()
