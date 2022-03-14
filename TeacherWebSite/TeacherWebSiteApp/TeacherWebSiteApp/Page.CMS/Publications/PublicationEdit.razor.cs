@@ -9,6 +9,7 @@ using TeacherWebSiteApp.Data.Models;
 using AntDesign;
 
 
+
 namespace TeacherWebSiteApp.Page.CMS.Publications
 {
     public partial class PublicationEdit
@@ -131,8 +132,10 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
             {
                 using TeacherContext context = DbFactory.CreateDbContext();
                 publication.Attachments.Add(attachment);
+                attachments.Add(attachment);
                 attachment = new();
                 context.SaveChanges();
+                _message.Success("Вложение успешно добавлено!");
             }    
         }
 
@@ -143,7 +146,9 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
             using TeacherContext context = DbFactory.CreateDbContext();
             var selectedAttachment = publication.Attachments.FirstOrDefault(x => x.Name == name && x.Link == link);
             publication.Attachments.Remove(selectedAttachment);
+            attachments.Remove(selectedAttachment);
             context.SaveChanges();
+            _message.Success("Вложение успешно удалено!");
         }
 
 
