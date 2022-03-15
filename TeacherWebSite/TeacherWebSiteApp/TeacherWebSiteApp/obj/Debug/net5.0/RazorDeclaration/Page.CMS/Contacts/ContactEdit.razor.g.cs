@@ -175,7 +175,7 @@ using AntDesign;
     private void AddContact()
     {
         using var context = DbFactory.CreateDbContext();
-        //if (!ValidateContact()) return;
+        if (!ValidateContact()) return;
         contacts.Add(contact);
         context.Contacts.Add(contact);
         context.SaveChanges();
@@ -210,6 +210,7 @@ using AntDesign;
         catch (Exception ex)
         {
             validationMessages = new string[] { ex.Message, ex.InnerException?.Message };
+            ValidateContact();
         }
     }
 
