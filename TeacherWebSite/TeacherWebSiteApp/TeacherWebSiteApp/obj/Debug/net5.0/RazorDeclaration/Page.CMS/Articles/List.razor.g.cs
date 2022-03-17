@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page.CMS.Publications
+namespace TeacherWebSiteApp.Page_CMS.Articles
 {
     #line hidden
     using System;
@@ -125,8 +125,8 @@ using AntDesign;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/contacts")]
-    public partial class ContactEdit : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/articles")]
+    public partial class List : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -134,85 +134,31 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 73 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Contacts\ContactEdit.razor"
+#line 26 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
        
-
-    public TeacherWebSiteApp.Data.PageModels.Contact contact = new();
-    string[] validationMessages = new string[] { };
-    List<Contact> contacts;
+    List<Article> articles;
 
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            using var context = DbFactory.CreateDbContext();
-            contacts = await context.Contacts.ToListAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        using TeacherContext context = DbFactory.CreateDbContext();
+        articles = await context.Articles.ToListAsync();
     }
 
 
-    private bool ValidateContact()
-    {
-        var messages = new List<string>();
-
-        if (string.IsNullOrEmpty(contact.Key)) messages.Add(@"'Ключ' не должно быть пусто.");
-        else if (contact.Key.Length > 50) messages.Add(@"'Ключ' должно быть не более 50 символов.");
-
-        if (string.IsNullOrEmpty(contact.Value)) messages.Add(@"'Значение' не должно быть пусто.");
-        else if (contact.Value.Length > 50) messages.Add(@"'Значение' должно быть не более 50 символов.");
-
-        if (!contact.Badge.Any())
-            messages.Add("Загрузите хотя бы одно изображение.");
-
-        validationMessages = messages.ToArray();
-        return !validationMessages.Any();
-    }
-
-    private void AddContact()
+    private async Task SwitchActive(int id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();
-        if (!ValidateContact()) return;
-        contacts.Add(contact);
-        context.Contacts.Add(contact);
-        context.SaveChanges();
-        _message.Success("Контакт успешно добавлен!");
-        contact = new();
-    }
-
-    private void DeleteContact(string key, string value)
-    {
-        using var context = DbFactory.CreateDbContext();
-        var selectedContact = contacts.FirstOrDefault(x => x.Key == key && x.Value == value);
-        contacts.Remove(selectedContact);
-        context.Contacts.Remove(selectedContact);
-        context.SaveChanges();
-        _message.Success("Контакт успешно удален!");
-    }
-
-    private async Task SaveAsync()
-    {
-        try
+        var article = await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
+        if (article != null)
         {
-            using var context = DbFactory.CreateDbContext();
-            foreach (var _contact in contacts)
-            {
-                context.Contacts.Add(_contact);
-            }
-
-            context.SaveChangesAsync();
-            NavManager.NavigateTo("/cms/contacts", true);
-
-        }
-        catch (Exception ex)
-        {
-            validationMessages = new string[] { ex.Message, ex.InnerException?.Message };
-            ValidateContact();
+            article.IsActive = value;
+            await context.SaveChangesAsync();
+            string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
+            _message.Info($"Статья {article.Name} {state}.");
         }
     }
+
+ 
 
 #line default
 #line hidden

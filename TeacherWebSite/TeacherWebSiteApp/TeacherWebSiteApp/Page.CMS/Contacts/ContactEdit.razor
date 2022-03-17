@@ -15,7 +15,7 @@
                 <div class="col-md-2" style="">
                     <label>Ключ</label>
                     <Input Type="text" @bind-Value="contact.Key" Class="form-control" Placeholder="Введите ключ">
-                </div>
+                </div>  
                 <div class="col-md-2">
                     <label>Значение</label>
                     <Input Type="text" @bind-Value="contact.Value" Class="form-control" Placeholder="Введите значение">
@@ -110,7 +110,7 @@
     private void AddContact()
     {
         using var context = DbFactory.CreateDbContext();
-        //if (!ValidateContact()) return;
+        if (!ValidateContact()) return;
         contacts.Add(contact);
         context.Contacts.Add(contact);
         context.SaveChanges();
@@ -145,6 +145,7 @@
         catch (Exception ex)
         {
             validationMessages = new string[] { ex.Message, ex.InnerException?.Message };
+            ValidateContact();
         }
     }
 }
