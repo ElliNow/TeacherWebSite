@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TeacherWebSiteApp.Data.PageModels;
+using TeacherWebSiteApp.Data.Models;
 
-namespace TeacherWebSiteApp.Data.Models
+namespace TeacherWebSiteApp.Data.PageModels
 {
     public class Article : Entity
     {

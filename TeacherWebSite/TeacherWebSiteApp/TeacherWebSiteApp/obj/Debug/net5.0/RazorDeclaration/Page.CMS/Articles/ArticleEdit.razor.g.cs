@@ -148,19 +148,19 @@ using System.Collections.Concurrent;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 99 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\ArticleEdit.razor"
+#line 102 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\ArticleEdit.razor"
         
     [Parameter]
     public int Id { get; set; }
 
-    private Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
-
+    public TeacherWebSiteApp.Data.PageModels.Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
+   
 
     protected override async Task OnInitializedAsync()
     {
         if (Id != 0)
         {
-            using TeacherContext context = DbFactory.CreateDbContext();
+            using TeacherWebSiteApp.Data.TeacherContext context = DbFactory.CreateDbContext();
             article = await context.Articles.Include(b => b.Blocks).FirstOrDefaultAsync(x => x.Id == Id);
             if (article == null)
             {

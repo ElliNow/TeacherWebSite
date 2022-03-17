@@ -9,29 +9,31 @@
 
 
 <div class="container">
-    <div class="col" style="margin-left:60px">
-        <Form Layout="@FormLayout.Vertical"
-              WrapperColSpan="16"
-              Model="@article" OnFinish="SaveAsync">
-            <FormItem Label="Заголовок">
-                <Input @bind-Value="@context.Name" placeholder="Введите заголовок статьи" />
-            </FormItem>
-            <FormItem Label="Описание">
-                <TextArea Placeholder="Введите описание статьи" AutoSize="true" @bind-Value="@context.Description" />
-            </FormItem>
-            @foreach (var block in article.Blocks)
+    <AntDesign.Col Style="margin-left:60px; margin-right:500px">
+        <AntDesign.Col Style="margin-bottom:20px">
+            <label>Заголовок</label>
+            <Input @bind-Value="@article.Name" placeholder="Введите заголовок статьи" />
+        </AntDesign.Col>
+        <AntDesign.Col Style="margin-bottom:20px">
+            <label>Описание</label>
+            <TextArea Placeholder="Введите описание статьи" AutoSize="true" @bind-Value="@article.Description" />
+        </AntDesign.Col>
+        <div class="container" style="margin-right:200px"> 
+            @foreach (TeacherWebSiteApp.Data.PageModels.ArcticleBlock block in article.Blocks)
             {
-                <hr style="margin-right:300px" />
-                <div class="col">
-                    <FormItem Label="Подзаголок">
+                <hr/>
+                <AntDesign.Col>
+                    <AntDesign.Col Style="margin-bottom:20px">
+                        <label>Подзаголовок</label>
                         <Input @bind-Value="@block.Title" placeholder="Введите подзаголовок абзаца" />
-                    </FormItem>
-                    <FormItem Label="Текст">
+                    </AntDesign.Col>
+                    <AntDesign.Col Style="margin-bottom:20px">
+                        <label>Текст</label>
                         <TextArea Placeholder="Введите текст" AutoSize="true" @bind-Value="@block.Text" />
-                    </FormItem>
-                </div>
+                    </AntDesign.Col>
+                </AntDesign.Col>
                 <div class="col">
-                    <FormItem>
+                    <AntDesign.Col Style="margin-bottom:20px">
                         @if (block.Image != null)
                         {
                             <div class="ant-form-item-label">
@@ -43,55 +45,56 @@
                                     <img src="data:image/png;base64,@Convert.ToBase64String(block.Image)" style="width:100%" />
                                 </div>
 
-                            </div>    
+                            </div>
                         }
                         else
                         {
                             <div class="ant-form-item-label">
                                 <UploadImage @bind-imageData="block.Image" HtmlId="@Guid.NewGuid().ToString()" Text="Загрузите изображение"></UploadImage>
-                            </div>                       
+                            </div>
                         }
-                        <div class="ant-form-item-label" style="margin-left: 110px">
+                        <div class="ant-form-item-label" style="margin-left: 110px; margin-bottom:20px">
                             <label style="color:cornflowerblue; cursor:pointer" @onclick="() => { article.Blocks.Remove(block); }">Удалить абзац</label>
                         </div>
-                    </FormItem>
-                    <FormItem>
+                    </AntDesign.Col>
+                    <AntDesign.Col Style="margin-bottom:20px">
                         <Input @bind-Value="@block.Video" placeholder="https://www.youtube.com/embed/xxxxxxxx" />
-                    </FormItem>
+                    </AntDesign.Col>
                 </div>
              }
-            <FormItem>
-                <div>
-                    <Button type="button"
-                            class="btn btn-block"
-                            @onclick="() => { article.Blocks.Add(new TeacherWebSiteApp.Data.PageModels.ArcticleBlock() {ArticleId = article.Id}); }">
-                        Добавить абзац
-                    </Button>
-                </div>
-            </FormItem>
+            </div>
+    <AntDesign.Col Style="margin-bottom:20px">
+        <div>
+            <Button type="button"
+                    class="btn btn-block"
+                    @onclick="() => { article.Blocks.Add(new TeacherWebSiteApp.Data.PageModels.ArcticleBlock() {ArticleId = article.Id}); }">
+                Добавить абзац
+            </Button>
+        </div>
+    </AntDesign.Col>
             @if (Id <= 0)
             {
-                <FormItem>
-                    <Button Type="primary" HtmlType="submit" class="btn btn-block" style="margin-bottom:20px">Сохранить</Button>
-                </FormItem> 
+                <AntDesign.Col Style="margin-bottom:20px">
+                    <Button Type="primary" @onclick="SaveAsync" HtmlType="submit" class="btn btn-block" style="margin-bottom:20px">Сохранить</Button>
+                </AntDesign.Col> 
             }
-            else if (Id > 0)
+            else
             {
                 <Row>
-                    <div class="col-md-6" style="margin-bottom:20px">
-                        <FormItem>
-                            <Button Type="primary" HtmlType="submit">Сохранить</Button>
-                        </FormItem>
-                    </div>
-                    <div class="col-md-6 style="margin-bottom:20px">
-                        <FormItem>
+                    <AntDesign.Col Style="margin-bottom:20px">
+                        <AntDesign.Col >
+                            <Button Type="primary" @onclick="SaveAsync" HtmlType="submit">Сохранить</Button>
+                        </AntDesign.Col>
+                    </AntDesign.Col>
+                    <AntDesign.Col style="margin-bottom:20px; margin-left: 55px">
+                        <AntDesign.Col>
                             <Button @onclick="DeleteArcticle" Type="primary" Danger>Удалить</Button>
-                        </FormItem>
-                    </div>
+                        </AntDesign.Col>
+                    </AntDesign.Col>
                 </Row>
             }
-        </Form>
-    </div>
+        
+    </AntDesign.Col>
 </div>
     
 
@@ -100,14 +103,14 @@
     [Parameter]
     public int Id { get; set; }
 
-    private Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
-
+    public TeacherWebSiteApp.Data.PageModels.Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
+   
 
     protected override async Task OnInitializedAsync()
     {
         if (Id != 0)
         {
-            using TeacherContext context = DbFactory.CreateDbContext();
+            using TeacherWebSiteApp.Data.TeacherContext context = DbFactory.CreateDbContext();
             article = await context.Articles.Include(b => b.Blocks).FirstOrDefaultAsync(x => x.Id == Id);
             if (article == null)
             {
