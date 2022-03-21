@@ -134,7 +134,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
+#line 25 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
        
     List<Article> articles;
 
@@ -142,6 +142,7 @@ using AntDesign;
     {
         using TeacherContext context = DbFactory.CreateDbContext();
         articles = await context.Articles.ToListAsync();
+
     }
 
 

@@ -3,7 +3,6 @@
 @inject NavigationManager NavManager
 @layout CmsLayout
 @inject MessageService _message
-
 <Title Level="3">Статьи</Title>
 
 @{ string add = "/cms/article/0"; }
@@ -18,9 +17,9 @@
     </Column>
     <Column Title="Описание" @bind-Field="@context.Description" TData="string" />
     <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
-    @*<Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
-        <Switch Checked="@context.IsActive.Value" OnChange="async (val) => await SwitchActive(context.Id, val)" />
-    </Column>*@
+    <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
+        <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" />
+    </Column>
 </Table>
 
 @code {
@@ -30,6 +29,7 @@
     {
         using TeacherContext context = DbFactory.CreateDbContext();
         articles = await context.Articles.ToListAsync();
+
     }
 
 
