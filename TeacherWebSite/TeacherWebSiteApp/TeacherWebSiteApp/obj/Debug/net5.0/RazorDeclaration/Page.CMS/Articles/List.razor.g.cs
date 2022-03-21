@@ -134,7 +134,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
+#line 25 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
        
     List<Article> articles;
 
