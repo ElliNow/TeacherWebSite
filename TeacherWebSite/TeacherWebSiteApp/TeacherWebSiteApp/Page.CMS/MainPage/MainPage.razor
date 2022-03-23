@@ -1,5 +1,332 @@
-﻿<h3>MainPage</h3>
+﻿@page "/CMS/MainPage"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@inject NavigationManager NavManager
+@namespace TeacherWebSiteApp.Page.CMS.MainPage
+
+
+<Row>
+    <div class="col-md-2">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @if (selectedProfile == null)
+                {
+                    <b>Профили</b> }
+                else
+                {
+                    <b>@selectedProfile.Name</b>}
+
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach (var profile in profiles)
+                {
+                    int local_id = profile.Id;
+                    <a class="dropdown-item" @onclick="() => SelectProfile(local_id)">@profile.Name</a>}
+            </div>
+        </div>
+    </div>
+</Row>
+
+<div class="form-block">
+    <div>
+        <AntDesign.Col>
+            <Button @onclick="@AddProfile">Добавить</Button>
+        </AntDesign.Col>
+    </div>
+</div>
+
+@if (validationMessages.Any())
+{
+    <div class="col-md-6 col-sm-12 form-block">
+        <ValidationBlock Messages="validationMessages" />
+    </div>
+}
+
+@if (selectedProfile != null)
+{
+    @*<hr />
+    <div class="form-check">
+        
+        <Checkbox @bind-Checked="selectedProfile.IsActive.Value">Активный профиль</Checkbox>
+    </div>*@
+
+    <div class="form-block">
+        <AntDesign.Col>
+            <label>Название профиля</label>
+            <Input Placeholder="Введите название" @bind-Value="@selectedProfile.Name">
+        </AntDesign.Col>
+    </div>
+
+    <hr />
+    <div class="form-check">
+        <Checkbox  @bind-Checked="selectedProfile.IsBannerEnabled">Добавить баннер</Checkbox>
+    </div>
+    @if (selectedProfile.IsBannerEnabled)
+    {
+        <h4>Баннер</h4>
+        <div class="form-block">
+            <AntDesign.Col>
+                <label>Заголовок баннера</label>
+                <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.BigPictureTitle">
+            </AntDesign.Col>
+        </div>
+        <div class="wrapper30 form-block">
+            <AntDesign.Col>
+                <label>Текст баннера</label>
+                <AntDesign.TextArea Placeholder="Введите текст" Rows="3" @bind-Value="@selectedProfile.BigPictureText" />
+            </AntDesign.Col>
+        </div>
+
+        <UploadImage Text="Загрузить изображение баннера" HtmlId="bpd" @bind-ImageData="@selectedProfile.BigPictureData" />
+        <AntDesign.Col>
+            <p>
+                @if (selectedProfile.BigPictureData != null)
+                {
+                    <img width="200" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.BigPictureData)" />
+                }
+            </p>
+        </AntDesign.Col>
+     }
+
+    <hr />
+    <div class="form-check">
+        <Checkbox @bind-Checked="selectedProfile.IsCardsEnabled">Добавить карточки</Checkbox>
+    </div>
+    @if (selectedProfile.IsCardsEnabled)
+    {
+        <Row>
+            <div class="col-md col-sm-12">
+                <h4>Карточка 1</h4>
+                <div class="card">
+                    <UploadImage Text="Загрузить изображение карточки 1" HtmlId="b1d" @bind-ImageData="@selectedProfile.Block1Data" />
+                    <p>
+                        @if (selectedProfile.Block1Data != null)
+                        {
+                            <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block1Data)" />
+                        }
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.Block1Title">
+                        </h5>
+                        <p class="card-text">
+                            <AntDesign.TextArea Placeholder="Текст" Rows="3" @bind="@selectedProfile.Block1Text"/>
+                        </p>
+                        <div class="form-block">
+                            <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link1Text">
+                        </div>
+                        <div class="form-block">
+                            <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link1Sourse">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md col-sm-12">
+                <h4>Карточка 2</h4>
+                <div class="card">
+                    <UploadImage Text="Загрузить изображение карточки 2" HtmlId="b2d" @bind-ImageData="@selectedProfile.Block2Data" />
+                    <p>
+                        @if (selectedProfile.Block2Data != null)
+                        {
+                            <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block2Data)" />
+                        }
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <Input Placeholder="Ввелите заголовок" @bind-Value="@selectedProfile.Block2Title"/>
+                        </h5>
+
+                        <p class="card-text">
+                            <AntDesign.TextArea Placeholder="Введите текст" Rows="3" @bind-Value="@selectedProfile.Block2Text"/>
+                        </p>
+                        <div class="form-block">
+                            <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link2Text">
+                        </div>
+                        <div class="form-block">
+                            <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link2Sourse"/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md col-sm-12">
+                <h4>Карточка 3</h4>
+                <div class="card">
+                    <UploadImage Text="Загрузить изображение карточки 3" HtmlId="b3d" @bind-ImageData="@selectedProfile.Block3Data" />
+                    <p>
+                        @if (selectedProfile.Block3Data != null)
+                        {
+                            <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block3Data)" />
+                        }
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.Block3Title"/>
+                        </h5>
+                        <p class="card-text">
+                            <AntDesign.TextArea placeholder="Введите тест" class="form-control" rows="3" @bind-Value="@selectedProfile.Block3Text"/>
+                        </p>
+                        <div class="form-block">
+                            <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link3Text">
+                        </div>
+                        <div class="form-block">
+                            <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link3Sourse">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Row>
+     }
+
+    <div class="form-block">
+        <Row>
+            <div class="col-md-2 col-sm-6" style="margin-bottom:auto">
+                <Button Type="@ButtonType.Primary" @onclick="@SaveAsync">Сохранить</Button>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <Button Danger Type="@ButtonType.Primary" @onclick="@DeleteProfile">Удалить</Button>
+            </div>
+            <div class="col">
+                <ValidationBlock Messages="validationMessages" />
+            </div>
+        </Row>
+    </div>
+}
 
 @code {
 
+        Data.PageModels.MainPage selectedProfile = null;
+        List<Data.PageModels.MainPage> profiles = new List<Data.PageModels.MainPage>();
+
+    protected override void OnInitialized()
+    {
+        using (TeacherContext context = DbFactory.CreateDbContext())
+        {
+            profiles = context.MainPages.ToList();
+        }
+    }
+
+    private void AddProfile()
+    {
+        selectedProfile = new();
+    }
+
+    private void DeleteProfile()
+    {
+        using (TeacherContext context = DbFactory.CreateDbContext())
+        {
+            var profile = context.MainPages.FirstOrDefault(x => x.Id == selectedProfile.Id);
+            context.MainPages.Remove(profile);
+            selectedProfile = null;
+            context.SaveChanges();
+            NavManager.NavigateTo("/CMS/MainPage", true);
+        }
+    }
+
+    private void SelectProfile(int id)
+    {
+        using (TeacherContext context = DbFactory.CreateDbContext())
+        {
+            profiles = context.MainPages.ToList();
+        }
+        selectedProfile = profiles.FirstOrDefault(profile => profile.Id == id);
+    }
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var maxAllowedFiles = 10;
+        var format = "image/jpg";
+
+        foreach (var imageFile in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            var resizedImageFile = await imageFile.RequestImageFileAsync(format,
+                3000, 3000);
+            var buffer = new byte[resizedImageFile.Size];
+            await resizedImageFile.OpenReadStream(5000000).ReadAsync(buffer);
+
+        }
+    }
+
+    private async Task SaveAsync()
+    {
+        if (Validate() == false) return;
+        try
+        {
+            using (TeacherContext context = DbFactory.CreateDbContext())
+            {
+                if (selectedProfile.IsActive.HasValue && selectedProfile.IsActive.Value)
+                {
+                    var activeProfiles = context.MainPages.Where(x => x.IsActive.Value && x.Id != selectedProfile.Id).ToList();
+
+                    foreach (var profile in activeProfiles)
+                    {
+                        profile.IsActive = false;
+                    }
+                }
+
+                //добавление профиля
+                if (selectedProfile.Id == 0)
+                {
+                    context.MainPages.Add(selectedProfile);
+                }
+                //редактирование профиля
+                else if (selectedProfile.Id > 0)
+                {
+                    var profile = await context.MainPages.FirstOrDefaultAsync(x => x.Id == selectedProfile.Id);
+
+                    if (profile == null)
+                    {
+                        return;
+                    }
+
+                    CopyTo(selectedProfile, profile);
+                }
+                context.SaveChanges();
+                NavManager.NavigateTo("/CMS/MainPage", true);
+                selectedProfile = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            validationMessages = new string[]
+            {
+                ex.Message,
+                ex.InnerException?.Message
+            };
+        }
+    }
+
+    public void CopyTo(Data.PageModels.MainPage source, Data.PageModels.MainPage target)
+    {
+        target.IsActive = source.IsActive;
+
+        target.Name = source.Name;
+
+        target.IsBannerEnabled = source.IsBannerEnabled;
+        target.IsCardsEnabled = source.IsCardsEnabled;
+
+        target.BigPictureTitle = source.BigPictureTitle;
+        target.BigPictureText = source.BigPictureText;
+        target.BigPictureData = source.BigPictureData;
+
+        target.Block1Title = source.Block1Title;
+        target.Block1Text = source.Block1Text;
+        target.Block1Data = source.Block1Data;
+        target.Link1Text = source.Link1Text;
+        target.Link1Sourse = source.Link1Sourse;
+
+        target.Block2Title = source.Block2Title;
+        target.Block2Text = source.Block2Text;
+        target.Block2Data = source.Block2Data;
+        target.Link2Text = source.Link2Text;
+        target.Link2Sourse = source.Link2Sourse;
+
+        target.Block3Title = source.Block3Title;
+        target.Block3Text = source.Block3Text;
+        target.Block3Data = source.Block3Data;
+        target.Link3Text = source.Link3Text;
+        target.Link3Sourse = source.Link3Sourse;
+    }
 }
