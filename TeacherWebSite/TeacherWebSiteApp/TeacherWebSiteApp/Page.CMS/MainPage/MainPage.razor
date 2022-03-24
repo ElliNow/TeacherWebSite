@@ -3,29 +3,6 @@
 @inject NavigationManager NavManager
 @namespace TeacherWebSiteApp.Page.CMS.MainPage
 
-@*<Row>
-        <div class="col-md-2">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @if (selectedProfile == null)
-                    {
-                        <b>Профили</b> }
-                    else
-                    {
-                        <b>@selectedProfile.Name</b>}
-
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    @foreach (var profile in profiles)
-                    {
-                        int local_id = profile.Id;
-                        <a class="dropdown-item" @onclick="() => SelectProfile(local_id)">@profile.Name</a>}
-                </div>
-            </div>
-        </div>
-    </Row>*@
-
 <Dropdown BoundaryAdjustMode="@TriggerBoundaryAdjustMode.None">
     <Overlay>
         <Menu>

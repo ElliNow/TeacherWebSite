@@ -133,7 +133,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 227 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
+#line 204 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
        
 
     Data.PageModels.MainPage selectedProfile = null;
