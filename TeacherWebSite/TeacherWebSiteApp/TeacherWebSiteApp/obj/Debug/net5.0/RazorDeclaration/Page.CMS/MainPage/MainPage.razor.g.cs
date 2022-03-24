@@ -124,6 +124,7 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/CMS/MainPage")]
     public partial class MainPage : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +134,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 204 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
+#line 206 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
        
 
     Data.PageModels.MainPage selectedProfile = null;
@@ -233,7 +234,7 @@ using AntDesign;
             {
                 ex.Message,
                 ex.InnerException?.Message
-                };
+                    };
         }
     }
 
