@@ -162,7 +162,6 @@ using AntDesign;
             string state = (publication.IsActive.Value) ? "активированa" : "деактивированa";
             _message.Info($"Публикация {publication.Name} {state}.");
         }
-
     }
 
 #line default

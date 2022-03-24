@@ -8,6 +8,7 @@ namespace TeacherWebSiteApp.Data.PageModels
 {
     public class MainPage : Entity
     {
+        public bool IsActiveProfile { get; set; }
         public string Name { get; set; }
         public string? BigPictureTitle { get; set; }
         public string? BigPictureText { get; set; }
