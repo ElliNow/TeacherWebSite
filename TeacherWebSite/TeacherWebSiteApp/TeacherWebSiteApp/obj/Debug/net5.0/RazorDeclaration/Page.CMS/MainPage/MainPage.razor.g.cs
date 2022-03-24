@@ -133,11 +133,11 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 198 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
+#line 227 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
        
 
-        Data.PageModels.MainPage selectedProfile = null;
-        List<Data.PageModels.MainPage> profiles = new List<Data.PageModels.MainPage>();
+    Data.PageModels.MainPage selectedProfile = null;
+    List<Data.PageModels.MainPage> profiles = new List<Data.PageModels.MainPage>();
 
     protected override void OnInitialized()
     {
@@ -233,7 +233,7 @@ using AntDesign;
             {
                 ex.Message,
                 ex.InnerException?.Message
-            };
+                };
         }
     }
 

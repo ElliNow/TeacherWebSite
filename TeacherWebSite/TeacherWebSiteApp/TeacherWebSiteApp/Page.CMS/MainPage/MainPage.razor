@@ -3,37 +3,60 @@
 @inject NavigationManager NavManager
 @namespace TeacherWebSiteApp.Page.CMS.MainPage
 
+@*<Row>
+        <div class="col-md-2">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @if (selectedProfile == null)
+                    {
+                        <b>Профили</b> }
+                    else
+                    {
+                        <b>@selectedProfile.Name</b>}
 
-<Row>
-    <div class="col-md-2">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @if (selectedProfile == null)
-                {
-                    <b>Профили</b> }
-                else
-                {
-                    <b>@selectedProfile.Name</b>}
-
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                @foreach (var profile in profiles)
-                {
-                    int local_id = profile.Id;
-                    <a class="dropdown-item" @onclick="() => SelectProfile(local_id)">@profile.Name</a>}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var profile in profiles)
+                    {
+                        int local_id = profile.Id;
+                        <a class="dropdown-item" @onclick="() => SelectProfile(local_id)">@profile.Name</a>}
+                </div>
             </div>
         </div>
-    </div>
-</Row>
+    </Row>*@
 
-<div class="form-block">
-    <div>
-        <AntDesign.Col>
-            <Button @onclick="@AddProfile">Добавить</Button>
-        </AntDesign.Col>
-    </div>
+<Dropdown BoundaryAdjustMode="@TriggerBoundaryAdjustMode.None">
+    <Overlay>
+        <Menu>
+            @foreach (var profile in profiles)
+            {
+                int local_id = profile.Id;
+                <MenuItem><a class="dropdown-item" @onclick="() => SelectProfile(local_id)">@profile.Name</a></MenuItem>      
+            }
+        </Menu>
+    </Overlay>
+    <ChildContent>
+        <a class="ant-dropdown-link" @onclick:preventDefault>
+            @if (selectedProfile == null)
+            {
+                <b>Профили</b>
+            }
+            else
+            {
+                <b>@selectedProfile.Name</b>
+            }
+            <Icon Type="down" />
+        </a>
+    </ChildContent>
+</Dropdown>
+
+<div>
+    <AntDesign.Col>
+        <Button @onclick="@AddProfile">Добавить</Button>
+    </AntDesign.Col>
 </div>
+
 
 @if (validationMessages.Any())
 {
@@ -44,161 +67,167 @@
 
 @if (selectedProfile != null)
 {
-    @*<hr />
-    <div class="form-check">
-        
-        <Checkbox @bind-Checked="selectedProfile.IsActive.Value">Активный профиль</Checkbox>
-    </div>*@
+    <hr style="margin-right: 300px"/>
+        <div style="margin-bottom: 20px">
+            <Checkbox @bind-Checked="selectedProfile.IsActiveProfile">Активный профиль</Checkbox>
+        </div>
 
-    <div class="form-block">
+    <div style="margin-right: 300px; margin-left: 30px; margin-bottom: 20px">
         <AntDesign.Col>
             <label>Название профиля</label>
             <Input Placeholder="Введите название" @bind-Value="@selectedProfile.Name">
         </AntDesign.Col>
     </div>
 
-    <hr />
-    <div class="form-check">
-        <Checkbox  @bind-Checked="selectedProfile.IsBannerEnabled">Добавить баннер</Checkbox>
+    <hr style="margin-right:300px; margin-bottom: 20px" />
+    <div>
+        <Checkbox @bind-Checked="selectedProfile.IsBannerEnabled">Добавить баннер</Checkbox>
     </div>
     @if (selectedProfile.IsBannerEnabled)
     {
-        <h4>Баннер</h4>
-        <div class="form-block">
-            <AntDesign.Col>
+        <h4 style="margin-left: 30px">Баннер</h4>
+        <div>
+            <AntDesign.Col Style="margin-right: 300px; margin-left:30px">
                 <label>Заголовок баннера</label>
                 <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.BigPictureTitle">
             </AntDesign.Col>
         </div>
-        <div class="wrapper30 form-block">
-            <AntDesign.Col>
+        <div>
+            <AntDesign.Col Style="margin-right: 300px; margin-left:30px">
                 <label>Текст баннера</label>
                 <AntDesign.TextArea Placeholder="Введите текст" Rows="3" @bind-Value="@selectedProfile.BigPictureText" />
             </AntDesign.Col>
         </div>
+        <div style="margin-left: 30px">
+            <UploadImage Text="Загрузить изображение баннера" HtmlId="bpd" @bind-ImageData="@selectedProfile.BigPictureData" />
+            <AntDesign.Col>
+                <p>
+                    @if (selectedProfile.BigPictureData != null)
+                    {
+                        <img width="200" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.BigPictureData)" />
+                    }
+                </p>
+            </AntDesign.Col>
+        </div>
 
-        <UploadImage Text="Загрузить изображение баннера" HtmlId="bpd" @bind-ImageData="@selectedProfile.BigPictureData" />
-        <AntDesign.Col>
-            <p>
-                @if (selectedProfile.BigPictureData != null)
-                {
-                    <img width="200" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.BigPictureData)" />
-                }
-            </p>
-        </AntDesign.Col>
-     }
+    }
 
-    <hr />
-    <div class="form-check">
+    <hr style="margin-right:300px; margin-bottom:20px" />
+    <div>
         <Checkbox @bind-Checked="selectedProfile.IsCardsEnabled">Добавить карточки</Checkbox>
     </div>
     @if (selectedProfile.IsCardsEnabled)
     {
+        <div style="margin-left: 30px; margin-bottom:30px">
+            <Row>
+
+                <div>
+                    <h4>Карточка 1</h4>
+                    <div class="card">
+                        <UploadImage Text="Загрузить изображение карточки 1" HtmlId="b1d" @bind-ImageData="@selectedProfile.Block1Data" />
+                        <p>
+                            @if (selectedProfile.Block1Data != null)
+                            {
+                                <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block1Data)" />
+                            }
+                        </p>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.Block1Title">
+                            </h5>
+                            <p class="card-text">
+                                <AntDesign.TextArea Placeholder="Текст" Rows="3" @bind-Value="@selectedProfile.Block1Text" />
+                            </p>
+                            <div class="form-block">
+                                <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link1Text">
+                            </div>
+                            <div class="form-block">
+                                <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link1Sourse">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <AntDesign.Col Style="padding-left: 30px">
+                    <h4>Карточка 2</h4>
+                    <div class="card">
+                        <UploadImage Text="Загрузить изображение карточки 2" HtmlId="b2d" @bind-ImageData="@selectedProfile.Block2Data" />
+                        <p>
+                            @if (selectedProfile.Block2Data != null)
+                            {
+                                <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block2Data)" />
+                            }
+                        </p>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <Input Placeholder="Ввелите заголовок" @bind-Value="@selectedProfile.Block2Title" />
+                            </h5>
+
+                            <p class="card-text">
+                                <AntDesign.TextArea Placeholder="Введите текст" Rows="3" @bind-Value="@selectedProfile.Block2Text" />
+                            </p>
+                            <div class="form-block">
+                                <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link2Text">
+                            </div>
+                            <div class="form-block">
+                                <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link2Sourse" />
+                            </div>
+
+                        </div>
+                    </div>
+                </AntDesign.Col>
+
+                <AntDesign.Col Style="padding-left: 30px">
+                    <h4>Карточка 3</h4>
+                    <div class="card">
+                        <UploadImage Text="Загрузить изображение карточки 3" HtmlId="b3d" @bind-ImageData="@selectedProfile.Block3Data" />
+                        <p>
+                            @if (selectedProfile.Block3Data != null)
+                            {
+                                <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block3Data)" />
+                            }
+                        </p>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.Block3Title" />
+                            </h5>
+                            <p class="card-text">
+                                <AntDesign.TextArea Placeholder="Введите тест" Rows="3" @bind-Value="@selectedProfile.Block3Text" />
+                            </p>
+                            <div class="form-block">
+                                <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link3Text">
+                            </div>
+                            <div class="form-block">
+                                <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link3Sourse">
+                            </div>
+                        </div>
+                    </div>
+                </AntDesign.Col>
+
+            </Row>
+        </div>
+    }
+
+
+    <div style="margin-bottom: 30px">
         <Row>
-            <div class="col-md col-sm-12">
-                <h4>Карточка 1</h4>
-                <div class="card">
-                    <UploadImage Text="Загрузить изображение карточки 1" HtmlId="b1d" @bind-ImageData="@selectedProfile.Block1Data" />
-                    <p>
-                        @if (selectedProfile.Block1Data != null)
-                        {
-                            <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block1Data)" />
-                        }
-                    </p>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.Block1Title">
-                        </h5>
-                        <p class="card-text">
-                            <AntDesign.TextArea Placeholder="Текст" Rows="3" @bind="@selectedProfile.Block1Text"/>
-                        </p>
-                        <div class="form-block">
-                            <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link1Text">
-                        </div>
-                        <div class="form-block">
-                            <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link1Sourse">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md col-sm-12">
-                <h4>Карточка 2</h4>
-                <div class="card">
-                    <UploadImage Text="Загрузить изображение карточки 2" HtmlId="b2d" @bind-ImageData="@selectedProfile.Block2Data" />
-                    <p>
-                        @if (selectedProfile.Block2Data != null)
-                        {
-                            <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block2Data)" />
-                        }
-                    </p>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <Input Placeholder="Ввелите заголовок" @bind-Value="@selectedProfile.Block2Title"/>
-                        </h5>
-
-                        <p class="card-text">
-                            <AntDesign.TextArea Placeholder="Введите текст" Rows="3" @bind-Value="@selectedProfile.Block2Text"/>
-                        </p>
-                        <div class="form-block">
-                            <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link2Text">
-                        </div>
-                        <div class="form-block">
-                            <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link2Sourse"/>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md col-sm-12">
-                <h4>Карточка 3</h4>
-                <div class="card">
-                    <UploadImage Text="Загрузить изображение карточки 3" HtmlId="b3d" @bind-ImageData="@selectedProfile.Block3Data" />
-                    <p>
-                        @if (selectedProfile.Block3Data != null)
-                        {
-                            <img width="100%" height="200" src="data:image/jpg;base64,@Convert.ToBase64String(selectedProfile.Block3Data)" />
-                        }
-                    </p>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <Input Placeholder="Введите заголовок" @bind-Value="@selectedProfile.Block3Title"/>
-                        </h5>
-                        <p class="card-text">
-                            <AntDesign.TextArea placeholder="Введите тест" class="form-control" rows="3" @bind-Value="@selectedProfile.Block3Text"/>
-                        </p>
-                        <div class="form-block">
-                            <Input Placeholder="Введите текст кнопки" @bind-Value="@selectedProfile.Link3Text">
-                        </div>
-                        <div class="form-block">
-                            <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link3Sourse">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Row>
-     }
-
-    <div class="form-block">
-        <Row>
-            <div class="col-md-2 col-sm-6" style="margin-bottom:auto">
+            <AntDesign.Col Style="margin-bottom: 30px">
                 <Button Type="@ButtonType.Primary" @onclick="@SaveAsync">Сохранить</Button>
-            </div>
-            <div class="col-md-2 col-sm-12">
+            </AntDesign.Col>
+            <AntDesign.Col Style="margin-left:50px; margin-bottom: 30px">
                 <Button Danger Type="@ButtonType.Primary" @onclick="@DeleteProfile">Удалить</Button>
-            </div>
-            <div class="col">
+            </AntDesign.Col>
+            <AntDesign.Col Style="margin-bottom: 30px">
                 <ValidationBlock Messages="validationMessages" />
-            </div>
+            </AntDesign.Col>
         </Row>
     </div>
 }
 
 @code {
 
-        Data.PageModels.MainPage selectedProfile = null;
-        List<Data.PageModels.MainPage> profiles = new List<Data.PageModels.MainPage>();
+    Data.PageModels.MainPage selectedProfile = null;
+    List<Data.PageModels.MainPage> profiles = new List<Data.PageModels.MainPage>();
 
     protected override void OnInitialized()
     {
@@ -294,7 +323,7 @@
             {
                 ex.Message,
                 ex.InnerException?.Message
-            };
+                };
         }
     }
 
