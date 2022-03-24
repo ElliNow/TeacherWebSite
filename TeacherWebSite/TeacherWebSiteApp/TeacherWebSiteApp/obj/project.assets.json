@@ -247,6 +247,32 @@
           }
         }
       },
+      "MatBlazor/2.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.10",
+          "Microsoft.AspNetCore.Components.Web": "3.1.10"
+        },
+        "compile": {
+          "lib/netstandard2.1/MatBlazor.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/MatBlazor.dll": {}
+        },
+        "contentFiles": {
+          "contentFiles/any/netstandard2.1/Properties/launchSettings.json": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        },
+        "build": {
+          "buildTransitive/MatBlazor.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/MatBlazor.props": {}
+        }
+      },
       "Microsoft.AspNetCore.Authorization/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -2875,6 +2901,27 @@
         "contentFiles/any/any/wwwroot/js/bootstrap.js.map",
         "contentFiles/any/any/wwwroot/js/bootstrap.min.js",
         "contentFiles/any/any/wwwroot/js/bootstrap.min.js.map"
+      ]
+    },
+    "MatBlazor/2.8.0": {
+      "sha512": "NAbkrLR6YdEXNtQQreJOAdZEqTBeG6wXiTxs9ItHBCLnoCouX//VELHakDXcMtK27QzmeB8uGRwWIkglvhpKLg==",
+      "type": "package",
+      "path": "matblazor/2.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/MatBlazor.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/MatBlazor.props",
+        "buildTransitive/MatBlazor.props",
+        "content/Properties/launchSettings.json",
+        "contentFiles/any/netstandard2.1/Properties/launchSettings.json",
+        "lib/netstandard2.1/MatBlazor.dll",
+        "lib/netstandard2.1/MatBlazor.xml",
+        "matblazor.2.8.0.nupkg.sha512",
+        "matblazor.nuspec",
+        "staticwebassets/dist/matBlazor.css",
+        "staticwebassets/dist/matBlazor.js"
       ]
     },
     "Microsoft.AspNetCore.Authorization/5.0.0": {
@@ -8171,6 +8218,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "AntDesign >= 0.10.3.1",
+      "MatBlazor >= 2.8.0",
       "Microsoft.EntityFrameworkCore >= 5.0.14",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.14",
       "bootstrap >= 5.1.3"
@@ -8218,6 +8266,10 @@
           "AntDesign": {
             "target": "Package",
             "version": "[0.10.3.1, )"
+          },
+          "MatBlazor": {
+            "target": "Package",
+            "version": "[2.8.0, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

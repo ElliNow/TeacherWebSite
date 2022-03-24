@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "CFcwIUls/4JXNDwQmAYOA4YIF7k16lgap2cmF5ccMFbRJb/wlpAMIe2+dfhiSyZH5/UQhsUTBGhNmwdVriEoyg==",
+  "dgSpecHash": "D9ONmXLINaiHddzCyeoG6+S0hHs2TJolNHWijBD8nOn4Y7as8u5w5DsBjeQ+jn+m9/Ev/13K6/Xkv7neotSvMA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\TeacherWebSiteApp\\TeacherWebSiteApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Эля\\.nuget\\packages\\antdesign\\0.10.3.1\\antdesign.0.10.3.1.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\bootstrap\\5.1.3\\bootstrap.5.1.3.nupkg.sha512",
+    "C:\\Users\\Эля\\.nuget\\packages\\matblazor\\2.8.0\\matblazor.2.8.0.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.0\\microsoft.aspnetcore.authorization.5.0.0.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.0\\microsoft.aspnetcore.components.5.0.0.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.0\\microsoft.aspnetcore.components.analyzers.5.0.0.nupkg.sha512",

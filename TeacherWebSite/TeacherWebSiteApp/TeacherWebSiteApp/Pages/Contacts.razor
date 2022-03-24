@@ -1,0 +1,33 @@
+﻿@page "/contacts"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@namespace TeacherWebSiteApp.Pages
+@layout MainLayout
+
+<table class="table table-hover form-block" style="font-weight: 600">
+    <tbody>
+        @foreach (var contact in contacts)
+        {
+            <tr>
+                <td>
+                    <img src="data:image/jpg;base64,@Convert.ToBase64String(contact.Badge)" height="20" width="20" />
+                    @contact.Key
+                </td>
+                <td style="text-align: center;">
+                    <a href="@contact.Link" style="cursor: pointer; color:  #212529">
+                        @contact.Value
+                    </a>
+                </td>
+            </tr>            
+        }
+    </tbody>
+</table>
+
+@code {
+    List<Contact> contacts;
+
+    protected override void OnInitialized()
+    {
+        using var context = DbFactory.CreateDbContext();
+        contacts = context.Contacts.ToList();
+    }
+}

@@ -118,7 +118,14 @@ using TeacherWebSiteApp.Data;
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+#line 16 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MatBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
 using AntDesign;
 
 #line default
@@ -134,7 +141,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 206 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
+#line 205 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
        
 
     Data.PageModels.MainPage selectedProfile = null;
