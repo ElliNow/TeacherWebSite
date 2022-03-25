@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "D9ONmXLINaiHddzCyeoG6+S0hHs2TJolNHWijBD8nOn4Y7as8u5w5DsBjeQ+jn+m9/Ev/13K6/Xkv7neotSvMA==",
+  "dgSpecHash": "mkjtBPneh3FSCxqbo3g5P9hgZLeXobkT6hlvhkZZWjEECui8mfpIf45EfgobNay6toAIMvaewKGpyJsYic+JhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\TeacherWebSiteApp\\TeacherWebSiteApp.csproj",
   "expectedPackageFiles": [
@@ -43,6 +43,7 @@
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Эля\\.nuget\\packages\\mudblazor\\6.0.7\\mudblazor.6.0.7.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
     "C:\\Users\\Эля\\.nuget\\packages\\oneof\\2.1.155\\oneof.2.1.155.nupkg.sha512",
