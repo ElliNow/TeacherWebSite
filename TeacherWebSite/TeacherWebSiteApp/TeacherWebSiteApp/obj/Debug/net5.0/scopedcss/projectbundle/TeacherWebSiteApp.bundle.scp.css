@@ -1,5 +1,10 @@
 @import '';
 
+/* _content/TeacherWebSiteApp/Pages/Contacts.razor.rz.scp.css */
+.cardgrid:hover[b-1dvze6zf9s]{
+    transition: 0.5s;
+    box-shadow: 1px 1px 1px 1px #48e0f7;
+}
 /* _content/TeacherWebSiteApp/Shared/MainLayout.razor.rz.scp.css */
 .page[b-6ufbj4ms84] {
     position: relative;
