@@ -3,40 +3,28 @@
 @namespace TeacherWebSiteApp.Pages
 @layout MainLayout
 
-<div class="form-block"
-    <h3 style="position:center; margin-left: 500px; margin-bottom:10px">Способы связи:</h3>
-    <div>                     
-        <Row Style="margin-left: 100px">
-            <AntDesign.Col Span="6">eyyyyyyy</AntDesign.Col>
-            @foreach (var contact in contacts)
-            {
-                <AntDesign.Col Span="12" Style="padding-left: 50px">
-                    <div style="margin-top: 100px; text-align: center;
-                            display: block; margin-left:100px; width: 200px; height:100px; padding: 20px;
-                            background-color: rgba(255,255,255,0.8);
-                            box-shadow: 3px 3px 9px 0px; box-sizing:content-box; border-radius:10px">
-                        <Row Style="margin-top:30px">
+<div style="margin-left: 200px; margin-right:200px">
+    <Card  Style="padding:50px" Title=@("Способы связи:")>
 
-                            <AntDesign.Col Span="6">
-                                <img src="data:image/jpg;base64,@Convert.ToBase64String(contact.Badge)" height="40" width="40" />
-                                <Row Style="margin-left: 10px">
-                                    @contact.Key
-                                </Row>
-                            </AntDesign.Col>
-                            <a href="@contact.Link" style="cursor: pointer; margin-bottom: 10px; color:  #212529">
-                                <AntDesign.Col Span="6">
-                                    @contact.Value
-                                </AntDesign.Col>
-                            </a>
-
+        @foreach (var contact in contacts)
+        {
+            <CardGrid Style="width:50%;text-align:center" Hoverable="true">
+                <Row>
+                    <AntDesign.Col Span="6">
+                        <img src="data:image/jpg;base64,@Convert.ToBase64String(contact.Badge)" height="40" width="40" />
+                        <Row Style="margin-left: 25px">
+                            @contact.Key
                         </Row>
-                    </div>
-
-                </AntDesign.Col>
-            }
-            <AntDesign.Col Span="6">eyyyyy</AntDesign.Col>
-        </Row>
-    </div>
+                    </AntDesign.Col>
+                    <a href="@contact.Link" style="cursor: pointer; margin-top: 10px; margin-bottom: 10px; color:  #212529">
+                        <AntDesign.Col Span="6">
+                            @contact.Value
+                        </AntDesign.Col>
+                    </a>
+                </Row>
+            </CardGrid>
+        }
+    </Card>
 </div>
 
 @code {

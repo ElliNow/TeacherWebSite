@@ -141,7 +141,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 42 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Contacts.razor"
+#line 30 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Contacts.razor"
        
     List<Contact> contacts;
 
