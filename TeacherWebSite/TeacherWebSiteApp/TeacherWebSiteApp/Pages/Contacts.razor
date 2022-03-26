@@ -4,25 +4,32 @@
 @layout MainLayout
 
 <div style="margin-left: 200px; margin-right:200px">
-    <Card  Style="padding:50px" Title=@("Способы связи:")>
-
+    <Card Style="padding:50px">
+        <h3 style="margin-left: 265px; margin-bottom: 12px">Как с нами связаться?</h3>
         @foreach (var contact in contacts)
         {
-            <CardGrid Style="width:50%;text-align:center" Hoverable="true">
-                <Row>
-                    <AntDesign.Col Span="6">
-                        <img src="data:image/jpg;base64,@Convert.ToBase64String(contact.Badge)" height="40" width="40" />
-                        <Row Style="margin-left: 25px">
-                            @contact.Key
+
+            <CardGrid Style="width:50%;text-align:center; transition: 0.5s;" Hoverable="true">
+                <a href="@contact.Link" style="cursor: pointer; margin-top: 10px; margin-bottom: 10px; color:  #212529">
+                    <div class="cardgrid">
+                        <Row>
+                            <AntDesign.Col Span="6">
+                                <img src="data:image/jpg;base64,@Convert.ToBase64String(contact.Badge)" height="40" width="40" />
+                                <Row Style="margin-left: 25px">
+                                    @contact.Key
+                                </Row>
+                            </AntDesign.Col>
+
+                            <AntDesign.Col Span="6" Style="margin-top: 10px">
+                                @contact.Value
+                            </AntDesign.Col>
+
                         </Row>
-                    </AntDesign.Col>
-                    <a href="@contact.Link" style="cursor: pointer; margin-top: 10px; margin-bottom: 10px; color:  #212529">
-                        <AntDesign.Col Span="6">
-                            @contact.Value
-                        </AntDesign.Col>
-                    </a>
-                </Row>
+
+                    </div>
+                </a>
             </CardGrid>
+
         }
     </Card>
 </div>
