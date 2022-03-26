@@ -1,6 +1,7 @@
 ﻿@page "/CMS/MainPage"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
+@layout CmsLayout
 @namespace TeacherWebSiteApp.Page.CMS.MainPage
 
 <Dropdown BoundaryAdjustMode="@TriggerBoundaryAdjustMode.None">
@@ -9,7 +10,7 @@
             @foreach (var profile in profiles)
             {
                 int local_id = profile.Id;
-                <MenuItem><a class="dropdown-item" @onclick="() => SelectProfile(local_id)">@profile.Name</a></MenuItem>      
+                <MenuItem><a class="dropdown-item" @onclick="() => SelectProfile(local_id)">@profile.Name</a></MenuItem>
             }
         </Menu>
     </Overlay>
@@ -44,10 +45,10 @@
 
 @if (selectedProfile != null)
 {
-    <hr style="margin-right: 300px"/>
-        <div style="margin-bottom: 20px">
-            <Checkbox @bind-Checked="selectedProfile.IsActiveProfile">Активный профиль</Checkbox>
-        </div>
+    <hr style="margin-right: 300px" />
+    <div style="margin-bottom: 20px">
+        <Checkbox @bind-Checked="selectedProfile.IsActiveProfile">Активный профиль</Checkbox>
+    </div>
 
     <div style="margin-right: 300px; margin-left: 30px; margin-bottom: 20px">
         <AntDesign.Col>
@@ -300,7 +301,7 @@
             {
                 ex.Message,
                 ex.InnerException?.Message
-                };
+                    };
         }
     }
 

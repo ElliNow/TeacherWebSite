@@ -1,3 +1,4 @@
+using MatBlazor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -11,14 +12,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TeacherWebSiteApp.Data;
+//using MudBlazor.Services;
 
 namespace TeacherWebSiteApp
 {
     public class Startup
     {
-            public Startup(IConfiguration configuration)
-            {
+        public Startup(IConfiguration configuration)
+        {
             Configuration = configuration;
+        
         }
 
         public IConfiguration Configuration { get; }
@@ -33,6 +36,8 @@ namespace TeacherWebSiteApp
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
             services.AddAntDesign();
+            services.AddMatBlazor();
+            //services.AddMudBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
