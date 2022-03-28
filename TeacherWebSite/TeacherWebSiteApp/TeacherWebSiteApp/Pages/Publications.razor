@@ -1,14 +1,7 @@
-﻿@page "/newsfeed"
+﻿@page "/publications"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @namespace TeacherWebSiteApp.Pages
 @layout MainLayout
-
-@*<div style="margin-left: 100px; margin-top: 20px">
-    @foreach (var publication in publications)
-    {
-        <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
-    }
-</div>*@
 
 <MatTabGroup Style="z-index: 999999">
     <MatTab Label="Все">
