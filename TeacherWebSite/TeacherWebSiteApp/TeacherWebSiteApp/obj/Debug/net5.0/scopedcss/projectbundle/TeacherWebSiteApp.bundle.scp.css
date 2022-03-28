@@ -1,5 +1,9 @@
 @import '';
 
+/* _content/TeacherWebSiteApp/Pages/Articles.razor.rz.scp.css */
+.blockhidden[b-cglbnhxsmy]{
+    overflow-x:hidden
+}
 /* _content/TeacherWebSiteApp/Pages/Contacts.razor.rz.scp.css */
 .cardgrid:hover[b-1dvze6zf9s]{
     transition: 0.5s;
