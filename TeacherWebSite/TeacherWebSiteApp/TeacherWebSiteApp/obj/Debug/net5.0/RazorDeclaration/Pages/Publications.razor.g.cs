@@ -141,7 +141,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 13 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
+#line 63 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
        
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
 

@@ -3,12 +3,62 @@
 @namespace TeacherWebSiteApp.Pages
 @layout MainLayout
 
-<div style="margin-left: 100px; margin-top: 20px">
-    @foreach(var publication in publications)
+@*<div style="margin-left: 100px; margin-top: 20px">
+    @foreach (var publication in publications)
     {
         <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
     }
-</div>
+</div>*@
+
+<MatTabGroup Style="z-index: 999999">
+    <MatTab Label="Все">
+        @foreach (var publication in publications)
+        {
+                <div style="margin-left: 100px; margin-top: 20px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                </div>
+        }
+    </MatTab>
+    <MatTab Label="Презентации">
+        @foreach (var publication in publications)
+        {
+            foreach (var attachment in publication.Attachments.Where(a => a.ContentType == ContentType.Presentation))
+            {
+                <div style="margin-left: 100px; margin-top: 20px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                </div>
+            }
+        }
+    </MatTab>
+    <MatTab Label="Методички">
+        @foreach (var publication in publications)
+        {
+            foreach (var attachment in publication.Attachments.Where(a => a.ContentType == ContentType.MethodicalBook))
+            {
+                <div style="margin-left: 100px; margin-top: 20px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                </div>
+            }
+        }
+    </MatTab>
+    <MatTab>
+        <LabelContent>
+            Видео-уроки
+        </LabelContent>
+        <ChildContent>
+            @foreach (var publication in publications)
+            {
+                foreach (var attachment in publication.Attachments.Where(a => a.ContentType == ContentType.Video))
+                {
+                    <div style="margin-left: 100px; margin-top: 20px">
+                        <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                    </div>
+                }
+            }
+        </ChildContent>
+    </MatTab>
+
+</MatTabGroup>
 
 @code {
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
