@@ -139,30 +139,29 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Publication.razor"
-           
-        [Parameter]
-        public int Id { get; set; }
-        [Parameter]
-        public string Name { get; set; }
-        [Parameter]
-        public string Text { get; set; }
-        [Parameter]
-        public DateTime Data { get; set; }
+#line 33 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Publication.razor"
+        
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public string Name { get; set; }
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public DateTime Data { get; set; }
 
-        List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
+    List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
 
-        protected override async Task OnInitializedAsync()
-        {
-            var context = Context.CreateDbContext();
-            attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
-        }
+    protected override async Task OnInitializedAsync()
+    {
+        var context = Context.CreateDbContext();
+        attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
+    }
 
-        void Callback(string[] keys)
-        {
-            Console.WriteLine(string.Join(',', keys));
-        }
-    
+    void Callback(string[] keys)
+    {
+        Console.WriteLine(string.Join(',', keys));
+    }
 
 #line default
 #line hidden

@@ -14,11 +14,12 @@
                             <p style="padding-left: 10px">Опубликовано @Data.ToString("dd.MM.yyyy")</p>
                             @foreach (var attachment in attachments)
                             {
-                                <CardGrid Style="width:50%;text-align:center" Hoverable="true">
-                                    <h4><a href="@attachment.Link">@attachment.Name</a></h4>
-                                </CardGrid>
+                                <a href="@attachment.Link">
+                                    <CardGrid Style="width:50%;text-align:center" Hoverable="true">
+                                        <h4 style="color: cornflowerblue">@attachment.Name </h4>
+                                    </CardGrid>
+                                </a>
                             }
-
                         </Card>
                     </AntDesign.Col>
                 </Row>
@@ -29,26 +30,26 @@
 
 
 
-    @code {
-        [Parameter]
-        public int Id { get; set; }
-        [Parameter]
-        public string Name { get; set; }
-        [Parameter]
-        public string Text { get; set; }
-        [Parameter]
-        public DateTime Data { get; set; }
+ @code {
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public string Name { get; set; }
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public DateTime Data { get; set; }
 
-        List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
+    List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
 
-        protected override async Task OnInitializedAsync()
-        {
-            var context = Context.CreateDbContext();
-            attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
-        }
-
-        void Callback(string[] keys)
-        {
-            Console.WriteLine(string.Join(',', keys));
-        }
+    protected override async Task OnInitializedAsync()
+    {
+        var context = Context.CreateDbContext();
+        attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
     }
+
+    void Callback(string[] keys)
+    {
+        Console.WriteLine(string.Join(',', keys));
+    }
+}
