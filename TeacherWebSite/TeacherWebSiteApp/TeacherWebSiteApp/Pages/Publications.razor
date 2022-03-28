@@ -1,0 +1,22 @@
+﻿@page "/newsfeed"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@namespace TeacherWebSiteApp.Pages
+@layout MainLayout
+
+<div style="margin-left: 100px; margin-top: 20px">
+    @foreach(var publication in publications)
+    {
+        <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+    }
+</div>
+
+@code {
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+
+    protected override void OnInitialized()
+    {
+        using var context = DbFactory.CreateDbContext();
+        publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+    }
+
+}
