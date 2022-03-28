@@ -1,22 +1,36 @@
 ﻿@inject IDbContextFactory<TeacherContext> Context
-<div class="container">
-    <div class="col" style="width:80%">
-        <Icon Type="snippets" Theme="outline" />
-        <div class="row" style="margin-left:auto">
-            <h5>@Data</h5>
-            <h4>@Name . @Text</h4>
-        </div>
-        <div class="row">
-            @foreach (var attachment in attachments)
-            {
-                <Attachment Name="@attachment.Name" Link="@attachment.Link"/>
-            }
 
-        </div>
-    </div>
+<div style="margin-bottom: 25px">
+    <Collapse DefaultActiveKey="@(new[]{"1"})" OnChange="Callback">
+        <Panel Header="@Name" Key="1">
+            <div style="position: center; margin-left: 50px">
+                <Row>
+                    <AntDesign.Col>
+                        <Icon Style="font-size:30px; margin-top: 15px" Type="file" Theme="outline" />
+                    </AntDesign.Col>
+                    <AntDesign.Col>
+                        <Card Title=@(Name)>
+                            <p style="margin-bottom: 10px; padding-left: 10px">@Text</p>
+                            <p style="padding-left: 10px">Опубликовано @Data.ToString("dd.MM.yyyy")</p>
+                            @foreach (var attachment in attachments)
+                            {
+                                <a href="@attachment.Link">
+                                    <CardGrid Style="width:50%;text-align:center" Hoverable="true">
+                                        <h4 style="color: cornflowerblue">@attachment.Name </h4>
+                                    </CardGrid>
+                                </a>
+                            }
+                        </Card>
+                    </AntDesign.Col>
+                </Row>
+            </div>
+        </Panel>
+    </Collapse>
 </div>
 
-@code {
+
+
+ @code {
     [Parameter]
     public int Id { get; set; }
     [Parameter]
@@ -31,10 +45,11 @@
     protected override async Task OnInitializedAsync()
     {
         var context = Context.CreateDbContext();
-        foreach (var i in context.Attachments.Where(item => item.Id == Id))
-        {
-           attachments.Add(i);    
-        }
+        attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
+    }
 
+    void Callback(string[] keys)
+    {
+        Console.WriteLine(string.Join(',', keys));
     }
 }

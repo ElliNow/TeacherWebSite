@@ -139,8 +139,8 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Publication.razor"
-       
+#line 33 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Publication.razor"
+        
     [Parameter]
     public int Id { get; set; }
     [Parameter]
@@ -155,11 +155,12 @@ using AntDesign;
     protected override async Task OnInitializedAsync()
     {
         var context = Context.CreateDbContext();
-        foreach (var i in context.Attachments.Where(item => item.Id == Id))
-        {
-           attachments.Add(i);    
-        }
+        attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
+    }
 
+    void Callback(string[] keys)
+    {
+        Console.WriteLine(string.Join(',', keys));
     }
 
 #line default

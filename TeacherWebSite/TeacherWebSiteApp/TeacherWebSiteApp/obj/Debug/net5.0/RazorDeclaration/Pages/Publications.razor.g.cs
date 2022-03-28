@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Components
+namespace TeacherWebSiteApp.Pages
 {
     #line hidden
     using System;
@@ -131,7 +131,9 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
-    public partial class Attachment : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/publications")]
+    public partial class Publications : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -139,19 +141,21 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 8 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Attachment.razor"
+#line 46 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
        
-    [Parameter]
-    public string Name { get; set; }
-    [Parameter]
-    public string Link { get; set; }
-    [Parameter]
-    public ContentType ContentType { get; set; }
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+
+    protected override void OnInitialized()
+    {
+        using var context = DbFactory.CreateDbContext();
+        publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+    }
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> DbFactory { get; set; }
     }
 }
 #pragma warning restore 1591

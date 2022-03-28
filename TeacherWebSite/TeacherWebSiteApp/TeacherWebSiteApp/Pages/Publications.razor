@@ -1,0 +1,55 @@
+﻿@page "/publications"
+@inject IDbContextFactory<TeacherContext> DbFactory
+@namespace TeacherWebSiteApp.Pages
+@layout MainLayout
+
+<MatTabGroup Style="z-index: 999999">
+    <MatTab Label="Все">
+        @foreach (var publication in publications)
+        {
+                <div style="margin-left: 100px; margin-top: 20px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                </div>
+        }
+    </MatTab>
+    <MatTab Label="Презентации">
+        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
+        {
+            <div style="margin-left: 100px; margin-top: 20px">
+                <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+            </div>
+        }
+    </MatTab>
+    <MatTab Label="Методички">
+        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
+        {
+            <div style="margin-left: 100px; margin-top: 20px">
+                <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+            </div>
+        }
+    </MatTab>
+    <MatTab>
+        <LabelContent>
+            Видео-уроки
+        </LabelContent>
+        <ChildContent>
+            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
+            {
+                <div style="margin-left: 100px; margin-top: 20px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                </div>
+            }
+        </ChildContent>
+    </MatTab>
+</MatTabGroup>
+
+@code {
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+
+    protected override void OnInitialized()
+    {
+        using var context = DbFactory.CreateDbContext();
+        publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+    }
+
+}
