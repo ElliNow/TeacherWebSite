@@ -13,25 +13,19 @@
         }
     </MatTab>
     <MatTab Label="Презентации">
-        @foreach (var publication in publications)
+        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
         {
-            foreach (var attachment in publication.Attachments.Where(a => a.ContentType == ContentType.Presentation))
-            {
-                <div style="margin-left: 100px; margin-top: 20px">
-                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
-                </div>
-            }
+            <div style="margin-left: 100px; margin-top: 20px">
+                <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+            </div>
         }
     </MatTab>
     <MatTab Label="Методички">
-        @foreach (var publication in publications)
+        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
         {
-            foreach (var attachment in publication.Attachments.Where(a => a.ContentType == ContentType.MethodicalBook))
-            {
-                <div style="margin-left: 100px; margin-top: 20px">
-                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
-                </div>
-            }
+            <div style="margin-left: 100px; margin-top: 20px">
+                <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+            </div>
         }
     </MatTab>
     <MatTab>
@@ -39,18 +33,14 @@
             Видео-уроки
         </LabelContent>
         <ChildContent>
-            @foreach (var publication in publications)
+            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
             {
-                foreach (var attachment in publication.Attachments.Where(a => a.ContentType == ContentType.Video))
-                {
-                    <div style="margin-left: 100px; margin-top: 20px">
-                        <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
-                    </div>
-                }
+                <div style="margin-left: 100px; margin-top: 20px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                </div>
             }
         </ChildContent>
     </MatTab>
-
 </MatTabGroup>
 
 @code {

@@ -132,7 +132,7 @@ using AntDesign;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/newsfeed")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/publications")]
     public partial class Publications : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -141,7 +141,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 63 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
+#line 46 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
        
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
 
