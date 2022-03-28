@@ -216,6 +216,7 @@ using System.Collections.Concurrent;
                     x.Target.Title = x.Source.Title;
                     x.Target.Image = x.Source.Image;
                     x.Target.Text = x.Source.Text;
+                    x.Target.Video = x.Source.Video;
                     x.Target.ArticleId = x.Source.ArticleId;
                 });
 
