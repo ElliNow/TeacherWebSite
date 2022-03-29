@@ -139,7 +139,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Publication.razor"
+#line 31 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Publication.razor"
         
      [Parameter]
      public int Id { get; set; }
