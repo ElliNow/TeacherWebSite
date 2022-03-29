@@ -11,7 +11,7 @@
     string newsfeed = "/newsfeed";
 }
 
-<div class="container" style="margin-bottom: 70px">
+@*<div class="container" style="margin-bottom: 70px">
     <Layout>
         <Header Style="position: fixed; background: #00BFFF; width: 100%; margin-bottom:50px; z-index: 999999; ">
             <div class="container">
@@ -29,7 +29,7 @@
             </div>
         </Header>
     </Layout>
-</div>
+</div>*@
 
 <style>
     body {
@@ -38,9 +38,43 @@
     }
 </style>
 
-<div class="container content" style="padding: 60px 15px 60px;  height: 100%">
+@*<div class="container content" style="padding: 60px 15px 60px;  height: 100%">
     @Body
-</div>
+</div>*@
+
+<Layout>
+    <Header Class="header">
+        <div class="logo">
+            <Row>
+                <AntDesign.Col>
+                    <div style="width: 25px; height: 31px; margin: 1px 35px 16px 0; float: left;">
+                        <img src="https://img.icons8.com/nolan/64/settings--v1.png" />
+                    </div>
+                </AntDesign.Col>
+                <AntDesign.Col>
+                    <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(cms, true); }">CMS</MenuItem>
+                        <a @onclick="() => { Nav.NavigateTo(newsfeed, true); }">
+                            <span class="badge badge-secondary">На сайт</span>
+                        </a>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(cmsNewsfeed, true); }">Публикации</MenuItem>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(cmsArticles, true); }">Статьи</MenuItem>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(cmsAbout, true); }">О себе</MenuItem>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(cmsContacts, true); }">Контакты</MenuItem>
+                    </Menu>
+                </AntDesign.Col>
+            </Row>
+        </div>
+    </Header>
+    <Content>
+        <div class="container content" style="padding: 60px 15px 60px; height: 100%">
+            @Body
+        </div>
+    </Content>
+    <Footer Style="text-align: center">Footer</Footer>
+</Layout>
+
+
 
 @code {
     private bool collapseNavMenu = true;

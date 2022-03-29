@@ -11,33 +11,47 @@
     string contacts = "/contacts";
     }
 
-<div class="container">
-        <Layout>
-            <Header Style="position: fixed; background: #00BFFF; width: 100%; z-index: 999999 ">
-                <div class="container">
-                    <div class="logo" style="width:100%" />
-                    <Menu Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
+<Layout>
+    <Header Class="header">
+        <div class="logo">
+            <Row>
+                <AntDesign.Col>
+                    <div style="width: 25px; height: 31px; margin: 5px 24px 16px 0; float: left;">
+                        <img src="https://img.icons8.com/color/48/000000/motarboard.png" />
+                    </div>
+                </AntDesign.Col>
+                <AntDesign.Col>
+                    <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"2"})>
                         <MenuItem @onclick="() => { Nav.NavigateTo(root, true); }">Главная</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(newsfeed, true); }">Лента</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(articles, true); }">Статьи</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(about, true); }">О себе</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(contacts, true); }">Контакты</MenuItem>
                     </Menu>
-                </div>
-            </Header>
-        </Layout>
-    </div>
+                </AntDesign.Col>
+            </Row>     
+        </div>   
+    </Header>
+    <Content>
+        <div class="container content" style="padding: 60px 15px 60px; height: 100%">
+            @Body
+        </div>
+    </Content>
+    <Footer Style="text-align: center">Footer</Footer>
+</Layout>
+
 <style>
     body {
         background-size: contain;
         background-repeat: repeat-y;
         
     }
+    .site-layout-content {
+        background: #fff;
+        padding: 10px;
+        min-height: 280px;
+    }
 </style>
-
-<div class="container content" style="padding: 60px 15px 60px; margin-top: 70px; height: 100%">
-    @Body
-</div>
 
 @code{
 
