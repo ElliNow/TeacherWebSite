@@ -11,29 +11,6 @@
     string newsfeed = "/newsfeed";
 }
 
-<<<<<<< Updated upstream
-<div class="container" style="margin-bottom: 70px">
-    <Layout>
-        <Header Style="position: fixed; background: #00BFFF; width: 100%; margin-bottom:50px; z-index: 999999; ">
-            <div class="container">
-                <div class="logo" style="width:100%" />
-                <Menu Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
-                    <MenuItem @onclick="() => { Nav.NavigateTo(cms, true); }">CMS</MenuItem>
-                    <a @onclick="() => { Nav.NavigateTo(newsfeed, true); }">
-                        <span class="badge badge-secondary">На сайт</span>
-                    </a>
-                    <MenuItem @onclick="() => { Nav.NavigateTo(cmsNewsfeed, true); }">Публикации</MenuItem>
-                    <MenuItem @onclick="() => { Nav.NavigateTo(cmsArticles, true); }">Статьи</MenuItem>
-                    <MenuItem @onclick="() => { Nav.NavigateTo(cmsAbout, true); }">О себе</MenuItem>
-                    <MenuItem @onclick="() => { Nav.NavigateTo(cmsContacts, true); }">Контакты</MenuItem>
-                </Menu>
-            </div>
-        </Header>
-    </Layout>
-</div>
-
-=======
->>>>>>> Stashed changes
 <style>
     body {
         background-size: contain;
@@ -41,11 +18,6 @@
     }
 </style>
 
-<<<<<<< Updated upstream
-<div class="container content" style="padding: 60px 15px 60px;  height: 100%">
-    @Body
-</div>
-=======
 <Layout>
     <Header Class="header">
         <div class="logo">
@@ -78,8 +50,6 @@
     <Footer Style="text-align: center">Footer</Footer>
 </Layout>
 
-
->>>>>>> Stashed changes
 
 @code {
     private bool collapseNavMenu = true;
