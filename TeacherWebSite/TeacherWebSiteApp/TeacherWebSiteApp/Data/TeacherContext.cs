@@ -19,8 +19,8 @@ namespace TeacherWebSiteApp.Data
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArcticleBlock> ArticleBlocks { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-
         public DbSet<MainPage> MainPages { get; set; }
+        public DbSet<SliderPicture> SliderPictures { get; set; }
 
 
         public TeacherContext(DbContextOptions<TeacherContext> options)

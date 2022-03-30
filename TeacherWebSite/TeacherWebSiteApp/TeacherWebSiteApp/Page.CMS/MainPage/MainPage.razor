@@ -150,7 +150,6 @@
                             <div class="form-block">
                                 <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link2Sourse" />
                             </div>
-
                         </div>
                     </div>
                 </AntDesign.Col>
@@ -211,7 +210,7 @@
     {
         using (TeacherContext context = DbFactory.CreateDbContext())
         {
-            profiles = context.MainPages.ToList();
+            profiles = context.MainPages.Include(mp => mp.SliderPictures).ToList();
         }
     }
 
@@ -224,7 +223,7 @@
     {
         using (TeacherContext context = DbFactory.CreateDbContext())
         {
-            var profile = context.MainPages.FirstOrDefault(x => x.Id == selectedProfile.Id);
+            var profile = context.MainPages.Include(mp => mp.SliderPictures).FirstOrDefault(x => x.Id == selectedProfile.Id);
             context.MainPages.Remove(profile);
             selectedProfile = null;
             context.SaveChanges();
@@ -236,7 +235,7 @@
     {
         using (TeacherContext context = DbFactory.CreateDbContext())
         {
-            profiles = context.MainPages.ToList();
+            profiles = context.MainPages.Include(mp => mp.SliderPictures).ToList();
         }
         selectedProfile = profiles.FirstOrDefault(profile => profile.Id == id);
     }
@@ -265,7 +264,7 @@
             {
                 if (selectedProfile.IsActive.HasValue && selectedProfile.IsActive.Value)
                 {
-                    var activeProfiles = context.MainPages.Where(x => x.IsActive.Value && x.Id != selectedProfile.Id).ToList();
+                    var activeProfiles = context.MainPages.Include(mp => mp.SliderPictures).Where(x => x.IsActive.Value && x.Id != selectedProfile.Id).ToList();
 
                     foreach (var profile in activeProfiles)
                     {
@@ -281,7 +280,7 @@
                 //редактирование профиля
                 else if (selectedProfile.Id > 0)
                 {
-                    var profile = await context.MainPages.FirstOrDefaultAsync(x => x.Id == selectedProfile.Id);
+                    var profile = await context.MainPages.Include(mp => mp.SliderPictures).FirstOrDefaultAsync(x => x.Id == selectedProfile.Id);
 
                     if (profile == null)
                     {
@@ -308,6 +307,7 @@
     public void CopyTo(Data.PageModels.MainPage source, Data.PageModels.MainPage target)
     {
         target.IsActive = source.IsActive;
+        target.IsActiveProfile = source.IsActiveProfile;
 
         target.Name = source.Name;
 
@@ -335,5 +335,7 @@
         target.Block3Data = source.Block3Data;
         target.Link3Text = source.Link3Text;
         target.Link3Sourse = source.Link3Sourse;
+        target.IsSliderEnabled = source.IsSliderEnabled;
+        target.SliderPictures = source.SliderPictures;
     }
 }

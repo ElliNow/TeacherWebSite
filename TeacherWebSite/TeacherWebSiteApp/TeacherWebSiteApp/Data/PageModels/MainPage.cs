@@ -33,5 +33,8 @@ namespace TeacherWebSiteApp.Data.PageModels
         public string? Block3Title { get; set; }
         public string? Block3Text { get; set; }
         public byte[]? Block3Data { get; set; }
+
+        public bool IsSliderEnabled { get; set; }
+        public virtual IList<SliderPicture> SliderPictures { get; set; }
     }
 }

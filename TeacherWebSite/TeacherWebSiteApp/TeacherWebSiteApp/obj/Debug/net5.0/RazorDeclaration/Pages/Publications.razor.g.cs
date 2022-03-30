@@ -141,16 +141,19 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 50 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
-       
-    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+#line 52 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
+           
+        List<TeacherWebSiteApp.Data.Models.Publication> publications;
+        bool isLoading;
 
-    protected override void OnInitialized()
-    {
-        using var context = DbFactory.CreateDbContext();
-        publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
-    }
+        protected override void OnInitialized()
+        {
+            using var context = DbFactory.CreateDbContext();
+            publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+            isLoading = false;
+        }
 
+    
 
 #line default
 #line hidden
