@@ -149,11 +149,11 @@ using AntDesign;
     {
         using var context = DbFactory.CreateDbContext();
 
-        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActive.Value);
+        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActiveProfile == true);
 
         if (data == null)
         {
-            NavManager.NavigateTo("/newsfeed");
+            NavManager.NavigateTo("/publications");
         }
     }
 
