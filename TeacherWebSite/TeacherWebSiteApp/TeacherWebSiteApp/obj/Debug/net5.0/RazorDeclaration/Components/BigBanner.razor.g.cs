@@ -139,7 +139,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 37 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
+#line 25 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
        
 
     [Parameter]
