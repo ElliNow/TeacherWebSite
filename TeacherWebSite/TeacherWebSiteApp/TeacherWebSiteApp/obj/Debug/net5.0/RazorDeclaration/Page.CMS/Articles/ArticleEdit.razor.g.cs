@@ -245,7 +245,7 @@ using System.Collections.Concurrent;
             using TeacherContext context = DbFactory.CreateDbContext();
             context.Articles.Remove(article);
             context.SaveChanges();
-            NavManager.NavigateTo($"/articles");
+            NavManager.NavigateTo($"/cms/articles");
         }
     
 
