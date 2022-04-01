@@ -3,20 +3,23 @@
 <div style="margin-bottom: 25px">
     <Collapse DefaultActiveKey="@(new[]{"1"})" OnChange="Callback">
         <Panel Header="@Name" Key="1">
-            <div style="position: center; margin-left: 50px">
+            <div style="position: center">
                 <Row>
                     <AntDesign.Col>
                         <img src="@Path" />
                     </AntDesign.Col>
                     <AntDesign.Col>
-                        <Card Title=@(Name)>
+                        <Card Title=@(Name) Style="width: 500px">
                             <p style="margin-bottom: 10px; padding-left: 10px">@Text</p>
                             <p style="padding-left: 10px">Опубликовано @Data.ToString("dd.MM.yyyy")</p>
                             @foreach (var attachment in attachments)
                             {
                                 <a href="@attachment.Link">
                                     <CardGrid Style="width:50%;text-align:center" Hoverable="true">
-                                        <h4 style="color: cornflowerblue">@attachment.Name </h4>
+                                        <div class="hiddenBlock">
+                                            <h4 style="color: cornflowerblue">@attachment.Name </h4>
+                                        </div>
+                                        
                                     </CardGrid>
                                 </a>
                             }

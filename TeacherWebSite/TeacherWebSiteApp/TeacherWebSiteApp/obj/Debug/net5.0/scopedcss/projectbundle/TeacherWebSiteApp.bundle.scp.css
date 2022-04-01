@@ -1,5 +1,10 @@
 @import '';
 
+/* _content/TeacherWebSiteApp/Components/Publication.razor.rz.scp.css */
+.hiddenBlock[b-di6ixeogsq]{
+
+    overflow-x:hidden
+}
 /* _content/TeacherWebSiteApp/Pages/Articles.razor.rz.scp.css */
 .blockhidden[b-cglbnhxsmy]{
     overflow-x:hidden

@@ -131,44 +131,13 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
-    public partial class Publication : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Publication_razor : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 34 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\Publication.razor"
-        
-     [Parameter]
-     public int Id { get; set; }
-     [Parameter]
-     public string Name { get; set; }
-     [Parameter]
-     public string Text { get; set; }
-     [Parameter]
-     public DateTime Data { get; set; }
-     [Parameter]
-     public string Path { get; set; }
-
-     List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
-
-     protected override async Task OnInitializedAsync()
-     {
-         var context = Context.CreateDbContext();
-         attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
-     }
-
-     void Callback(string[] keys)
-     {
-         Console.WriteLine(string.Join(',', keys));
-     }
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> Context { get; set; }
     }
 }
 #pragma warning restore 1591
