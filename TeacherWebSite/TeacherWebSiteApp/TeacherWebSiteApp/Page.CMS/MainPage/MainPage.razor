@@ -150,7 +150,6 @@
                             <div class="form-block">
                                 <Input Placeholder="Введите ссылку" @bind-Value="@selectedProfile.Link2Sourse" />
                             </div>
-
                         </div>
                     </div>
                 </AntDesign.Col>
@@ -308,6 +307,7 @@
     public void CopyTo(Data.PageModels.MainPage source, Data.PageModels.MainPage target)
     {
         target.IsActive = source.IsActive;
+        target.IsActiveProfile = source.IsActiveProfile;
 
         target.Name = source.Name;
 
@@ -335,5 +335,8 @@
         target.Block3Data = source.Block3Data;
         target.Link3Text = source.Link3Text;
         target.Link3Sourse = source.Link3Sourse;
+
+        //target.IsSliderEnabled = source.IsSliderEnabled;
+        //target.SliderPictures = source.SliderPictures;
     }
 }

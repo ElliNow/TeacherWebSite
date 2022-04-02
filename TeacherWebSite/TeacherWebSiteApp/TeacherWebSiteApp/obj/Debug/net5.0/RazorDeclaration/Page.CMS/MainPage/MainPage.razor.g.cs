@@ -141,7 +141,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 205 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
+#line 204 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\MainPage\MainPage.razor"
        
 
     Data.PageModels.MainPage selectedProfile = null;
@@ -248,6 +248,7 @@ using AntDesign;
     public void CopyTo(Data.PageModels.MainPage source, Data.PageModels.MainPage target)
     {
         target.IsActive = source.IsActive;
+        target.IsActiveProfile = source.IsActiveProfile;
 
         target.Name = source.Name;
 
@@ -275,6 +276,9 @@ using AntDesign;
         target.Block3Data = source.Block3Data;
         target.Link3Text = source.Link3Text;
         target.Link3Sourse = source.Link3Sourse;
+
+        //target.IsSliderEnabled = source.IsSliderEnabled;
+        //target.SliderPictures = source.SliderPictures;
     }
 
 #line default

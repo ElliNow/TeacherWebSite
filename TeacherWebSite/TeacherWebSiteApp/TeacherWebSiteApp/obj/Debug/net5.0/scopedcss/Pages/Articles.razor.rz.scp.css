@@ -1,3 +1,10 @@
 .blockhidden[b-cglbnhxsmy]{
     overflow-x:hidden
 }
+
+.truncate p[b-cglbnhxsmy]{
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+}

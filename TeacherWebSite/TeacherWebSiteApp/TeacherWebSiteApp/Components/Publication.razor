@@ -3,20 +3,23 @@
 <div style="margin-bottom: 25px">
     <Collapse DefaultActiveKey="@(new[]{"1"})" OnChange="Callback">
         <Panel Header="@Name" Key="1">
-            <div style="position: center; margin-left: 50px">
+            <div style="position: center">
                 <Row>
                     <AntDesign.Col>
-                        <Icon Style="font-size:30px; margin-top: 15px" Type="file" Theme="outline" />
+                        <img src="@Path" />
                     </AntDesign.Col>
                     <AntDesign.Col>
-                        <Card Title=@(Name)>
+                        <Card Title=@(Name) Style="width: 500px">
                             <p style="margin-bottom: 10px; padding-left: 10px">@Text</p>
                             <p style="padding-left: 10px">Опубликовано @Data.ToString("dd.MM.yyyy")</p>
                             @foreach (var attachment in attachments)
                             {
                                 <a href="@attachment.Link">
                                     <CardGrid Style="width:50%;text-align:center" Hoverable="true">
-                                        <h4 style="color: cornflowerblue">@attachment.Name </h4>
+                                        <div class="hiddenBlock">
+                                            <h4 style="color: cornflowerblue">@attachment.Name </h4>
+                                        </div>
+                                        
                                     </CardGrid>
                                 </a>
                             }
@@ -28,29 +31,28 @@
     </Collapse>
 </div>
 
-
-
-
  @code {
-    [Parameter]
-    public int Id { get; set; }
-    [Parameter]
-    public string Name { get; set; }
-    [Parameter]
-    public string Text { get; set; }
-    [Parameter]
-    public DateTime Data { get; set; }
+     [Parameter]
+     public int Id { get; set; }
+     [Parameter]
+     public string Name { get; set; }
+     [Parameter]
+     public string Text { get; set; }
+     [Parameter]
+     public DateTime Data { get; set; }
+     [Parameter]
+     public string Path { get; set; }
 
-    List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
+     List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
 
-    protected override async Task OnInitializedAsync()
-    {
-        var context = Context.CreateDbContext();
-        attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
-    }
+     protected override async Task OnInitializedAsync()
+     {
+         var context = Context.CreateDbContext();
+         attachments = await context.Attachments.Where(a => a.PublicationId == Id).ToListAsync();
+     }
 
-    void Callback(string[] keys)
-    {
-        Console.WriteLine(string.Join(',', keys));
-    }
+     void Callback(string[] keys)
+     {
+         Console.WriteLine(string.Join(',', keys));
+     }
 }

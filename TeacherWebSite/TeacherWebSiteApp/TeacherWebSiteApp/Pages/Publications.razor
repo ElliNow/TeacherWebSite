@@ -3,53 +3,61 @@
 @namespace TeacherWebSiteApp.Pages
 @layout MainLayout
 
-<MatTabGroup Style="z-index: 999999">
-    <MatTab Label="Все">
-        @foreach (var publication in publications)
-        {
-                <div style="margin-left: 65px; margin-top: 10px">
-                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
-                </div>
-        }
-    </MatTab>
-    <MatTab Label="Презентации">
-        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
-        {
-            <div style="margin-left: 65px; margin-top: 10px">
-                <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
-            </div>
-        }
-    </MatTab>
-    <MatTab Label="Методички">
-        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
-        {
-            <div style="margin-left: 65px; margin-top: 10px">
-                <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
-            </div>
-        }
-    </MatTab>
-    <MatTab>
-        <LabelContent>
-            Видео-уроки
-        </LabelContent>
-        <ChildContent>
-            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
+<Skeleton Loading="isLoading || publications == null" Style="padding-bottom: 50px">
+    <MatTabGroup Style="z-index: 999999">
+        <MatTab Label="Все">
+            @foreach (var publication in publications)
             {
-                <div style="margin-left: 65px; margin-top: 10px">
-                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"></Publication>
+                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                 Path="https://img.icons8.com/color/48/000000/document--v1.png"></Publication>
                 </div>
             }
-        </ChildContent>
-    </MatTab>
-</MatTabGroup>
+        </MatTab>
+        <MatTab Label="Презентации">
+            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
+            {
+                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                 Path="https://img.icons8.com/color/48/000000/pdf-2--v1.png"></Publication>
+                </div>
+            }
+        </MatTab>
+        <MatTab Label="Методички">
+            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
+            {
+                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                 Path="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-book-lifestyle-icongeek26-outline-colour-icongeek26.png"></Publication>
+                </div>
+            }
+        </MatTab>
+        <MatTab>
+            <LabelContent>
+                Видео-уроки
+            </LabelContent>
+            <ChildContent>
+                @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
+                {
+                    <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                        <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                     Path="https://img.icons8.com/color/48/000000/video.png"></Publication>
+                    </div>
+                }
+            </ChildContent>
+        </MatTab>
+    </MatTabGroup>
+</Skeleton>
 
-@code {
-    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+    @code {
+        List<TeacherWebSiteApp.Data.Models.Publication> publications;
+        bool isLoading;
 
-    protected override void OnInitialized()
-    {
-        using var context = DbFactory.CreateDbContext();
-        publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+        protected override void OnInitialized()
+        {
+            using var context = DbFactory.CreateDbContext();
+            publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+            isLoading = false;
+        }
+
     }
-
-}

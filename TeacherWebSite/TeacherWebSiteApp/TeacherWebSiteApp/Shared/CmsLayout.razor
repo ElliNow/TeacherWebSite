@@ -8,7 +8,7 @@
     string cmsArticles = "/cms/articles";
     string cmsAbout = "/cms/about";
     string cmsContacts = "/cms/contacts";
-    string newsfeed = "/newsfeed";
+    string publications = "/publications";
 }
 
 <style>
@@ -30,7 +30,7 @@
                 <AntDesign.Col>
                     <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"/"})>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cms, true); }">CMS</MenuItem>
-                        <a @onclick="() => { Nav.NavigateTo(newsfeed, true); }">
+                        <a @onclick="() => { Nav.NavigateTo(publications, true); }">
                             <span class="badge badge-secondary">На сайт</span>
                         </a>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsNewsfeed, true); }">Публикации</MenuItem>

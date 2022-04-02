@@ -141,32 +141,33 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
-       
-    List<Article> articles;
+#line 27 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
+           
+        List<Article> articles;
+        
 
-    protected override async Task OnInitializedAsync()
-    {
-        using TeacherContext context = DbFactory.CreateDbContext();
-        articles = await context.Articles.ToListAsync();
-
-    }
-
-
-    private async Task SwitchActive(int id, bool? value)
-    {
-        using var context = DbFactory.CreateDbContext();
-        var article = await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
-        if (article != null)
+        protected override async Task OnInitializedAsync()
         {
-            article.IsActive = value;
-            await context.SaveChangesAsync();
-            string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
-            _message.Info($"Статья {article.Name} {state}.");
+            using TeacherContext context = DbFactory.CreateDbContext();
+            articles = await context.Articles.ToListAsync();
+            
         }
-    }
 
- 
+
+        private async Task SwitchActive(int id, bool? value)
+        {
+            using var context = DbFactory.CreateDbContext();
+            var article = await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
+            if (article != null)
+            {
+                article.IsActive = value;
+                await context.SaveChangesAsync();
+                string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
+                _message.Info($"Статья {article.Name} {state}.");
+            }
+        }
+
+    
 
 #line default
 #line hidden

@@ -297,3 +297,5 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Pages\ArticleInfo.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\RazorDeclaration\Pages\Publications.razor.g.cs
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\Razor\Pages\Publications.razor.g.cs
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\scopedcss\Components\Publication.razor.rz.scp.css
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\scopedcss\Components\BigBanner.razor.rz.scp.css
