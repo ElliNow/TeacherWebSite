@@ -131,27 +131,13 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
-    public partial class BigBanner : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class BigBanner_razor : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 25 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
-       
-
-    [Parameter]
-    public byte[] Picture { get; set; }
-    [Parameter]
-    public string Title { get; set; }
-    [Parameter]
-    public string Text { get; set; }
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591
