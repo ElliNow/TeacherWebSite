@@ -156,98 +156,98 @@ using System.Collections.Concurrent;
         #pragma warning restore 1998
 #nullable restore
 #line 102 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\ArticleEdit.razor"
-        
-    [Parameter]
-    public int Id { get; set; }
+           
+        [Parameter]
+        public int Id { get; set; }
 
-    public TeacherWebSiteApp.Data.PageModels.Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
-   
+        public TeacherWebSiteApp.Data.PageModels.Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
 
-    protected override async Task OnInitializedAsync()
-    {
-        if (Id != 0)
+
+        protected override async Task OnInitializedAsync()
         {
-            using TeacherWebSiteApp.Data.TeacherContext context = DbFactory.CreateDbContext();
-            article = await context.Articles.Include(b => b.Blocks).FirstOrDefaultAsync(x => x.Id == Id);
-            if (article == null)
+            if (Id != 0)
             {
-                _message.Error("Статья не найдена!");
-                NavManager.NavigateTo("/cms/article/0");
+                using TeacherWebSiteApp.Data.TeacherContext context = DbFactory.CreateDbContext();
+                article = await context.Articles.Include(b => b.Blocks).FirstOrDefaultAsync(x => x.Id == Id);
+                if (article == null)
+                {
+                    _message.Error("Статья не найдена!");
+                    NavManager.NavigateTo("/cms/article/0");
+                }
             }
         }
-    }
 
-    private async Task SaveAsync()
-    {
-        if (!article.Blocks.Any())
+        private async Task SaveAsync()
         {
-            _message.Error("Минимальное количество абзацев: 1");
-            return;
+            if (!article.Blocks.Any())
+            {
+                _message.Error("Минимальное количество абзацев: 1");
+                return;
+            }
+
+            if (!article.Blocks.Any(x => x.Image != null))
+            {
+                _message.Error("Минимальное количество картинок для статьи: 1");
+                return;
+            }
+
+            try
+            {
+                using TeacherContext context = DbFactory.CreateDbContext();
+                var selectedArcticle = context.Articles.Include(b => b.Blocks).FirstOrDefault(x => x.Id == Id);
+
+                if (selectedArcticle != null)
+                {
+                    selectedArcticle.Name = article.Name;
+                    selectedArcticle.Description = article.Description;
+                    selectedArcticle.Date = article.Date;
+
+                    var delBlocks = selectedArcticle.Blocks.Where(b => !article.Blocks.Any(x => x.Id == b.Id));
+
+                    var newBlocks = article.Blocks.Where(b => !selectedArcticle.Blocks.Any(x => x.Id == b.Id));
+
+                    var updBlocks = selectedArcticle.Blocks.Where(b => article.Blocks.Any(x => x.Id == b.Id))
+                        .Select(db => new { Source = article.Blocks.FirstOrDefault(x => x.Id == db.Id), Target = db });
+
+                    context.ArticleBlocks.RemoveRange(delBlocks);
+                    await context.ArticleBlocks.AddRangeAsync(newBlocks);
+                    updBlocks.ForEach(x =>
+                    {
+                        x.Target.Title = x.Source.Title;
+                        x.Target.Image = x.Source.Image;
+                        x.Target.Text = x.Source.Text;
+                        x.Target.Video = x.Source.Video;
+                        x.Target.ArticleId = x.Source.ArticleId;
+                    });
+
+                    await context.SaveChangesAsync();
+                    _message.Success("Статья сохранена!");
+                }
+                else
+                {
+                    article.Date = DateTime.Now;
+                    context.Articles.Add(article);
+                    await context.SaveChangesAsync();
+                    _message.Success("Статья добавлена!");
+                }
+                NavManager.NavigateTo($"/cms/article/{article.Id}");
+            }
+            catch (Exception ex)
+            {
+                _message.Error(ex.Message, 60);
+                _message.Error(ex.InnerException?.Message, 60);
+                _message.Error("Во время сохранения статьи произошла ошибка", 60);
+            }
         }
 
-        if (!article.Blocks.Any(x => x.Image != null))
-        {
-            _message.Error("Минимальное количество картинок для статьи: 1");
-            return;
-        }
-
-        try
+        private void DeleteArcticle()
         {
             using TeacherContext context = DbFactory.CreateDbContext();
-            var selectedArcticle = context.Articles.Include(b => b.Blocks).FirstOrDefault(x => x.Id == Id);
-
-            if (selectedArcticle != null)
-            {
-                selectedArcticle.Name = article.Name;
-                selectedArcticle.Description = article.Description;
-                selectedArcticle.Date = article.Date;
-
-                var delBlocks = selectedArcticle.Blocks.Where(b => !article.Blocks.Any(x => x.Id == b.Id));
-
-                var newBlocks = article.Blocks.Where(b => !selectedArcticle.Blocks.Any(x => x.Id == b.Id));
-
-                var updBlocks = selectedArcticle.Blocks.Where(b => article.Blocks.Any(x => x.Id == b.Id))
-                    .Select(db => new { Source = article.Blocks.FirstOrDefault(x => x.Id == db.Id), Target = db });
-
-                context.ArticleBlocks.RemoveRange(delBlocks);
-                await context.ArticleBlocks.AddRangeAsync(newBlocks);
-                updBlocks.ForEach(x =>
-                {
-                    x.Target.Title = x.Source.Title;
-                    x.Target.Image = x.Source.Image;
-                    x.Target.Text = x.Source.Text;
-                    x.Target.Video = x.Source.Video;
-                    x.Target.ArticleId = x.Source.ArticleId;
-                });
-
-                await context.SaveChangesAsync();
-                _message.Success("Статья сохранена!");
-            }
-            else
-            {
-                article.Date = DateTime.Now;
-                context.Articles.Add(article);
-                await context.SaveChangesAsync();
-                _message.Success("Статья добавлена!");
-            }
-            NavManager.NavigateTo($"/cms/article/{article.Id}");
+            context.Articles.Remove(article);
+            context.SaveChanges();
+            NavManager.NavigateTo($"/cms/articles");
         }
-        catch (Exception ex)
-        {
-            _message.Error(ex.Message, 60);
-            _message.Error(ex.InnerException?.Message, 60);
-            _message.Error("Во время сохранения статьи произошла ошибка", 60);
-        }
-    }
-
-    private void DeleteArcticle()
-    {
-        using TeacherContext context = DbFactory.CreateDbContext();
-        context.Articles.Remove(article);
-        context.SaveChanges();
-        NavManager.NavigateTo($"/articles");
-    }
- 
+    
 
 #line default
 #line hidden

@@ -1,4 +1,4 @@
-﻿@page "/index"
+﻿@page "/"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
 @layout MainLayout
@@ -6,28 +6,9 @@
 
 @if (data != null && data.IsBannerEnabled)
 {
-    <div style="height: 100%">
-        <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
-    </div>
-
-    
+     <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
 }
-@*<div>
-    <Carousel Autoplay="TimeSpan.FromSeconds(2)">
-        <CarouselSlick>
-            <h3>1</h3>
-        </CarouselSlick>
-        <CarouselSlick>
-            <h3>2</h3>
-        </CarouselSlick>
-        <CarouselSlick>
-            <h3>3</h3>
-        </CarouselSlick>
-        <CarouselSlick>
-            <h3>4</h3>
-        </CarouselSlick>
-    </Carousel>
-</div>*@
+
 
 @code{
     private MainPage data = new MainPage();
@@ -36,11 +17,11 @@
     {
         using var context = DbFactory.CreateDbContext();
 
-        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActive.Value);
+        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActiveProfile == true);
 
         if (data == null)
         {
-            NavManager.NavigateTo("/newsfeed");
+            NavManager.NavigateTo("/publications");
         }
     }
 }

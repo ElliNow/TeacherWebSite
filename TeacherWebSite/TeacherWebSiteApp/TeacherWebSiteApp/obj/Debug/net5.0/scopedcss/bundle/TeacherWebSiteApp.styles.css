@@ -1,6 +1,20 @@
+/* _content/TeacherWebSiteApp/Components/BigBanner.razor.rz.scp.css */
+
+/* _content/TeacherWebSiteApp/Components/Publication.razor.rz.scp.css */
+.hiddenBlock[b-di6ixeogsq]{
+
+    overflow-x:hidden
+}
 /* _content/TeacherWebSiteApp/Pages/Articles.razor.rz.scp.css */
 .blockhidden[b-cglbnhxsmy]{
     overflow-x:hidden
+}
+
+.truncate p[b-cglbnhxsmy]{
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
 }
 /* _content/TeacherWebSiteApp/Pages/Contacts.razor.rz.scp.css */
 .cardgrid:hover[b-1dvze6zf9s]{
