@@ -1,24 +1,18 @@
-﻿<div>
-    <Carousel Autoplay="TimeSpan.FromSeconds(2)">
-        <CarouselSlick>
-            <div style="width:100%; height: 500px; background-color: aquamarine; background: url( data:image/jpg;base64, @Convert.ToBase64String(Picture) ); background-size: cover; background-position: center; background-repeat: no-repeat;">
-                <AntDesign.Col Span="24">
-                    <h3>@Title</h3>
-                    <p>@Text</p>
-                </AntDesign.Col>
-            </div>
-        </CarouselSlick>
-        <CarouselSlick>
-            <div style=" width:100%; height:500px; background-color:aquamarine;background:url( data:image/jpg;base64,@Convert.ToBase64String(Picture) ); background-size: cover;
-                background-position: center; background-repeat: no-repeat;">
-                <AntDesign.Col Span="24">
-                    <h3>@Title</h3>
-                    <p>@Text</p>
-                </AntDesign.Col>
-            </div>
-        </CarouselSlick>
-    </Carousel>
+﻿
+<div class="row" style="height: 500px">
+    <div class="col" style="background-color:aquamarine; height: 500px;
+        background:url( data:image/jpg;base64,@Convert.ToBase64String(Picture) ); background-size: cover;
+        background-position: center; background-repeat: no-repeat;">
+        <Row>
+            <AntDesign.Col Span="8">
+                <h3>@Title</h3>
+                <p>@Text</p>
+            </AntDesign.Col>
+        </Row>
+    </div>
 </div>
+
+
 
 
 
