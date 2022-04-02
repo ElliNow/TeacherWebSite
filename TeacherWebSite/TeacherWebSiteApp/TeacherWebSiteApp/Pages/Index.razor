@@ -1,4 +1,4 @@
-﻿@page "/index"
+﻿@page "/"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
 @layout MainLayout
@@ -6,9 +6,7 @@
 
 @if (data != null && data.IsBannerEnabled)
 {
-    <div>
-        <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
-    </div>
+     <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
 }
 
 
