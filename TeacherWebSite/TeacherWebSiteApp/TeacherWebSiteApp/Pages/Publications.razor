@@ -49,15 +49,23 @@
     </MatTabGroup>
 </Skeleton>
 
-    @code {
-        List<TeacherWebSiteApp.Data.Models.Publication> publications;
-        bool isLoading;
 
-        protected override void OnInitialized()
-        {
-            using var context = DbFactory.CreateDbContext();
-            publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
-            isLoading = false;
-        }
 
+
+@code {
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+    bool isLoading;
+
+    protected override void OnInitialized()
+    {
+        using var context = DbFactory.CreateDbContext();
+        publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+        isLoading = false;
     }
+
+    private void OnClick()
+    {
+        Console.WriteLine("TOP");
+    }
+
+}
