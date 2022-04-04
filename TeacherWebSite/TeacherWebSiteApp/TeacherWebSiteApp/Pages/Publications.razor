@@ -1,6 +1,5 @@
 ﻿@page "/publications"
 @inject IDbContextFactory<TeacherContext> DbFactory
-@namespace TeacherWebSiteApp.Pages
 @layout MainLayout
 
 <Skeleton Loading="isLoading || publications == null" Style="padding-bottom: 50px">
@@ -9,8 +8,8 @@
             @foreach (var publication in publications)
             {
                 <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                 Path="https://img.icons8.com/color/48/000000/document--v1.png"></Publication>
+                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                              Path="https://img.icons8.com/color/48/000000/document--v1.png"></TeacherWebSiteApp.Components.Publication>
                 </div>
             }
         </MatTab>
@@ -18,8 +17,8 @@
             @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
             {
                 <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                 Path="https://img.icons8.com/color/48/000000/pdf-2--v1.png"></Publication>
+                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                 Path="https://img.icons8.com/color/48/000000/pdf-2--v1.png"></TeacherWebSiteApp.Components.Publication>
                 </div>
             }
         </MatTab>
@@ -27,8 +26,8 @@
             @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
             {
                 <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                 Path="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-book-lifestyle-icongeek26-outline-colour-icongeek26.png"></Publication>
+                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                 Path="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-book-lifestyle-icongeek26-outline-colour-icongeek26.png"></TeacherWebSiteApp.Components.Publication>
                 </div>
             }
         </MatTab>
@@ -40,8 +39,8 @@
                 @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
                 {
                     <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                        <Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                     Path="https://img.icons8.com/color/48/000000/video.png"></Publication>
+                        <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                     Path="https://img.icons8.com/color/48/000000/video.png"></TeacherWebSiteApp.Components.Publication>
                     </div>
                 }
             </ChildContent>

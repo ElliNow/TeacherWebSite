@@ -131,6 +131,13 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publication/{id:int}")]
     public partial class PublicationEdit : Microsoft.AspNetCore.Components.ComponentBase

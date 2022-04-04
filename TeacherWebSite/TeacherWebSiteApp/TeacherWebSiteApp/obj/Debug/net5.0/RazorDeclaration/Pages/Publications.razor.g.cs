@@ -131,6 +131,13 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/publications")]
     public partial class Publications : Microsoft.AspNetCore.Components.ComponentBase
@@ -141,7 +148,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
+#line 54 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
        
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
     bool isLoading;

@@ -131,6 +131,13 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publications")]
     public partial class List : Microsoft.AspNetCore.Components.ComponentBase
@@ -141,7 +148,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+#line 29 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
         
     List<Publication> publications;
 
@@ -158,14 +165,14 @@ using AntDesign;
         }
     }
 
-    private async Task SwitchActive(int Id, bool? value)
+    private void SwitchActive(int Id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();
-        var publication = await context.Publications.Include(p => p.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
+        var publication = context.Publications.Include(p => p.Attachments).FirstOrDefault(p => p.Id == Id);
         if (publication != null)
         {
             publication.IsActive = value;
-            await context.SaveChangesAsync();
+            context.SaveChanges();
             string state = (publication.IsActive.Value) ? "активированa" : "деактивированa";
             _message.Info($"Публикация {publication.Name} {state}.");
         }
