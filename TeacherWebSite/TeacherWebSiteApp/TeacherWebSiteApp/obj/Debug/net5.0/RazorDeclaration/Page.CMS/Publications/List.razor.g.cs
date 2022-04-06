@@ -148,7 +148,7 @@ using MudBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 29 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+#line 30 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
         
     List<Publication> publications;
 

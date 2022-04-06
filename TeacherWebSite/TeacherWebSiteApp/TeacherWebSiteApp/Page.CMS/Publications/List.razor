@@ -20,9 +20,10 @@
     </Column>
     <Column Title="Описание" @bind-Field="@context.Text" TData="string" />
     <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
-    <Column Title="Активный" @bind-Field="@context.IsActive"  TData="bool?" Sortable>
-        <Switch OnChange="(val) => SwitchActive(context.Id, val)" Checked="@context.IsActive.Value"  @onclick="(val) => SwitchActive(context.Id, context.IsActive)"/>
+    <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
+        @*<Switch OnChange="(val) => SwitchActive(context.Id, val)" Checked="@context.IsActive.Value" @onclick="(val) => SwitchActive(context.Id, context.IsActive)" />*@
         @*<MudSwitch @bind-Checked="@context.IsActive.Value" />*@
+        <MudBlazor.MudSwitch  @bind-Checked="@context.IsActive.Value" ThumbIcon="@(context.IsActive.Value==true ? Icons.Material.Filled.Done : Icons.Material.Filled.Close)" ThumbIconColor="@(context.IsActive.Value==true ? MudBlazor.Color.Success : MudBlazor.Color.Error)"></MudBlazor.MudSwitch>
     </Column>
 </Table>
 
