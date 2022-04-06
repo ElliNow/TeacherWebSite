@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TeacherWebSiteApp.Data;
 using MudBlazor.Services;
+using Blazored.LocalStorage;
 
 namespace TeacherWebSiteApp
 {
@@ -35,6 +36,7 @@ namespace TeacherWebSiteApp
             services.AddDbContextFactory<TeacherContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
+            services.AddBlazoredLocalStorage();
             services.AddAntDesign();
             services.AddMatBlazor();
             services.AddMudServices();
@@ -58,6 +60,9 @@ namespace TeacherWebSiteApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
