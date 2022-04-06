@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Components
+namespace TeacherWebSiteApp.Page.CMS.Users
 {
     #line hidden
     using System;
@@ -138,7 +138,8 @@ using MudBlazor;
 #line default
 #line hidden
 #nullable disable
-    public partial class BigBanner : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
+    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -146,19 +147,32 @@ using MudBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\BigBanner.razor"
+#line 30 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\Login.razor"
        
 
-    [Parameter]
-    public byte[] Picture { get; set; }
-    [Parameter]
-    public string Title { get; set; }
-    [Parameter]
-    public string Text { get; set; }
+    string username;
+    string password;
+
+    string[] messages = new string[] { };
+
+    void LogIn()
+    {
+        var p = (ProducedAuthenticationStateProvider)provider;
+        var result = p.Login(username, password);
+
+        if (result == null)
+        {
+            NavManager.NavigateTo("/cms", true);
+        }
+        else messages = new string[] { result };
+
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider provider { get; set; }
     }
 }
 #pragma warning restore 1591

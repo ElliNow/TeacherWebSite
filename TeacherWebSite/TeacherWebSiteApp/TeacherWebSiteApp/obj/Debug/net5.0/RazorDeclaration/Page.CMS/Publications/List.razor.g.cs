@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Data.Models
+namespace TeacherWebSiteApp.Page.CMS.Publications
 {
     #line hidden
     using System;
@@ -150,7 +150,7 @@ using MudBlazor;
 #nullable restore
 #line 28 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
         
-    List<Publication> publications;
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
 
     protected override async Task OnInitializedAsync()
     {

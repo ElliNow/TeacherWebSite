@@ -1,0 +1,49 @@
+﻿@page "/login"
+@inject AuthenticationStateProvider provider
+@inject NavigationManager NavManager
+@namespace TeacherWebSiteApp.Page.CMS.Users
+
+
+@*<Form Loading="loading" Model="@TeacherWebSiteApp.Data.Auth.User"
+      LabelColSpan="8"
+      WrapperColSpan="16"
+      OnFinish="OnFinish"
+      OnFinishFailed="@messages">
+    <FormItem Label="Username">
+        <Input @bind-Value="@context.Username" />
+    </FormItem>
+    <FormItem Label="Password">
+        <InputPassword @bind-Value="@context.Password" />
+    </FormItem>
+    <FormItem WrapperColOffset="8" WrapperColSpan="16">
+        <Checkbox @bind-Value="context.RememberMe">Remember me</Checkbox>
+    </FormItem>
+    <FormItem WrapperColOffset="8" WrapperColSpan="16">
+        <Button Type="@ButtonType.Primary" HtmlType="submit">
+            Submit
+        </Button>
+    </FormItem>
+</Form>*@
+
+
+
+@code {
+
+    string username;
+    string password;
+
+    string[] messages = new string[] { };
+
+    void LogIn()
+    {
+        var p = (ProducedAuthenticationStateProvider)provider;
+        var result = p.Login(username, password);
+
+        if (result == null)
+        {
+            NavManager.NavigateTo("/cms", true);
+        }
+        else messages = new string[] { result };
+
+    }
+}
