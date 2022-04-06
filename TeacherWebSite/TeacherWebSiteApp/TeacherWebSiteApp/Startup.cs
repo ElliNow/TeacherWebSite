@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using TeacherWebSiteApp.Data;
 using MudBlazor.Services;
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace TeacherWebSiteApp
 {
