@@ -157,7 +157,7 @@ using MudBlazor;
 
     void LogIn()
     {
-        var p = (ProducedAuthenticationStateProvider)provider;
+        ProducedAuthenticationStateProvider p = provider as ProducedAuthenticationStateProvider;
         var result = p.Login(username, password);
 
         if (result == null)
