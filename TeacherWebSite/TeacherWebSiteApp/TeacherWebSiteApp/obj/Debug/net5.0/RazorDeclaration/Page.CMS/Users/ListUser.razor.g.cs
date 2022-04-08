@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page_CMS.Users
+namespace TeacherWebSiteApp.Page.CMS.Users
 {
     #line hidden
     using System;
@@ -138,6 +138,15 @@ using MudBlazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data.Auth;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/users")]
     public partial class ListUser : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -145,6 +154,81 @@ using MudBlazor;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 60 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
+        
+
+    string[] messages = new string[] { };
+    List<User> users = new List<User>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        users = await context.Users.ToListAsync();
+    }
+
+    private async Task DeleteAsync(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        if (context.Users.Count() == 1)
+        {
+            messages = new string[] { "Нельзя удалить последнего пользователя" };
+            return;
+        }
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == id);
+        context.Users.Remove(user);
+        await context.SaveChangesAsync();
+        NavManager.NavigateTo("/cms/users", true);
+    }
+
+    RegisterVM reg = new();
+
+    bool Validate()
+    {
+        List<string> problems = new List<string>();
+        if (string.IsNullOrEmpty(reg.UserName)) problems.Add(@"'Логин' должно быть заполнено");
+        else if (reg.UserName.Length > 50) problems.Add(@"'Логин' должно быть не более 50 символов");
+
+        if (string.IsNullOrEmpty(reg.Password)) problems.Add(@"'Пароль' должно быть заполнено");
+
+        if (!string.IsNullOrEmpty(reg.Name) && reg.Name.Length > 100)
+            problems.Add(@"'Имя' должно быть не более 100 символов");
+
+        messages = problems.ToArray();
+
+        return !messages.Any();
+    }
+
+    async Task Register()
+    {
+        if (!Validate()) return;
+        var p = (ProducedAuthenticationStateProvider)provider;
+        var result = p.Register(reg.UserName, reg.Password, reg.Name);
+        if (result == null)
+        {
+            using var context = DbFactory.CreateDbContext();
+            users = await context.Users.ToListAsync();
+            reg = new();
+        }
+        else messages = new string[] { result };
+
+
+    }
+
+    class RegisterVM
+    {
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string UserName { get; set; }
+    } 
+  
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider provider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> DbFactory { get; set; }
     }
 }
 #pragma warning restore 1591
