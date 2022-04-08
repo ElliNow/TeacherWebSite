@@ -5,69 +5,121 @@
 @inject AuthenticationStateProvider provider
 @namespace TeacherWebSiteApp.Page.CMS.Users
 
-@code {
+<h3>Пользователи</h3>
+<ValidationBlock Messages="messages" />
+
+
+<h5 style="margin-top:40px">Новый пользователь</h5>
+<Row>
+    <AntDesign.Col>
+        <Input @bind-Value="reg.Name" Type="text" Placeholder="Имя">
+    </AntDesign.Col>
+    <AntDesign.Col>
+        <Input @bind-Value="reg.UserName" Type="text" Placeholder="Логин">
+    </AntDesign.Col>
+    <AntDesign.Col>
+        <Input @bind-Value="reg.Password" Type="password" Placeholder="Пароль">
+    </AntDesign.Col>
+    <AntDesign.Col>
+        <Button Type="@AntDesign.ButtonType.Primary" @onclick="Register">
+            Добавить
+        </Button>
+    </AntDesign.Col>
+</Row>
+
+<hr style="margin-top:40px; margin-bottom:40px" />
+
+<h5>Список пользователей</h5>
+<table class="table table-striped table-hover form-block">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Логин</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in users)
+        {
+            int id = user.Id;
+
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Username</td>
+                <td><a href="/cms/password/@id">Изменить пароль</a></td>
+                <td>
+                    <a style="cursor:pointer; color:brown" @onclick="() => DeleteAsync(id)">Удалить</a>
+
+                </td>
+            </tr>
+         }
+    </tbody>
+</table>
+
+@code { 
 
     string[] messages = new string[] { };
-    List<TeacherWebSiteApp.Data.Auth.User> users = new List<User>();
+        List<User> users = new List<User>();
 
-    protected override async Task OnInitializedAsync()
-    {
-        using var context = DbFactory.CreateDbContext();
-        users = await context.Users.ToListAsync();
-    }
-
-    private async Task DeleteAsync(int id)
-    {
-        using var context = DbFactory.CreateDbContext();
-        if (context.Users.Count() == 1)
-        {
-            messages = new string[] { "Нельзя удалить последнего пользователя" };
-            return;
-        }
-        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == id);
-        context.Users.Remove(user);
-        await context.SaveChangesAsync();
-        NavManager.NavigateTo("/cms/users", true);
-    }
-
-    RegisterVM reg = new();
-
-    bool Validate()
-    {
-        List<string> problems = new List<string>();
-        if (string.IsNullOrEmpty(reg.UserName)) problems.Add(@"'Логин' должно быть заполнено");
-        else if (reg.UserName.Length > 50) problems.Add(@"'Логин' должно быть не более 50 символов");
-
-        if (string.IsNullOrEmpty(reg.Password)) problems.Add(@"'Пароль' должно быть заполнено");
-
-        if (!string.IsNullOrEmpty(reg.Name) && reg.Name.Length > 100)
-            problems.Add(@"'Имя' должно быть не более 100 символов");
-
-        messages = problems.ToArray();
-
-        return !messages.Any();
-    }
-
-    async Task Register()
-    {
-        if (!Validate()) return;
-        var p = (ProducedAuthenticationStateProvider)provider;
-        var result = p.Register(reg.UserName, reg.Password, reg.Name);
-        if (result == null)
+        protected override async Task OnInitializedAsync()
         {
             using var context = DbFactory.CreateDbContext();
             users = await context.Users.ToListAsync();
-            reg = new();
         }
-        else messages = new string[] { result };
+
+        private async Task DeleteAsync(int id)
+        {
+            using var context = DbFactory.CreateDbContext();
+            if (context.Users.Count() == 1)
+            {
+                messages = new string[] { "Нельзя удалить последнего пользователя" };
+                return;
+            }
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
+            NavManager.NavigateTo("/cms/users", true);
+        }
+
+        RegisterVM reg = new();
+
+        bool Validate()
+        {
+            List<string> problems = new List<string>();
+            if (string.IsNullOrEmpty(reg.UserName)) problems.Add(@"'Логин' должно быть заполнено");
+            else if (reg.UserName.Length > 50) problems.Add(@"'Логин' должно быть не более 50 символов");
+
+            if (string.IsNullOrEmpty(reg.Password)) problems.Add(@"'Пароль' должно быть заполнено");
+
+            if (!string.IsNullOrEmpty(reg.Name) && reg.Name.Length > 100)
+                problems.Add(@"'Имя' должно быть не более 100 символов");
+
+            messages = problems.ToArray();
+
+            return !messages.Any();
+        }
+
+        async Task Register()
+        {
+            if (!Validate()) return;
+            var p = (ProducedAuthenticationStateProvider)provider;
+            var result = p.Register(reg.UserName, reg.Password, reg.Name);
+            if (result == null)
+            {
+                using var context = DbFactory.CreateDbContext();
+                users = await context.Users.ToListAsync();
+                reg = new();
+            }
+            else messages = new string[] { result };
 
 
+        }
+
+        class RegisterVM
+        {
+            public string Name { get; set; }
+            public string Password { get; set; }
+            public string UserName { get; set; }
+        } 
     }
-
-    class RegisterVM
-    {
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string UserName { get; set; }
-    }
-}
