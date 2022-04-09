@@ -155,10 +155,10 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 60 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
-        
-
+#line 101 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
+       
     string[] messages = new string[] { };
+    string[] headings = { "ID", "Name", "Login", "Password" };
     List<User> users = new List<User>();
 
     protected override async Task OnInitializedAsync()
@@ -220,8 +220,8 @@ using TeacherWebSiteApp.Data.Auth;
         public string Name { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
-    } 
-  
+    }
+ 
 
 #line default
 #line hidden

@@ -35,15 +35,15 @@
     <div style="margin-left: 240px">
         <Row>
             <AntDesign.Col>
-                <Input @bind-Value="username" Placeholder="Имя пользователя" Type="text" />
+                <AntDesign.Input @bind-Value="username" Placeholder="Имя пользователя" Type="text" />
             </AntDesign.Col>
             <AntDesign.Col Style="padding-left: 80px">
-                <Input @bind-Value="password" Placeholder="Пароль" Type="password" />
+                <AntDesign.Input @bind-Value="password" Placeholder="Пароль" Type="password" />
             </AntDesign.Col>
         </Row>
         <Row>
             <AntDesign.Col Style="margin-top: 20px">
-                <Button Type="@AntDesign.ButtonType.Primary" @onclick="LogIn">Вход</Button>
+                <AntDesign.Button Type="@AntDesign.ButtonType.Primary" @onclick="LogIn">Вход</AntDesign.Button>
             </AntDesign.Col>
         </Row>
     </div>
