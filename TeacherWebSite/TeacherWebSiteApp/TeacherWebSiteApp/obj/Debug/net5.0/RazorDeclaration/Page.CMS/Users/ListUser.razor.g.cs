@@ -155,7 +155,7 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 101 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
+#line 100 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
        
     string[] messages = new string[] { };
     string[] headings = { "ID", "Name", "Login", "Password" };
