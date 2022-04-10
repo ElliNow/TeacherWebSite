@@ -145,6 +145,13 @@ using TeacherWebSiteApp.Data.Auth;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/users")]
     public partial class ListUser : Microsoft.AspNetCore.Components.ComponentBase
@@ -155,8 +162,9 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 100 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
+#line 72 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
        
+    bool loading = false;
     string[] messages = new string[] { };
     string[] headings = { "ID", "Name", "Login", "Password" };
     List<User> users = new List<User>();
@@ -199,19 +207,19 @@ using TeacherWebSiteApp.Data.Auth;
         return !messages.Any();
     }
 
-    async Task Register()
+    public void Register()
     {
         if (!Validate()) return;
-        var p = (ProducedAuthenticationStateProvider)provider;
+        ProducedAuthenticationStateProvider p; 
         var result = p.Register(reg.UserName, reg.Password, reg.Name);
         if (result == null)
         {
             using var context = DbFactory.CreateDbContext();
-            users = await context.Users.ToListAsync();
+            users = context.Users.ToList();
+
             reg = new();
         }
         else messages = new string[] { result };
-
 
     }
 
@@ -220,8 +228,7 @@ using TeacherWebSiteApp.Data.Auth;
         public string Name { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
-    }
- 
+    } 
 
 #line default
 #line hidden
