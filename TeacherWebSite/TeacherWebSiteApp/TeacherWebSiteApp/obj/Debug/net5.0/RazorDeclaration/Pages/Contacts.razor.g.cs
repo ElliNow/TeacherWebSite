@@ -131,6 +131,20 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data.Auth;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/contacts")]
     public partial class Contacts : Microsoft.AspNetCore.Components.ComponentBase
@@ -141,7 +155,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 37 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Contacts.razor"
+#line 36 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Contacts.razor"
        
     List<Contact> contacts;
 

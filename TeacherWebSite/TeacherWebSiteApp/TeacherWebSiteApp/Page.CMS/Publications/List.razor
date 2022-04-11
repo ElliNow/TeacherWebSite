@@ -2,7 +2,7 @@
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject MessageService _message
 @inject NavigationManager NavManager
-@namespace TeacherWebSiteApp.Data.Models
+@namespace TeacherWebSiteApp.Page.CMS.Publications
 @layout CmsLayout
 
 
@@ -11,10 +11,10 @@
 @{ string add = "/cms/publication/0"; }
 
 <InputGroup Style="margin-bottom: 20px">
-    <Button @onclick="() => NavManager.NavigateTo(add)">Добавить</Button>
+    <AntDesign.Button @onclick="() => NavManager.NavigateTo(add)">Добавить</AntDesign.Button>
 </InputGroup>
 
-<Table DataSource="publications" TItem="Publication" HidePagination="false">
+<Table DataSource="publications" TItem="TeacherWebSiteApp.Data.Models.Publication" HidePagination="false">
     <Column Title="Название" @bind-Field="@context.Name" TData="string" Sortable>
         <a href="/cms/publication/@context.Id">@context.Name</a>
     </Column>
@@ -26,7 +26,7 @@
 </Table>
 
 @code { 
-    List<Publication> publications;
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
 
     protected override async Task OnInitializedAsync()
     {

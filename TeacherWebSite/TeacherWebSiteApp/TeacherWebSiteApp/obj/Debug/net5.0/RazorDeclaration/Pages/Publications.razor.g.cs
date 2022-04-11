@@ -131,6 +131,20 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data.Auth;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/publications")]
     public partial class Publications : Microsoft.AspNetCore.Components.ComponentBase
@@ -141,19 +155,23 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
-           
-        List<TeacherWebSiteApp.Data.Models.Publication> publications;
-        bool isLoading;
+#line 54 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Publications.razor"
+       
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
+    bool isLoading;
 
-        protected override void OnInitialized()
-        {
-            using var context = DbFactory.CreateDbContext();
-            publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
-            isLoading = false;
-        }
+    protected override void OnInitialized()
+    {
+        using var context = DbFactory.CreateDbContext();
+        publications = context.Publications.Include(p => p.Attachments).Where(p => p.IsActive == true).ToList();
+        isLoading = false;
+    }
 
-    
+    private void OnClick()
+    {
+        Console.WriteLine("TOP");
+    }
+
 
 #line default
 #line hidden

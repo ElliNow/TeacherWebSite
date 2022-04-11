@@ -131,6 +131,20 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data.Auth;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publication/{id:int}")]
     public partial class PublicationEdit : Microsoft.AspNetCore.Components.ComponentBase
@@ -141,7 +155,7 @@ using AntDesign;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 114 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
+#line 116 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
        
     [Parameter]
     public int Id { get; set; }

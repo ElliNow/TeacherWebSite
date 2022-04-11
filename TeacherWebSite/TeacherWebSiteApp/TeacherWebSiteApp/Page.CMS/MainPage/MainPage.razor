@@ -31,7 +31,7 @@
 
 <div>
     <AntDesign.Col>
-        <Button @onclick="@AddProfile">Добавить</Button>
+        <AntDesign.Button @onclick="@AddProfile">Добавить</AntDesign.Button>
     </AntDesign.Col>
 </div>
 
@@ -189,10 +189,10 @@
     <div style="margin-bottom: 30px">
         <Row>
             <AntDesign.Col Style="margin-bottom: 30px">
-                <Button Type="@ButtonType.Primary" @onclick="@SaveAsync">Сохранить</Button>
+                <AntDesign.Button Type="@AntDesign.ButtonType.Primary" @onclick="@SaveAsync">Сохранить</AntDesign.Button>
             </AntDesign.Col>
             <AntDesign.Col Style="margin-left:50px; margin-bottom: 30px">
-                <Button Danger Type="@ButtonType.Primary" @onclick="@DeleteProfile">Удалить</Button>
+                <AntDesign.Button Danger Type="@AntDesign.ButtonType.Primary" @onclick="@DeleteProfile">Удалить</AntDesign.Button>
             </AntDesign.Col>
             <AntDesign.Col Style="margin-bottom: 30px">
                 <ValidationBlock Messages="validationMessages" />

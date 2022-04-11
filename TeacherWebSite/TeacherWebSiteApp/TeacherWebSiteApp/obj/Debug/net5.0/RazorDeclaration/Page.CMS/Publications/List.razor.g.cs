@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Data.Models
+namespace TeacherWebSiteApp.Page.CMS.Publications
 {
     #line hidden
     using System;
@@ -131,6 +131,20 @@ using AntDesign;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 18 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using MudBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using TeacherWebSiteApp.Data.Auth;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publications")]
     public partial class List : Microsoft.AspNetCore.Components.ComponentBase
@@ -143,7 +157,7 @@ using AntDesign;
 #nullable restore
 #line 28 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
         
-    List<Publication> publications;
+    List<TeacherWebSiteApp.Data.Models.Publication> publications;
 
     protected override async Task OnInitializedAsync()
     {

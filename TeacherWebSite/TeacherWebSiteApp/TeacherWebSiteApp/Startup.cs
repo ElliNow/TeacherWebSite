@@ -12,7 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TeacherWebSiteApp.Data;
-//using MudBlazor.Services;
+using MudBlazor.Services;
+using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
+using TeacherWebSiteApp.Services;
 
 namespace TeacherWebSiteApp
 {
@@ -32,12 +35,15 @@ namespace TeacherWebSiteApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddTransient<ICryptographer, MD5Cryptographer>();
             services.AddDbContextFactory<TeacherContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
+            services.AddBlazoredLocalStorage();
+            services.AddScoped<AuthenticationStateProvider, ProducedAuthenticationStateProvider>();
             services.AddAntDesign();
             services.AddMatBlazor();
-            //services.AddMudBlazor();
+            services.AddMudServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +64,9 @@ namespace TeacherWebSiteApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
