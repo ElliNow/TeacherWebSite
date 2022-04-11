@@ -1,6 +1,7 @@
 ﻿@page "/cms/publications"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject MessageService _message
+@attribute [Authorize(Roles = "admin")]
 @inject NavigationManager NavManager
 @namespace TeacherWebSiteApp.Page.CMS.Publications
 @layout CmsLayout
@@ -25,7 +26,7 @@
     </Column>
 </Table>
 
-@code { 
+@code {
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
 
     protected override async Task OnInitializedAsync()
@@ -35,7 +36,7 @@
             using TeacherContext context = DbFactory.CreateDbContext();
             publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _message.Error(ex.Message);
         }

@@ -145,6 +145,13 @@ using TeacherWebSiteApp.Data.Auth;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+           [Authorize(Roles = "admin")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publications")]
     public partial class List : Microsoft.AspNetCore.Components.ComponentBase
@@ -155,8 +162,8 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
-        
+#line 29 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+       
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
 
     protected override async Task OnInitializedAsync()
@@ -166,7 +173,7 @@ using TeacherWebSiteApp.Data.Auth;
             using TeacherContext context = DbFactory.CreateDbContext();
             publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _message.Error(ex.Message);
         }

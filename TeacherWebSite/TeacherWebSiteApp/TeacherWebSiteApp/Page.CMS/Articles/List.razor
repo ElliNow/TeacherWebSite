@@ -2,51 +2,52 @@
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
 @layout CmsLayout
+@attribute [Authorize(Roles = "admin")]
 @inject MessageService _message
 <Title Level="3">Статьи</Title>
 
 @{ string add = "/cms/article/0"; }
 
 
-    <InputGroup Style="margin-bottom: 20px">
-        <AntDesign.Button @onclick="() => NavManager.NavigateTo(add)">Добавить</AntDesign.Button>
-    </InputGroup>
+<InputGroup Style="margin-bottom: 20px">
+    <AntDesign.Button @onclick="() => NavManager.NavigateTo(add)">Добавить</AntDesign.Button>
+</InputGroup>
 
-    <Table DataSource="articles" TItem="Article" HidePagination="false">
-        <Column Title="Заголовок" @bind-Field="@context.Name" TData="string" Sortable>
-            <a href="/cms/article/@context.Id">@context.Name</a>
-        </Column>
-        <Column Title="Описание" @bind-Field="@context.Description" TData="string" />
-        <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
-        <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
-            <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" />
-        </Column>
-    </Table>
-
-
-    @code {
-        List<Article> articles;
-        
-
-        protected override async Task OnInitializedAsync()
-        {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            articles = await context.Articles.ToListAsync();
-            
-        }
+<Table DataSource="articles" TItem="Article" HidePagination="false">
+    <Column Title="Заголовок" @bind-Field="@context.Name" TData="string" Sortable>
+        <a href="/cms/article/@context.Id">@context.Name</a>
+    </Column>
+    <Column Title="Описание" @bind-Field="@context.Description" TData="string" />
+    <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
+    <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
+        <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" />
+    </Column>
+</Table>
 
 
-        private async Task SwitchActive(int id, bool? value)
-        {
-            using var context = DbFactory.CreateDbContext();
-            var article = await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
-            if (article != null)
-            {
-                article.IsActive = value;
-                await context.SaveChangesAsync();
-                string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
-                _message.Info($"Статья {article.Name} {state}.");
-            }
-        }
+@code {
+    List<Article> articles;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        using TeacherContext context = DbFactory.CreateDbContext();
+        articles = await context.Articles.ToListAsync();
 
     }
+
+
+    private async Task SwitchActive(int id, bool? value)
+    {
+        using var context = DbFactory.CreateDbContext();
+        var article = await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
+        if (article != null)
+        {
+            article.IsActive = value;
+            await context.SaveChangesAsync();
+            string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
+            _message.Info($"Статья {article.Name} {state}.");
+        }
+    }
+
+}

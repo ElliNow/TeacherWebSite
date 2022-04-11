@@ -145,6 +145,13 @@ using TeacherWebSiteApp.Data.Auth;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
+           [Authorize(Roles = "admin")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publication/{id:int}")]
     public partial class PublicationEdit : Microsoft.AspNetCore.Components.ComponentBase
@@ -155,23 +162,22 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 116 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
+#line 117 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
        
     [Parameter]
     public int Id { get; set; }
 
     public TeacherWebSiteApp.Data.Models.Attachment attachment = new TeacherWebSiteApp.Data.Models.Attachment();
     private List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
-    string[] validationMessages = new string[] {};
-    
+    string[] validationMessages = new string[] { };
+
 
     TeacherWebSiteApp.Data.Models.Publication publication = new()
     {
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
-    
- 
+
 
 #line default
 #line hidden

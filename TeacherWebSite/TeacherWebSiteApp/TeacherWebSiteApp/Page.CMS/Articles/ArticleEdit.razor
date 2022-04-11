@@ -3,191 +3,192 @@
 @using System.Collections.Concurrent
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
+@attribute [Authorize(Roles = "admin")]
 @layout CmsLayout
 @namespace WoodsOak.Pages.CMS.Arcticles
 @inject MessageService _message
 
 
 
-    <div class="container">
-        <AntDesign.Col Style="margin-left:60px; margin-right:500px">
-            <AntDesign.Col Style="margin-bottom:20px">
-                <label>Заголовок</label>
-                <Input @bind-Value="@article.Name" placeholder="Введите заголовок статьи" />
-            </AntDesign.Col>
-            <AntDesign.Col Style="margin-bottom:20px">
-                <label>Описание</label>
-                <TextArea Placeholder="Введите описание статьи" AutoSize="true" @bind-Value="@article.Description" />
-            </AntDesign.Col>
-            <div class="container" style="margin-right:200px">
-                @foreach (TeacherWebSiteApp.Data.PageModels.ArcticleBlock block in article.Blocks)
-                {
-                    <hr />
-                    <AntDesign.Col>
-                        <AntDesign.Col Style="margin-bottom:20px">
-                            <label>Подзаголовок</label>
-                            <Input @bind-Value="@block.Title" placeholder="Введите подзаголовок абзаца" />
-                        </AntDesign.Col>
-                        <AntDesign.Col Style="margin-bottom:20px">
-                            <label>Текст</label>
-                            <TextArea Placeholder="Введите текст" AutoSize="true" @bind-Value="@block.Text" />
-                        </AntDesign.Col>
-                    </AntDesign.Col>
-                    <div class="col">
-                        <AntDesign.Col Style="margin-bottom:20px">
-                            @if (block.Image != null)
-                            {
-                                <div class="ant-form-item-label">
-                                    <label style="color:cornflowerblue; cursor:pointer" @onclick="() => { block.Image = null; }">Удалить изображение</label>
-                                </div>
-                                <div class="ant-form-item-control">
-
-                                    <div style="margin: auto">
-                                        <img src="data:image/png;base64,@Convert.ToBase64String(block.Image)" style="width:100%" />
-                                    </div>
-
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="ant-form-item-label">
-                                    <UploadImage @bind-imageData="block.Image" HtmlId="@Guid.NewGuid().ToString()" Text="Загрузите изображение"></UploadImage>
-                                </div>
-                            }
-                            <div class="ant-form-item-label" style="margin-left: 110px; margin-bottom:20px">
-                                <label style="color:cornflowerblue; cursor:pointer" @onclick="() => { article.Blocks.Remove(block); }">Удалить абзац</label>
-                            </div>
-                        </AntDesign.Col>
-                        <AntDesign.Col Style="margin-bottom:20px">
-                            <Input @bind-Value="@block.Video" placeholder="https://www.youtube.com/embed/xxxxxxxx" />
-                        </AntDesign.Col>
-                    </div>
-                }
-            </div>
-            <AntDesign.Col Style="margin-bottom:20px">
-                <div>
-                    <Button type="button"
-                            class="btn btn-block"
-                            @onclick="() => { article.Blocks.Add(new TeacherWebSiteApp.Data.PageModels.ArcticleBlock() {ArticleId = article.Id}); }">
-                        Добавить абзац
-                    </Button>
-                </div>
-            </AntDesign.Col>
-            @if (Id <= 0)
+<div class="container">
+    <AntDesign.Col Style="margin-left:60px; margin-right:500px">
+        <AntDesign.Col Style="margin-bottom:20px">
+            <label>Заголовок</label>
+            <Input @bind-Value="@article.Name" placeholder="Введите заголовок статьи" />
+        </AntDesign.Col>
+        <AntDesign.Col Style="margin-bottom:20px">
+            <label>Описание</label>
+            <TextArea Placeholder="Введите описание статьи" AutoSize="true" @bind-Value="@article.Description" />
+        </AntDesign.Col>
+        <div class="container" style="margin-right:200px">
+            @foreach (TeacherWebSiteApp.Data.PageModels.ArcticleBlock block in article.Blocks)
             {
-                <AntDesign.Col Style="margin-bottom:20px">
-                    <Button Type="primary" @onclick="SaveAsync" HtmlType="submit" class="btn btn-block" style="margin-bottom:20px">Сохранить</Button>
+                <hr />
+                <AntDesign.Col>
+                    <AntDesign.Col Style="margin-bottom:20px">
+                        <label>Подзаголовок</label>
+                        <Input @bind-Value="@block.Title" placeholder="Введите подзаголовок абзаца" />
+                    </AntDesign.Col>
+                    <AntDesign.Col Style="margin-bottom:20px">
+                        <label>Текст</label>
+                        <TextArea Placeholder="Введите текст" AutoSize="true" @bind-Value="@block.Text" />
+                    </AntDesign.Col>
                 </AntDesign.Col>
+                <div class="col">
+                    <AntDesign.Col Style="margin-bottom:20px">
+                        @if (block.Image != null)
+                        {
+                            <div class="ant-form-item-label">
+                                <label style="color:cornflowerblue; cursor:pointer" @onclick="() => { block.Image = null; }">Удалить изображение</label>
+                            </div>
+                            <div class="ant-form-item-control">
+
+                                <div style="margin: auto">
+                                    <img src="data:image/png;base64,@Convert.ToBase64String(block.Image)" style="width:100%" />
+                                </div>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="ant-form-item-label">
+                                <UploadImage @bind-imageData="block.Image" HtmlId="@Guid.NewGuid().ToString()" Text="Загрузите изображение"></UploadImage>
+                            </div>
+                        }
+                        <div class="ant-form-item-label" style="margin-left: 110px; margin-bottom:20px">
+                            <label style="color:cornflowerblue; cursor:pointer" @onclick="() => { article.Blocks.Remove(block); }">Удалить абзац</label>
+                        </div>
+                    </AntDesign.Col>
+                    <AntDesign.Col Style="margin-bottom:20px">
+                        <Input @bind-Value="@block.Video" placeholder="https://www.youtube.com/embed/xxxxxxxx" />
+                    </AntDesign.Col>
+                </div>
+            }
+        </div>
+        <AntDesign.Col Style="margin-bottom:20px">
+            <div>
+                <Button type="button"
+                        class="btn btn-block"
+                        @onclick="() => { article.Blocks.Add(new TeacherWebSiteApp.Data.PageModels.ArcticleBlock() {ArticleId = article.Id}); }">
+                    Добавить абзац
+                </Button>
+            </div>
+        </AntDesign.Col>
+        @if (Id <= 0)
+        {
+            <AntDesign.Col Style="margin-bottom:20px">
+                <Button Type="primary" @onclick="SaveAsync" HtmlType="submit" class="btn btn-block" style="margin-bottom:20px">Сохранить</Button>
+            </AntDesign.Col>
+        }
+        else
+        {
+            <Row>
+                <AntDesign.Col Style="margin-bottom:20px">
+                    <AntDesign.Col>
+                        <Button Type="primary" @onclick="SaveAsync" HtmlType="submit">Сохранить</Button>
+                    </AntDesign.Col>
+                </AntDesign.Col>
+                <AntDesign.Col style="margin-bottom:20px; margin-left: 55px">
+                    <AntDesign.Col>
+                        <Button @onclick="DeleteArcticle" Type="primary" Danger>Удалить</Button>
+                    </AntDesign.Col>
+                </AntDesign.Col>
+            </Row>
+        }
+
+    </AntDesign.Col>
+</div>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public TeacherWebSiteApp.Data.PageModels.Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != 0)
+        {
+            using TeacherWebSiteApp.Data.TeacherContext context = DbFactory.CreateDbContext();
+            article = await context.Articles.Include(b => b.Blocks).FirstOrDefaultAsync(x => x.Id == Id);
+            if (article == null)
+            {
+                _message.Error("Статья не найдена!");
+                NavManager.NavigateTo("/cms/article/0");
+            }
+        }
+    }
+
+    private async Task SaveAsync()
+    {
+        if (!article.Blocks.Any())
+        {
+            _message.Error("Минимальное количество абзацев: 1");
+            return;
+        }
+
+        if (!article.Blocks.Any(x => x.Image != null))
+        {
+            _message.Error("Минимальное количество картинок для статьи: 1");
+            return;
+        }
+
+        try
+        {
+            using TeacherContext context = DbFactory.CreateDbContext();
+            var selectedArcticle = context.Articles.Include(b => b.Blocks).FirstOrDefault(x => x.Id == Id);
+
+            if (selectedArcticle != null)
+            {
+                selectedArcticle.Name = article.Name;
+                selectedArcticle.Description = article.Description;
+                selectedArcticle.Date = article.Date;
+
+                var delBlocks = selectedArcticle.Blocks.Where(b => !article.Blocks.Any(x => x.Id == b.Id));
+
+                var newBlocks = article.Blocks.Where(b => !selectedArcticle.Blocks.Any(x => x.Id == b.Id));
+
+                var updBlocks = selectedArcticle.Blocks.Where(b => article.Blocks.Any(x => x.Id == b.Id))
+                    .Select(db => new { Source = article.Blocks.FirstOrDefault(x => x.Id == db.Id), Target = db });
+
+                context.ArticleBlocks.RemoveRange(delBlocks);
+                await context.ArticleBlocks.AddRangeAsync(newBlocks);
+                updBlocks.ForEach(x =>
+                {
+                    x.Target.Title = x.Source.Title;
+                    x.Target.Image = x.Source.Image;
+                    x.Target.Text = x.Source.Text;
+                    x.Target.Video = x.Source.Video;
+                    x.Target.ArticleId = x.Source.ArticleId;
+                });
+
+                await context.SaveChangesAsync();
+                _message.Success("Статья сохранена!");
             }
             else
             {
-                <Row>
-                    <AntDesign.Col Style="margin-bottom:20px">
-                        <AntDesign.Col>
-                            <Button Type="primary" @onclick="SaveAsync" HtmlType="submit">Сохранить</Button>
-                        </AntDesign.Col>
-                    </AntDesign.Col>
-                    <AntDesign.Col style="margin-bottom:20px; margin-left: 55px">
-                        <AntDesign.Col>
-                            <Button @onclick="DeleteArcticle" Type="primary" Danger>Удалить</Button>
-                        </AntDesign.Col>
-                    </AntDesign.Col>
-                </Row>
+                article.Date = DateTime.Now;
+                context.Articles.Add(article);
+                await context.SaveChangesAsync();
+                _message.Success("Статья добавлена!");
             }
-
-        </AntDesign.Col>
-    </div>
-
-
-    @code {
-        [Parameter]
-        public int Id { get; set; }
-
-        public TeacherWebSiteApp.Data.PageModels.Article article = new() { Blocks = new List<TeacherWebSiteApp.Data.PageModels.ArcticleBlock>() { new() } };
-
-
-        protected override async Task OnInitializedAsync()
-        {
-            if (Id != 0)
-            {
-                using TeacherWebSiteApp.Data.TeacherContext context = DbFactory.CreateDbContext();
-                article = await context.Articles.Include(b => b.Blocks).FirstOrDefaultAsync(x => x.Id == Id);
-                if (article == null)
-                {
-                    _message.Error("Статья не найдена!");
-                    NavManager.NavigateTo("/cms/article/0");
-                }
-            }
+            NavManager.NavigateTo($"/cms/article/{article.Id}");
         }
-
-        private async Task SaveAsync()
+        catch (Exception ex)
         {
-            if (!article.Blocks.Any())
-            {
-                _message.Error("Минимальное количество абзацев: 1");
-                return;
-            }
-
-            if (!article.Blocks.Any(x => x.Image != null))
-            {
-                _message.Error("Минимальное количество картинок для статьи: 1");
-                return;
-            }
-
-            try
-            {
-                using TeacherContext context = DbFactory.CreateDbContext();
-                var selectedArcticle = context.Articles.Include(b => b.Blocks).FirstOrDefault(x => x.Id == Id);
-
-                if (selectedArcticle != null)
-                {
-                    selectedArcticle.Name = article.Name;
-                    selectedArcticle.Description = article.Description;
-                    selectedArcticle.Date = article.Date;
-
-                    var delBlocks = selectedArcticle.Blocks.Where(b => !article.Blocks.Any(x => x.Id == b.Id));
-
-                    var newBlocks = article.Blocks.Where(b => !selectedArcticle.Blocks.Any(x => x.Id == b.Id));
-
-                    var updBlocks = selectedArcticle.Blocks.Where(b => article.Blocks.Any(x => x.Id == b.Id))
-                        .Select(db => new { Source = article.Blocks.FirstOrDefault(x => x.Id == db.Id), Target = db });
-
-                    context.ArticleBlocks.RemoveRange(delBlocks);
-                    await context.ArticleBlocks.AddRangeAsync(newBlocks);
-                    updBlocks.ForEach(x =>
-                    {
-                        x.Target.Title = x.Source.Title;
-                        x.Target.Image = x.Source.Image;
-                        x.Target.Text = x.Source.Text;
-                        x.Target.Video = x.Source.Video;
-                        x.Target.ArticleId = x.Source.ArticleId;
-                    });
-
-                    await context.SaveChangesAsync();
-                    _message.Success("Статья сохранена!");
-                }
-                else
-                {
-                    article.Date = DateTime.Now;
-                    context.Articles.Add(article);
-                    await context.SaveChangesAsync();
-                    _message.Success("Статья добавлена!");
-                }
-                NavManager.NavigateTo($"/cms/article/{article.Id}");
-            }
-            catch (Exception ex)
-            {
-                _message.Error(ex.Message, 60);
-                _message.Error(ex.InnerException?.Message, 60);
-                _message.Error("Во время сохранения статьи произошла ошибка", 60);
-            }
-        }
-
-        private void DeleteArcticle()
-        {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            context.Articles.Remove(article);
-            context.SaveChanges();
-            NavManager.NavigateTo($"/cms/articles");
+            _message.Error(ex.Message, 60);
+            _message.Error(ex.InnerException?.Message, 60);
+            _message.Error("Во время сохранения статьи произошла ошибка", 60);
         }
     }
+
+    private void DeleteArcticle()
+    {
+        using TeacherContext context = DbFactory.CreateDbContext();
+        context.Articles.Remove(article);
+        context.SaveChanges();
+        NavManager.NavigateTo($"/cms/articles");
+    }
+}

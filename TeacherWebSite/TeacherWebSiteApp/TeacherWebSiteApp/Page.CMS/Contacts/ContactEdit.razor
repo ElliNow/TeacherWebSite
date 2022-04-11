@@ -1,6 +1,7 @@
 ﻿@page "/cms/contacts"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
+@attribute [Authorize(Roles = "admin")]
 @layout CmsLayout
 @namespace TeacherWebSiteApp.Page.CMS.Publications
 @inject MessageService _message
@@ -15,7 +16,7 @@
                 <div class="col-md-2" style="">
                     <label>Ключ</label>
                     <Input Type="text" @bind-Value="contact.Key" Class="form-control" Placeholder="Введите ключ">
-                </div>  
+                </div>
                 <div class="col-md-2">
                     <label>Значение</label>
                     <Input Type="text" @bind-Value="contact.Value" Class="form-control" Placeholder="Введите значение">
@@ -31,12 +32,12 @@
                     <Input Type="text" @bind-Value="contact.Link" Class="form-control" Placeholder="Введите ссылку">
                 </div>
                 <div class="col-md-2">
-                        <UploadImage @bind-ImageData="contact.Badge" Text="Загрузите значок"></UploadImage>
-                        @if (contact.Badge != null)
-                        {
-                            <img src="data:image/png;base64,@Convert.ToBase64String(contact.Badge)" height="40" />           
-                        }
-                    </div>
+                    <UploadImage @bind-ImageData="contact.Badge" Text="Загрузите значок"></UploadImage>
+                    @if (contact.Badge != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(contact.Badge)" height="40" />
+                    }
+                </div>
             </div>
         </div>
 
