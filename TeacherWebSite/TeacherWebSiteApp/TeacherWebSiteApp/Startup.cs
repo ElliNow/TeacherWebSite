@@ -15,6 +15,7 @@ using TeacherWebSiteApp.Data;
 using MudBlazor.Services;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
+using TeacherWebSiteApp.Services;
 
 namespace TeacherWebSiteApp
 {
@@ -34,10 +35,12 @@ namespace TeacherWebSiteApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddTransient<ICryptographer, MD5Cryptographer>();
             services.AddDbContextFactory<TeacherContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
             services.AddBlazoredLocalStorage();
+            services.AddScoped<AuthenticationStateProvider, ProducedAuthenticationStateProvider>();
             services.AddAntDesign();
             services.AddMatBlazor();
             services.AddMudServices();

@@ -16,7 +16,7 @@ namespace TeacherWebSiteApp.Data.Auth
 
         [Required]
         [MaxLength(50)]
-        public string Username { get; set; }
+        public string Login { get; set; }
 
         [Required]
         public string Password { get; set; }

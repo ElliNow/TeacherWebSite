@@ -1,5 +1,6 @@
 ﻿<StaticWebAssets Version="1.0">
   <ContentRoot BasePath="/" Path="C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="/Identity" Path="C:\Users\Эля\.nuget\packages\microsoft.aspnetcore.identity.ui\5.0.14\staticwebassets\V4\" />
   <ContentRoot BasePath="_content/AntDesign" Path="C:\Users\Эля\.nuget\packages\antdesign\0.10.3.1\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/MatBlazor" Path="C:\Users\Эля\.nuget\packages\matblazor\2.8.0\build\..\staticwebassets\" />
   <ContentRoot BasePath="_content/MudBlazor" Path="C:\Users\Эля\.nuget\packages\mudblazor\5.0.3\build\..\staticwebassets\" />

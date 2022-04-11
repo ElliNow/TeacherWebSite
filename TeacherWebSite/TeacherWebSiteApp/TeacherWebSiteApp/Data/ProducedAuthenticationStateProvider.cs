@@ -73,7 +73,7 @@ namespace TeacherWebSiteApp.Data
             {
                 using (var context = _dbFactory.CreateDbContext())
                 {
-                    var user = context.Users.FirstOrDefault(x => x.Username == login);
+                    var user = context.Users.FirstOrDefault(x => x.Login == login);
                     if (user == null) return "Пользователь не найден.";
                     if (_cryptographer.GetHashString(password) == user.Password)
                     {
@@ -102,9 +102,9 @@ namespace TeacherWebSiteApp.Data
             {
                 using (var context = _dbFactory.CreateDbContext())
                 {
-                    if (context.Users.FirstOrDefault(x => x.Username == login) != null) return "Пользователь с таким логином уже существует.";
+                    if (context.Users.FirstOrDefault(x => x.Login == login) != null) return "Пользователь с таким логином уже существует.";
 
-                    var user = new User { Name = name, Username = login, Password = _cryptographer.GetHashString(password) };
+                    var user = new User { Name = name, Login = login, Password = _cryptographer.GetHashString(password) };
                     context.Users.Add(user);
                     context.SaveChanges();
 

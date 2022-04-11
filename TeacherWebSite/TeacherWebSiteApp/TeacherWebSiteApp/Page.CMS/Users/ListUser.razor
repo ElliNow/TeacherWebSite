@@ -8,23 +8,16 @@
 
 <h3>Пользователи</h3>
 <ValidationBlock Messages="messages" />
-<Input @bind-Value="@reg.UserName" />
-<Input @bind-Value="@reg.Name" />
-<InputPassword @bind-Value="@reg.Password" />
-<AntDesign.Button Type="@AntDesign.ButtonType.Primary" @onclick="Register" HtmlType="submit">
-    Добавить
-</AntDesign.Button>
 
-
-@*<div style="margin-right: 200px">
-    <Form Model="@reg"
+<div style="margin-right: 200px">
+    <Form Model="reg"
           LabelColSpan="8"
           WrapperColSpan="16">
         <FormItem Label="Имя пользователя">
             <Input @bind-Value="@context.UserName" />
         </FormItem>
         <FormItem Label="Логин">
-            <Input @bind-Value="@context.Name" />
+            <Input @bind-Value="@context.Login" />
         </FormItem>
         <FormItem Label="Password">
             <InputPassword @bind-Value="@context.Password" />
@@ -35,10 +28,10 @@
             </AntDesign.Button>
         </FormItem>
     </Form>
-</div>*@
+</div>
 
 
-@*<hr />
+<hr />
 <div>
     <h3>Список пользователей</h3>
     <MudSimpleTable Hover="@true" Bordered="@true" Striped="@true" Style="overflow-x: auto;">
@@ -56,8 +49,9 @@
             {
                 int id = user.Id;
                 <tr>
+                    <td>@id</td>
                     <td>@user.Name</td>
-                    <td>@user.Username</td>
+                    <td>@user.Login</td>
                     <td><a href="/cms/password/@id">Изменить пароль</a></td>
                     <td>
                         <a style="cursor:pointer; color:brown" @onclick="() => DeleteAsync(id)">Удалить</a>
@@ -67,12 +61,12 @@
             }
         </tbody>
     </MudSimpleTable>
-</div>*@
+</div>
 
 @code {
     bool loading = false;
     string[] messages = new string[] { };
-    string[] headings = { "ID", "Name", "Login", "Password" };
+    string[] headings = { "ID", "Имя пользователя", "Логин", "Пароль" };
     List<User> users = new List<User>();
 
     protected override async Task OnInitializedAsync()
@@ -100,12 +94,12 @@
     bool Validate()
     {
         List<string> problems = new List<string>();
-        if (string.IsNullOrEmpty(reg.UserName)) problems.Add(@"'Логин' должно быть заполнено");
-        else if (reg.UserName.Length > 50) problems.Add(@"'Логин' должно быть не более 50 символов");
+        if (string.IsNullOrEmpty(reg.Login)) problems.Add(@"'Логин' должно быть заполнено");
+        else if (reg.Login.Length > 50) problems.Add(@"'Логин' должно быть не более 50 символов");
 
         if (string.IsNullOrEmpty(reg.Password)) problems.Add(@"'Пароль' должно быть заполнено");
 
-        if (!string.IsNullOrEmpty(reg.Name) && reg.Name.Length > 100)
+        if (!string.IsNullOrEmpty(reg.UserName) && reg.UserName.Length > 100)
             problems.Add(@"'Имя' должно быть не более 100 символов");
 
         messages = problems.ToArray();
@@ -116,8 +110,8 @@
     public void Register()
     {
         if (!Validate()) return;
-        ProducedAuthenticationStateProvider p = provider as ProducedAuthenticationStateProvider; 
-        var result = p.Register(reg.UserName, reg.Password, reg.Name);
+        ProducedAuthenticationStateProvider p = provider as ProducedAuthenticationStateProvider;
+        var result = p.Register(reg.Login, reg.Password, reg.UserName);
         if (result == null)
         {
             using var context = DbFactory.CreateDbContext();
@@ -125,13 +119,18 @@
 
             reg = new();
         }
-        else messages = new string[] { result };
+        else
+        {
+            messages = new string[] { result };
+        }
 
     }
 
     class RegisterVM
     {
-        public string Name { get; set; }
-        public string Password { get; set; }
         public string UserName { get; set; }
-    } }
+        public string Password { get; set; }
+        public string Login { get; set; }
+    }
+
+}

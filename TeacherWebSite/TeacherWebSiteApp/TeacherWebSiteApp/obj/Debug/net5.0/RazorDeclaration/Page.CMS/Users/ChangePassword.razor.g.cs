@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page.CMS.Publications
+namespace WoodsOak.Pages.CMS.Users
 {
     #line hidden
     using System;
@@ -145,9 +145,16 @@ using TeacherWebSiteApp.Data.Auth;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ChangePassword.razor"
+           [Authorize(Roles = "admin")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publication/{id:int}")]
-    public partial class PublicationEdit : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/password/{Id:int}")]
+    public partial class ChangePassword : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -155,29 +162,62 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 116 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
-       
+#line 60 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ChangePassword.razor"
+        
+
     [Parameter]
     public int Id { get; set; }
+    string username;
 
-    public TeacherWebSiteApp.Data.Models.Attachment attachment = new TeacherWebSiteApp.Data.Models.Attachment();
-    private List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
-    string[] validationMessages = new string[] {};
-    
+    string oldpas;
+    string newpas;
+    string confirm;
 
-    TeacherWebSiteApp.Data.Models.Publication publication = new()
+    bool ok = false;
+
+    string[] messages = new string[] { };
+
+    protected override async Task OnInitializedAsync()
     {
-        Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
-    };
+        using var context = DbFactory.CreateDbContext();
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == Id);
+        username = user.Name;
+    }
 
-    
- 
+    private async Task Save()
+    {
+        if (string.IsNullOrEmpty(oldpas) || string.IsNullOrEmpty(newpas) || string.IsNullOrEmpty(confirm))
+        {
+            messages = new string[] { "Необходимо заполнить все поля." };
+            return;
+        }
+        if (newpas != confirm)
+        {
+            messages = new string[] { "Новый пароль и подтверждение нового пароля не совпадают." };
+            return;
+        }
+
+        using var context = DbFactory.CreateDbContext();
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == Id);
+        if (cryprographer.GetHashString(oldpas) != user.Password)
+        {
+            messages = new string[] { "Старый пароль введен не верно" };
+            return;
+        }
+        else
+        {
+            messages = new string[] { };
+            user.Password = cryprographer.GetHashString(newpas);
+            await context.SaveChangesAsync();
+            ok = true;
+
+        }
+    }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private MessageService _message { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private TeacherWebSiteApp.Services.ICryptographer cryprographer { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> DbFactory { get; set; }
     }
 }

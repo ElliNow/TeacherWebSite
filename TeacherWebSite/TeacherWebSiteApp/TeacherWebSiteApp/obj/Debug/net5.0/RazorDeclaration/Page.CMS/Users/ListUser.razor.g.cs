@@ -162,11 +162,11 @@ using System.Text.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 72 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
+#line 66 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
        
     bool loading = false;
     string[] messages = new string[] { };
-    string[] headings = { "ID", "Name", "Login", "Password" };
+    string[] headings = { "ID", "Имя пользователя", "Логин", "Пароль" };
     List<User> users = new List<User>();
 
     protected override async Task OnInitializedAsync()
@@ -194,12 +194,12 @@ using System.Text.Json;
     bool Validate()
     {
         List<string> problems = new List<string>();
-        if (string.IsNullOrEmpty(reg.UserName)) problems.Add(@"'Логин' должно быть заполнено");
-        else if (reg.UserName.Length > 50) problems.Add(@"'Логин' должно быть не более 50 символов");
+        if (string.IsNullOrEmpty(reg.Login)) problems.Add(@"'Логин' должно быть заполнено");
+        else if (reg.Login.Length > 50) problems.Add(@"'Логин' должно быть не более 50 символов");
 
         if (string.IsNullOrEmpty(reg.Password)) problems.Add(@"'Пароль' должно быть заполнено");
 
-        if (!string.IsNullOrEmpty(reg.Name) && reg.Name.Length > 100)
+        if (!string.IsNullOrEmpty(reg.UserName) && reg.UserName.Length > 100)
             problems.Add(@"'Имя' должно быть не более 100 символов");
 
         messages = problems.ToArray();
@@ -210,8 +210,8 @@ using System.Text.Json;
     public void Register()
     {
         if (!Validate()) return;
-        ProducedAuthenticationStateProvider p; 
-        var result = p.Register(reg.UserName, reg.Password, reg.Name);
+        ProducedAuthenticationStateProvider p = provider as ProducedAuthenticationStateProvider;
+        var result = p.Register(reg.Login, reg.Password, reg.UserName);
         if (result == null)
         {
             using var context = DbFactory.CreateDbContext();
@@ -219,16 +219,20 @@ using System.Text.Json;
 
             reg = new();
         }
-        else messages = new string[] { result };
+        else
+        {
+            messages = new string[] { result };
+        }
 
     }
 
     class RegisterVM
     {
-        public string Name { get; set; }
-        public string Password { get; set; }
         public string UserName { get; set; }
-    } 
+        public string Password { get; set; }
+        public string Login { get; set; }
+    }
+
 
 #line default
 #line hidden
