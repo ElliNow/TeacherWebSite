@@ -1,0 +1,30 @@
+﻿@layout CmsLayout
+@page "/cms"
+@attribute [Authorize(Roles = "admin")]
+
+
+<AuthorizeView Roles="admin">
+    <Authorized>
+        <center>
+            <h1 style="margin-top:200px">@hello@context.User.Identity.Name</h1>
+        </center>
+    </Authorized>
+</AuthorizeView>
+
+@code { 
+    
+    string hello;
+
+    protected override async Task OnInitializedAsync()
+    {
+        int hour = DateTime.Now.Hour;
+
+        if (hour >= 6 && hour < 12) hello = "Доброе утро, ";
+
+        if (hour >= 12 && hour < 18) hello = "Добрый день, ";
+
+        if (hour >= 18 && hour < 24) hello = "Добрый вечер, ";
+
+        if (hour < 6) hello = "Доброй ночи, ";
+    }
+ }

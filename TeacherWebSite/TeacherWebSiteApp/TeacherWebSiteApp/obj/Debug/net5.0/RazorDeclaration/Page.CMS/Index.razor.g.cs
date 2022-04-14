@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page.CMS.Users
+namespace TeacherWebSiteApp.Page_CMS
 {
     #line hidden
     using System;
@@ -145,8 +145,16 @@ using TeacherWebSiteApp.Data.Auth;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
-    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Index.razor"
+           [Authorize(Roles = "admin")]
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/cms")]
+    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -154,32 +162,28 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\Login.razor"
-       
+#line 14 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Index.razor"
+        
+    
+    string hello;
 
-    string login;
-    string password;
-
-    string[] messages = new string[] { };
-
-    void LogIn()
+    protected override async Task OnInitializedAsync()
     {
-        ProducedAuthenticationStateProvider p = provider as ProducedAuthenticationStateProvider;
-        var result = p.Login(login, password);
+        int hour = DateTime.Now.Hour;
 
-        if (result == null)
-        {
-            NavManager.NavigateTo("/cms", true);
-        }
-        else messages = new string[] { result };
+        if (hour >= 6 && hour < 12) hello = "Доброе утро, ";
 
+        if (hour >= 12 && hour < 18) hello = "Добрый день, ";
+
+        if (hour >= 18 && hour < 24) hello = "Добрый вечер, ";
+
+        if (hour < 6) hello = "Доброй ночи, ";
     }
+ 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider provider { get; set; }
     }
 }
 #pragma warning restore 1591

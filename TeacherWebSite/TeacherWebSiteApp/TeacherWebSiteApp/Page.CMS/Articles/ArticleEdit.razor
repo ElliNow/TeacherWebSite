@@ -23,19 +23,19 @@
         <div class="container" style="margin-right:200px">
             @foreach (TeacherWebSiteApp.Data.PageModels.ArcticleBlock block in article.Blocks)
             {
-                <hr />
+                <hr style="margin-bottom: 10px"/>
                 <AntDesign.Col>
                     <AntDesign.Col Style="margin-bottom:20px">
                         <label>Подзаголовок</label>
                         <Input @bind-Value="@block.Title" placeholder="Введите подзаголовок абзаца" />
                     </AntDesign.Col>
-                    <AntDesign.Col Style="margin-bottom:20px">
+                    <AntDesign.Col>
                         <label>Текст</label>
                         <TextArea Placeholder="Введите текст" AutoSize="true" @bind-Value="@block.Text" />
                     </AntDesign.Col>
                 </AntDesign.Col>
-                <div class="col">
-                    <AntDesign.Col Style="margin-bottom:20px">
+                <AntDesign.Col Style="margin-top: 30px">
+                    <AntDesign.Col>
                         @if (block.Image != null)
                         {
                             <div class="ant-form-item-label">
@@ -44,7 +44,7 @@
                             <div class="ant-form-item-control">
 
                                 <div style="margin: auto">
-                                    <img src="data:image/png;base64,@Convert.ToBase64String(block.Image)" style="width:100%" />
+                                   <img src="data:image/png;base64,@Convert.ToBase64String(block.Image)" style="width:100%" />
                                 </div>
 
                             </div>
@@ -62,7 +62,7 @@
                     <AntDesign.Col Style="margin-bottom:20px">
                         <Input @bind-Value="@block.Video" placeholder="https://www.youtube.com/embed/xxxxxxxx" />
                     </AntDesign.Col>
-                </div>
+                </AntDesign.Col>
             }
         </div>
         <AntDesign.Col Style="margin-bottom:20px">

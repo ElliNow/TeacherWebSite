@@ -11,17 +11,17 @@
     <div class="col-md-6">
 
         <label>Контакты</label>
-        <div class="form-block">
+        <div class="form-block" style="margin-top: 10px">
             <div class="row">
-                <div class="col-md-2" style="">
+                <div class="col-md-2" style="margin-bottom: 10px">
                     <label>Ключ</label>
                     <Input Type="text" @bind-Value="contact.Key" Class="form-control" Placeholder="Введите ключ">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="margin-bottom: 10px">
                     <label>Значение</label>
                     <Input Type="text" @bind-Value="contact.Value" Class="form-control" Placeholder="Введите значение">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="margin-bottom: 10px">
                     <span>
                         <label>Ссылка</label>
                         <svg onclick="alert('Инструкция')" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
@@ -31,7 +31,7 @@
                     </span>
                     <Input Type="text" @bind-Value="contact.Link" Class="form-control" Placeholder="Введите ссылку">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="margin-bottom: 10px">
                     <UploadImage @bind-ImageData="contact.Badge" Text="Загрузите значок"></UploadImage>
                     @if (contact.Badge != null)
                     {
