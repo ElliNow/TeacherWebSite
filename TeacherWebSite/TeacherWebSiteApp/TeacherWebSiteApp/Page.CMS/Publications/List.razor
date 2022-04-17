@@ -1,31 +1,32 @@
 ﻿@page "/cms/publications"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject MessageService _message
+@attribute [Authorize(Roles = "admin")]
 @inject NavigationManager NavManager
 @namespace TeacherWebSiteApp.Page.CMS.Publications
 @layout CmsLayout
 
 
-<Title Level="3">Публикации</Title>
+    <Title Level="3">Публикации</Title>
+    @{ string add = "/cms/publication/0"; }
 
-@{ string add = "/cms/publication/0"; }
+    <InputGroup Style="margin-bottom: 20px">
+        <AntDesign.Button @onclick="() => NavManager.NavigateTo(add)">Добавить</AntDesign.Button>
+    </InputGroup>
 
-<InputGroup Style="margin-bottom: 20px">
-    <AntDesign.Button @onclick="() => NavManager.NavigateTo(add)">Добавить</AntDesign.Button>
-</InputGroup>
+    <Table DataSource="publications" TItem="TeacherWebSiteApp.Data.Models.Publication" HidePagination="false">
+        <Column Title="Название" @bind-Field="@context.Name" TData="string" Sortable>
+            <a href="/cms/publication/@context.Id">@context.Name</a>
+        </Column>
+        <Column Title="Описание" @bind-Field="@context.Text" TData="string" />
+        <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
+        <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
+            <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" />
+        </Column>
+    </Table>
+  
 
-<Table DataSource="publications" TItem="TeacherWebSiteApp.Data.Models.Publication" HidePagination="false">
-    <Column Title="Название" @bind-Field="@context.Name" TData="string" Sortable>
-        <a href="/cms/publication/@context.Id">@context.Name</a>
-    </Column>
-    <Column Title="Описание" @bind-Field="@context.Text" TData="string" />
-    <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
-    <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?" Sortable>
-        <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" />
-    </Column>
-</Table>
-
-@code { 
+@code {
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
 
     protected override async Task OnInitializedAsync()
@@ -35,7 +36,7 @@
             using TeacherContext context = DbFactory.CreateDbContext();
             publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _message.Error(ex.Message);
         }

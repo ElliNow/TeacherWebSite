@@ -145,6 +145,27 @@ using TeacherWebSiteApp.Data.Auth;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 20 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using System.Text.RegularExpressions;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 21 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
+           [Authorize(Roles = "admin")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/articles")]
     public partial class List : Microsoft.AspNetCore.Components.ComponentBase
@@ -155,33 +176,32 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 27 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
-           
-        List<Article> articles;
-        
+#line 28 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Articles\List.razor"
+       
+    List<Article> articles;
 
-        protected override async Task OnInitializedAsync()
+
+    protected override async Task OnInitializedAsync()
+    {
+        using TeacherContext context = DbFactory.CreateDbContext();
+        articles = await context.Articles.ToListAsync();
+
+    }
+
+
+    private async Task SwitchActive(int id, bool? value)
+    {
+        using var context = DbFactory.CreateDbContext();
+        var article = await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
+        if (article != null)
         {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            articles = await context.Articles.ToListAsync();
-            
+            article.IsActive = value;
+            await context.SaveChangesAsync();
+            string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
+            _message.Info($"Статья {article.Name} {state}.");
         }
+    }
 
-
-        private async Task SwitchActive(int id, bool? value)
-        {
-            using var context = DbFactory.CreateDbContext();
-            var article = await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
-            if (article != null)
-            {
-                article.IsActive = value;
-                await context.SaveChangesAsync();
-                string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
-                _message.Info($"Статья {article.Name} {state}.");
-            }
-        }
-
-    
 
 #line default
 #line hidden

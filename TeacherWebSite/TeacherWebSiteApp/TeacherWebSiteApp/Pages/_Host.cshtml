@@ -43,9 +43,9 @@
     <script src="_framework/blazor.server.js"></script>
 </body>
 
-@*@if (path.Contains("newsfeed") || path.Contains("articles") ||
+@*@if (path.Contains("pubications") || path.Contains("articles") ||
    path.Contains("about") || path.Contains("contacts") ||
-   (spath == "newsfeed" && HttpContext.Request.Path.Value?.Split("/").Length == 3))
+   (spath == "publications" && HttpContext.Request.Path.Value?.Split("/").Length == 3))
 {
     <component type="typeof(App)" render-mode="Server" />
 }

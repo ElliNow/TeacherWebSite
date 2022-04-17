@@ -145,6 +145,20 @@ using TeacherWebSiteApp.Data.Auth;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 20 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using System.Text.RegularExpressions;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 21 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
     public partial class CmsLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -153,7 +167,7 @@ using TeacherWebSiteApp.Data.Auth;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
+#line 76 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
        
     private bool collapseNavMenu = true;
 
@@ -162,6 +176,12 @@ using TeacherWebSiteApp.Data.Auth;
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void Logout()
+    {
+        var p = (ProducedAuthenticationStateProvider)provider;
+        p.Logout();
     }
 
 #line default

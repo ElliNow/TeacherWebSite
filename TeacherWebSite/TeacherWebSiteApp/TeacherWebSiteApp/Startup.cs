@@ -39,11 +39,11 @@ namespace TeacherWebSiteApp
             services.AddDbContextFactory<TeacherContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
-            services.AddBlazoredLocalStorage();
-            services.AddScoped<AuthenticationStateProvider, ProducedAuthenticationStateProvider>();
+            services.AddBlazoredLocalStorage();    
             services.AddAntDesign();
             services.AddMatBlazor();
             services.AddMudServices();
+            services.AddScoped<AuthenticationStateProvider, ProducedAuthenticationStateProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
