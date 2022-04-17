@@ -1,6 +1,7 @@
 ﻿@page "/CMS/MainPage"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
+@attribute [Authorize(Roles = "admin")]
 @layout CmsLayout
 @namespace TeacherWebSiteApp.Page.CMS.MainPage
 
@@ -300,7 +301,7 @@
             {
                 ex.Message,
                 ex.InnerException?.Message
-                    };
+                        };
         }
     }
 

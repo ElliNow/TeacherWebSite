@@ -1,6 +1,7 @@
 ﻿@page "/cms/users"
 @layout CmsLayout
 @inject IDbContextFactory<TeacherContext> DbFactory
+@attribute [Authorize(Roles = "admin")]
 @inject NavigationManager NavManager
 @inject AuthenticationStateProvider provider
 @using System.Text.Json;

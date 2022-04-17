@@ -1,6 +1,7 @@
 ﻿@page "/cms/publication/{id:int}"
 @inject IDbContextFactory<TeacherContext> DbFactory
 @inject NavigationManager NavManager
+@attribute [Authorize(Roles = "admin")]
 @layout CmsLayout
 @namespace TeacherWebSiteApp.Page.CMS.Publications
 @inject MessageService _message
@@ -8,10 +9,10 @@
 <div class="container" style="margin-left:80px; margin-right:40%">
 
     <div>
-       
+
         <Row>
             <label>Название</label>
-            <Input @bind-Value="@publication.Name" placeholder="Введите название публикации" /> 
+            <Input @bind-Value="@publication.Name" placeholder="Введите название публикации" />
         </Row>
         <Row>
             <label>Описание</label>
@@ -69,15 +70,15 @@
                         {
                             <a class="ant-dropdown-link" @onclick:preventDefault>
                                 @attachment.ContentType <Icon Type="down" />
-                                </a>
-                        }   
+                            </a>
+                        }
                     </ChildContent>
                 </Dropdown>
             </AntDesign.Col>
         </div>
         <div class="form-block" style="margin-top:15px; margin-bottom:15px">
             <Button Type="button" Class="btn btn-success" @onclick="@AddAttachment">Добавить</Button>
-            <ValidationBlock Messages="@validationMessages"/>
+            <ValidationBlock Messages="@validationMessages" />
         </div>
         <div class="form-block">
             <Table DataSource="publication.Attachments" TItem="TeacherWebSiteApp.Data.Models.Attachment" HidePagination="false">
@@ -90,13 +91,13 @@
                     </Button>
                 </Column>
             </Table>
-            
+
         </div>
         @if (Id <= 0)
         {
             <div class="form-block" style="margin-bottom: 20px">
                 <Button Type="primary" Style="margin-bottom:30px" HtmlType="submit" @onclick="SaveAsync" Class="btn btn-block">Сохранить</Button>
-            </div>    
+            </div>
         }
         else
         {
@@ -106,7 +107,7 @@
                 </AntDesign.Col>
                 <AntDesign.Col Style="margin-bottom:20px">
                     <Button @onclick="DeletePublication" Type="primary" Danger>Удалить</Button>
-                </AntDesign.Col>    
+                </AntDesign.Col>
             </Row>
         }
     </div>
@@ -119,13 +120,13 @@
 
     public TeacherWebSiteApp.Data.Models.Attachment attachment = new TeacherWebSiteApp.Data.Models.Attachment();
     private List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
-    string[] validationMessages = new string[] {};
-    
+    string[] validationMessages = new string[] { };
+
 
     TeacherWebSiteApp.Data.Models.Publication publication = new()
     {
         Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
-    
- }
+
+}
