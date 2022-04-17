@@ -167,7 +167,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
+#line 76 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Shared\CmsLayout.razor"
        
     private bool collapseNavMenu = true;
 
@@ -176,6 +176,12 @@ using System.ComponentModel.DataAnnotations;
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void Logout()
+    {
+        var p = (ProducedAuthenticationStateProvider)provider;
+        p.Logout();
     }
 
 #line default

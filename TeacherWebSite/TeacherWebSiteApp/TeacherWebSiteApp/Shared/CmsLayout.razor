@@ -39,6 +39,28 @@
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsContacts, true); }">Контакты</MenuItem>
                     </Menu>
                 </AntDesign.Col>
+                <AntDesign.Col>
+                    <AuthorizeView Roles="admin">
+                        <Authorized>
+                            <AntDesign.Dropdown>
+                                <Overlay>
+                                    <AntDesign.Menu>
+                                        <AntDesign.MenuItem>
+                                            <a target="_blank" @onclick="Logout" rel="noopener noreferrer" href="#">
+                                                Выйти
+                                            </a>
+                                        </AntDesign.MenuItem>
+                                    </AntDesign.Menu>
+                                </Overlay>
+                                <ChildContent>
+                                    <a class="ant-dropdown-link" @onclick:preventDefault>
+                                        <b style="color: white">@context.User.Identity.Name</b> <Icon Type="down" />
+                                    </a>
+                                </ChildContent>
+                            </AntDesign.Dropdown>
+                        </Authorized>
+                    </AuthorizeView>
+                </AntDesign.Col>
             </Row>
         </div>
     </Header>
@@ -59,5 +81,11 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void Logout()
+    {
+        var p = (ProducedAuthenticationStateProvider)provider;
+        p.Logout();
     }
 }
