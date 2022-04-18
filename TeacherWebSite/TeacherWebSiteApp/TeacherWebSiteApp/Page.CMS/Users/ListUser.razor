@@ -7,10 +7,11 @@
 @using System.Text.Json;
 @namespace TeacherWebSiteApp.Page.CMS.Users
 
-<h3>Пользователи</h3>
-<ValidationBlock Messages="messages" />
 
-<div style="margin-right: 200px">
+
+<div style="margin-right: 500px">
+    <h3>Пользователи</h3>
+    <ValidationBlock Messages="messages" />
     <Form Model="reg"
           LabelColSpan="8"
           WrapperColSpan="16">
@@ -33,41 +34,28 @@
 
 
 <hr />
-<div>
+<div style="margin-right: 150px;  margin-left: 150px">
     <h3>Список пользователей</h3>
-    <MudSimpleTable Hover="@true" Bordered="@true" Striped="@true" Style="overflow-x: auto;">
-        <thead>
-            <tr>
-                @foreach (var h in headings)
-                {
 
-                    <th>@h</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in users)
-            {
-                int id = user.Id;
-                <tr>
-                    <td>@id</td>
-                    <td>@user.Name</td>
-                    <td>@user.Login</td>
-                    <td><a href="/cms/password/@id">Изменить пароль</a></td>
-                    <td>
-                        <a style="cursor:pointer; color:brown" @onclick="() => DeleteAsync(id)">Удалить</a>
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </MudSimpleTable>
+    <Table TItem="User" DataSource="@users" Style="background-color: darkseagreen">
+        <Column Title="Имя пользователя" @bind-Field="@context.Name">
+            @context.Name
+        </Column>
+        <Column Title="Логин" @bind-Field="@context.Login">@context.Login</Column>
+        <Column Title="Пароль" @bind-Field="@context.Password">****</Column>
+        <ActionColumn Title=" ">
+            <Space Size=@("middle")>
+                <SpaceItem>
+                    <a @onclick="() => DeleteAsync(context.Id)">Удалить</a>
+                </SpaceItem>
+            </Space>
+        </ActionColumn>
+    </Table>
 </div>
 
 @code {
     bool loading = false;
     string[] messages = new string[] { };
-    string[] headings = { "ID", "Имя пользователя", "Логин", "Пароль" };
     List<User> users = new List<User>();
 
     protected override async Task OnInitializedAsync()

@@ -183,11 +183,10 @@ using System.Text.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 67 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
+#line 56 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
        
     bool loading = false;
     string[] messages = new string[] { };
-    string[] headings = { "ID", "Имя пользователя", "Логин", "Пароль" };
     List<User> users = new List<User>();
 
     protected override async Task OnInitializedAsync()
