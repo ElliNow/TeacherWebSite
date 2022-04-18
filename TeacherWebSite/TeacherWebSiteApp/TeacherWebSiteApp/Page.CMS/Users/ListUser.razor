@@ -7,9 +7,7 @@
 @using System.Text.Json;
 @namespace TeacherWebSiteApp.Page.CMS.Users
 
-
-
-<div style="margin-right: 500px; margin-left: 300px">
+<div style="margin-right: 485px; margin-left: 300px">
     <h3 style="padding-left: 250px">Пользователи</h3>
     <ValidationBlock Messages="messages" />
     <Form Model="reg"
@@ -24,7 +22,7 @@
         <FormItem Label="Password">
             <InputPassword @bind-Value="@context.Password" />
         </FormItem>
-        <FormItem WrapperColOffset="8" WrapperColSpan="16">
+        <FormItem WrapperColOffset="8" WrapperColSpan="16" Style="padding-left: 150px">
             <AntDesign.Button Type="@AntDesign.ButtonType.Primary" @onclick="Register" HtmlType="submit">
                 Добавить
             </AntDesign.Button>
@@ -33,16 +31,16 @@
 </div>
 
 
-<hr />
 <div style="margin-right: 150px;  margin-left: 150px">
-    <h3>Список пользователей</h3>
+    <hr />
+    <h3 style="margin-top: 5px">Список пользователей</h3>
 
     <Table TItem="User" DataSource="@users" Style="background-color: darkseagreen">
         <Column Title="Имя пользователя" @bind-Field="@context.Name">
             @context.Name
         </Column>
         <Column Title="Логин" @bind-Field="@context.Login">@context.Login</Column>
-        <Column Title="Пароль" @bind-Field="@context.Password" Style="padding-left: 25px"><img src="https://img.icons8.com/material/24/000000/password--v1.png"/></Column>
+        <Column Title="Пароль" @bind-Field="@context.Password" Style="padding-left: 25px"><img src="https://img.icons8.com/material/24/000000/password--v1.png" /></Column>
         <ActionColumn Title=" ">
             <Space Size=@("middle")>
                 <SpaceItem>
