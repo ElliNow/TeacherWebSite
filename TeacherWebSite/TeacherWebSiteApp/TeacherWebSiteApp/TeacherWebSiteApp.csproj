@@ -7,6 +7,7 @@
   <ItemGroup>
     <None Remove="Components\BigBanner.razor.css" />
     <None Remove="Components\Publication.razor.css" />
+    <None Remove="Page.CMS\Users\Login.razor.css" />
     <None Remove="Pages\Articles.razor.css" />
     <None Remove="Pages\Contacts.razor.css" />
   </ItemGroup>
@@ -14,6 +15,7 @@
   <ItemGroup>
     <Content Include="Components\BigBanner.razor.css" />
     <Content Include="Components\Publication.razor.css" />
+    <Content Include="Page.CMS\Users\Login.razor.css" />
     <Content Include="Pages\Articles.razor.css" />
     <Content Include="Pages\Contacts.razor.css" />
   </ItemGroup>

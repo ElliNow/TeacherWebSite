@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page.CMS.Users
+namespace TeacherWebSiteApp.Page_CMS.Users
 {
     #line hidden
     using System;
@@ -159,41 +159,13 @@ using System.ComponentModel.DataAnnotations;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
-    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Login_razor : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 65 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\Login.razor"
-       
-
-    string login;
-    string password;
-
-    string[] messages = new string[] { };
-
-    void LogIn()
-    {
-        ProducedAuthenticationStateProvider p = provider as ProducedAuthenticationStateProvider;
-        var result = p.Login(login, password);
-
-        if (result == null)
-        {
-            NavManager.NavigateTo("/cms", true);
-        }
-        else messages = new string[] { result };
-
-    }
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider provider { get; set; }
     }
 }
 #pragma warning restore 1591
