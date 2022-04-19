@@ -182,7 +182,6 @@ using System.ComponentModel.DataAnnotations;
     {
         var p = (ProducedAuthenticationStateProvider)provider;
         p.Logout();
-        Nav.NavigateTo("/login");
     }
 
 #line default

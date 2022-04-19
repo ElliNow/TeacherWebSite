@@ -111,7 +111,7 @@
  text-transform: capitalize;
  transition: all 0.5s ease 0s;
 }
-@*@media*@ only screen and (max-width: 479px){
+@*@media*@ only screen and (max-width: 500px){
  .form-horizontal .form-group[b-ljfnra0jtq]{
  padding: 0 25px;
  }
