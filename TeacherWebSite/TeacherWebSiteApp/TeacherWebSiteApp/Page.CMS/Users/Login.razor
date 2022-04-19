@@ -28,38 +28,30 @@
     </div>
 </div>*@
 
-<div class="container">
-    <Row>
-        <div class="col-md-offset-3 col-md-6">
+<div style="margin-left: 450px; margin-top: 150px">
+    <div class="container">
+        <Row>
 
-            <div class="tab" role="tabpanel">
-                <!-- Nav tabs -->
-                <ul>
-                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Вход</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content tabs">
-                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Логин</label>
-                                <input type="email" @bind="login" class="form-control" id="exampleInputEmail1">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Пароль</label>
-                                <input type="password" @bind="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default" @onclick="LogIn">Войти</button>
-                            </div>
-                        </form>
+            <div class="col-md-offset-3 col-md-6">
+                <form class="form-horizontal">
+                    <span class="heading">АВТОРИЗАЦИЯ</span>
+                    <div class="form-group">
+                        <input type="text" class="form-control" @bind="login" id="inputfield" placeholder="Логин">
+                        <i class="fa fa-user"></i>
                     </div>
-                </div>
+                    <div class="form-group help">
+                        <input type="password" class="form-control" @bind="password" id="inputPassword" placeholder="Пароль">
+                        <i class="fa fa-lock"></i>
+                        <a href="#" class="fa fa-question-circle"></a>
+                    </div>
+                    <div class="form-group">
+                        <button @onclick="LogIn" type="submit" class="btn btn-default">ВХОД</button>
+                    </div>
+                </form>
             </div>
-        </div>
-    </Row>
+        </Row>
+    </div>
 </div>
-
 
 
 @code {
