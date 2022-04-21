@@ -2,7 +2,7 @@
 @inject IDbContextFactory<TeacherContext> DbFactory
 @layout MainLayout
 
-<Skeleton Loading="isLoading || publications == null" Style="padding-bottom: 50px">
+<Skeleton Loading="isLoading || publications == null" Style="padding-bottom: 50px; height: 100%">
     <MatTabGroup Style="z-index: 999999">
         <MatTab Label="Все">
             @foreach (var publication in publications)

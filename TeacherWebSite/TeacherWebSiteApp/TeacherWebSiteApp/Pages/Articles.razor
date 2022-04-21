@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<Row Style="position: center">
+<Row Style="position: center;height: 100%">
     @foreach (var article in articles)
     {
     <AntDesign.Col Span="6" Style="margin: auto; margin-top: 25px; margin-bottom: 25px">
@@ -26,7 +26,7 @@
 
                 </div>
                 <a href="/article/@article.Id">
-                    <Button Icon="@IconType.Outline.ArrowRight">Читать </Button>
+                    <AntDesign.Button Icon="@IconType.Outline.ArrowRight">Читать </AntDesign.Button>
                 </a>
             </Body>
         </Card>
