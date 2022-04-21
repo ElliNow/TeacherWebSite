@@ -44,6 +44,9 @@
         <ActionColumn Title=" ">
             <Space Size=@("middle")>
                 <SpaceItem>
+                    <a href="/cms/password/@context.Id">Изменить пароль</a>
+                </SpaceItem>
+                <SpaceItem>
                     <a @onclick="() => DeleteAsync(context.Id)">Удалить</a>
                 </SpaceItem>
             </Space>

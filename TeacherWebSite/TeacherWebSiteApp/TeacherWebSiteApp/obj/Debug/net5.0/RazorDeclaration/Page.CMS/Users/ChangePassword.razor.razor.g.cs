@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Page.CMS.Publications
+namespace TeacherWebSiteApp.Page_CMS.Users
 {
     #line hidden
     using System;
@@ -159,46 +159,13 @@ using System.ComponentModel.DataAnnotations;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 4 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
-           [Authorize(Roles = "admin")]
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/cms/publication/{id:int}")]
-    public partial class PublicationEdit : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class ChangePassword_razor : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 117 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
-       
-    [Parameter]
-    public int Id { get; set; }
-
-    public TeacherWebSiteApp.Data.Models.Attachment attachment = new TeacherWebSiteApp.Data.Models.Attachment();
-    private List<TeacherWebSiteApp.Data.Models.Attachment> attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>();
-    string[] validationMessages = new string[] { };
-
-
-    TeacherWebSiteApp.Data.Models.Publication publication = new()
-    {
-       Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
-    };
-
-
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private MessageService _message { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> DbFactory { get; set; }
     }
 }
 #pragma warning restore 1591
