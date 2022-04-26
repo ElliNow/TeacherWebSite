@@ -30,7 +30,7 @@
         {
             <div>
                 <Row>
-                    <AntDesign.Col Span="6">
+                    <AntDesign.Col Span="12">
                         @if (block.Title != null)
                         {
                             <Title Level="4">@block.Title</Title>                     
@@ -39,12 +39,12 @@
                         {
                             foreach (var par in block.Text.Split("\n"))
                             {
-                                <Paragraph style="font-size: large">@par</Paragraph>                     
+                                <Paragraph>@par</Paragraph>                     
                             }
                         }
 
                     </AntDesign.Col>
-                    <AntDesign.Col Span="6">
+                    <AntDesign.Col Style="margin-left: 40px" Span="6">
                         @if (block.Image != null)
                         {
                             <img src="data:image/png;base64,@Convert.ToBase64String(block.Image)" style="width:100%; height: auto; border-radius: 25px" />             
