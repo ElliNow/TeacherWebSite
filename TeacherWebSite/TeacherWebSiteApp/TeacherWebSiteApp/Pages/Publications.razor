@@ -5,30 +5,61 @@
 <Skeleton Loading="isLoading || publications == null" Style="padding-bottom: 50px; height: 100%">
     <MatTabGroup Style="z-index: 999999">
         <MatTab Label="Все">
-            @foreach (var publication in publications)
+            @if (!publications.Any())
             {
-                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                                              Path="https://img.icons8.com/color/48/000000/document--v1.png"></TeacherWebSiteApp.Components.Publication>
+                <div style="margin-top:200px">
+                    <Empty Description="false" />
                 </div>
+                
             }
+            else
+            {
+                @foreach (var publication in publications)
+                {
+                    <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                        <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                  Path="https://img.icons8.com/color/48/000000/document--v1.png"></TeacherWebSiteApp.Components.Publication>
+                    </div>
+                }
+            }
+
         </MatTab>
         <MatTab Label="Презентации">
-            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
+            @if (!publications.Any())
             {
-                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                 Path="https://img.icons8.com/color/48/000000/pdf-2--v1.png"></TeacherWebSiteApp.Components.Publication>
+                <div style="margin-top:200px">
+                    <Empty Description="false" />
                 </div>
+
+            }
+            else
+            {
+                @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
+                {
+                    <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                        <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                  Path="https://img.icons8.com/color/48/000000/pdf-2--v1.png"></TeacherWebSiteApp.Components.Publication>
+                    </div>
+                }
             }
         </MatTab>
         <MatTab Label="Методички">
-            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
+            @if (!publications.Any())
             {
-                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                 Path="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-book-lifestyle-icongeek26-outline-colour-icongeek26.png"></TeacherWebSiteApp.Components.Publication>
+                <div style="margin-top:200px">
+                    <Empty Description="false" />
                 </div>
+
+            }
+            else
+            {
+                @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
+                {
+                    <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                        <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                  Path="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-book-lifestyle-icongeek26-outline-colour-icongeek26.png"></TeacherWebSiteApp.Components.Publication>
+                    </div>
+                }
             }
         </MatTab>
         <MatTab>
@@ -36,12 +67,22 @@
                 Видео-уроки
             </LabelContent>
             <ChildContent>
-                @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
+                @if (!publications.Any())
                 {
-                    <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                        <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                     Path="https://img.icons8.com/color/48/000000/video.png"></TeacherWebSiteApp.Components.Publication>
+                    <div style="margin-top:200px">
+                        <Empty Description="false" />
                     </div>
+
+                }
+                else
+                {
+                    @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
+                    {
+                        <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                            <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                      Path="https://img.icons8.com/color/48/000000/video.png"></TeacherWebSiteApp.Components.Publication>
+                        </div>
+                    }
                 }
             </ChildContent>
         </MatTab>
