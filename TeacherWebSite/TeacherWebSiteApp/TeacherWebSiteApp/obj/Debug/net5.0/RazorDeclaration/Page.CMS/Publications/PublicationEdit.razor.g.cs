@@ -176,7 +176,7 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 117 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
+#line 116 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\PublicationEdit.razor"
        
     [Parameter]
     public int Id { get; set; }
@@ -188,7 +188,7 @@ using System.ComponentModel.DataAnnotations;
 
     TeacherWebSiteApp.Data.Models.Publication publication = new()
     {
-        Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
+       Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
 

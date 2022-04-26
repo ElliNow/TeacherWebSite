@@ -10,36 +10,47 @@
     </div>
 </div>
 
-<Row Style="position: center">
-    @foreach (var article in articles)
-    {
-    <AntDesign.Col Span="6" Style="margin: auto; margin-top: 25px; margin-bottom: 25px">
-        <Card Title="@(article.Name)" Bordered="true" Style="width:100%; min-height: 300px; border-radius: 20px;">
-            <Body>
-                <div style="background-image: url(data:image/png;base64,@Convert.ToBase64String(article.Blocks.FirstOrDefault()?.Image));
-                            height: 200px; background-size: cover; background-position: center">
-                </div>
-                <div style="font-weight: 200">
-                    <div class="truncate">
-                        <p>@article.Description</p>
-                    </div>
-
-                </div>
-                <a href="/article/@article.Id">
-                    <Button Icon="@IconType.Outline.ArrowRight">Читать </Button>
-                </a>
-            </Body>
-        </Card>
-    </AntDesign.Col>
-     }
-</Row>
-
-
-@code { List<Article> articles = new();
-
-        protected override async Task OnInitializedAsync()
+<div id="target" style="height:600vh;padding:8px;">
+    <Row Style="position: center;height: 100%">
+        @foreach (var article in articles)
         {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            articles = await context.Articles.Where(a => a.IsActive.Value).Include(a => a.Blocks).ToListAsync();
-        } 
+            <AntDesign.Col Span="6" Style="margin: auto; margin-top: 25px; margin-bottom: 25px">
+                <Card Title="@(article.Name)" Bordered="true" Style="width:100%; min-height: 350px; border-radius: 20px;">
+                    <Body>
+                        <div style="background-image: url(data:image/png;base64,@Convert.ToBase64String(article.Blocks.FirstOrDefault()?.Image));
+                            height: 200px; background-size: cover; background-position: center">
+                        </div>
+                        <div style="font-weight: 300">
+                            <div class="truncate">
+                                <p>@article.Description</p>
+                            </div>
+
+                        </div>
+                        <a href="/article/@article.Id">
+                            <AntDesign.Button Icon="@IconType.Outline.ArrowRight">Читать </AntDesign.Button>
+                        </a>
+                    </Body>
+                </Card>
+            </AntDesign.Col>
+        }
+    </Row>
+
+    <BackTop Style="margin-bottom:60px" OnClick="OnClick">
+        <img src="https://img.icons8.com/nolan/64/up-squared--v1.png" />
+    </BackTop>
+</div>
+
+@code {
+    
+    List<Article> articles = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using TeacherContext context = DbFactory.CreateDbContext();
+        articles = await context.Articles.Where(a => a.IsActive.Value).Include(a => a.Blocks).ToListAsync();
     }
+    private void OnClick()
+    {
+        Console.WriteLine("TOP");
+    }
+}

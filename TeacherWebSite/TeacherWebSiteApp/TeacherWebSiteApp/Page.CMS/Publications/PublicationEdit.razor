@@ -9,12 +9,11 @@
 <div class="container" style="margin-left:80px; margin-right:40%">
 
     <div>
-
         <Row>
             <label>Название</label>
             <Input @bind-Value="@publication.Name" placeholder="Введите название публикации" />
         </Row>
-        <Row>
+        <Row Style="margin-top: 20px">
             <label>Описание</label>
             <TextArea Rows="4" Placeholder="Введите описание публикации" AutoSize="true" @bind-Value="@publication.Text" />
         </Row>
@@ -54,7 +53,7 @@
                             </MenuItem>
                             <MenuItem>
                                 <a target="_blank" @onclick="()=> GetStatus(3)" rel="noopener noreferrer">
-                                    Методичка
+                                    Документ
                                 </a>
                             </MenuItem>
                         </Menu>
@@ -125,7 +124,7 @@
 
     TeacherWebSiteApp.Data.Models.Publication publication = new()
     {
-        Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
+       Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
 

@@ -169,15 +169,20 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Articles.razor"
-        List<Article> articles = new();
-
-        protected override async Task OnInitializedAsync()
-        {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            articles = await context.Articles.Where(a => a.IsActive.Value).Include(a => a.Blocks).ToListAsync();
-        } 
+#line 43 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Articles.razor"
+       
     
+    List<Article> articles = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        using TeacherContext context = DbFactory.CreateDbContext();
+        articles = await context.Articles.Where(a => a.IsActive.Value).Include(a => a.Blocks).ToListAsync();
+    }
+    private void OnClick()
+    {
+        Console.WriteLine("TOP");
+    }
 
 #line default
 #line hidden
