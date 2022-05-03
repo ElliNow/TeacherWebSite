@@ -7,10 +7,9 @@
 @using System.Text.Json;
 @namespace TeacherWebSiteApp.Page.CMS.Users
 
-<h3>Пользователи</h3>
-<ValidationBlock Messages="messages" />
-
-<div style="margin-right: 200px">
+<div style="margin-right: 485px; margin-left: 300px">
+    <h3 style="padding-left: 250px">Пользователи</h3>
+    <ValidationBlock Messages="messages" />
     <Form Model="reg"
           LabelColSpan="8"
           WrapperColSpan="16">
@@ -23,7 +22,7 @@
         <FormItem Label="Password">
             <InputPassword @bind-Value="@context.Password" />
         </FormItem>
-        <FormItem WrapperColOffset="8" WrapperColSpan="16">
+        <FormItem WrapperColOffset="8" WrapperColSpan="16" Style="padding-left: 150px">
             <AntDesign.Button Type="@AntDesign.ButtonType.Primary" @onclick="Register" HtmlType="submit">
                 Добавить
             </AntDesign.Button>
@@ -32,42 +31,32 @@
 </div>
 
 
-<hr />
-<div>
-    <h3>Список пользователей</h3>
-    <MudSimpleTable Hover="@true" Bordered="@true" Striped="@true" Style="overflow-x: auto;">
-        <thead>
-            <tr>
-                @foreach (var h in headings)
-                {
+<div style="margin-right: 150px;  margin-left: 150px">
+    <hr />
+    <h3 style="margin-top: 5px">Список пользователей</h3>
 
-                    <th>@h</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in users)
-            {
-                int id = user.Id;
-                <tr>
-                    <td>@id</td>
-                    <td>@user.Name</td>
-                    <td>@user.Login</td>
-                    <td><a href="/cms/password/@id">Изменить пароль</a></td>
-                    <td>
-                        <a style="cursor:pointer; color:brown" @onclick="() => DeleteAsync(id)">Удалить</a>
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </MudSimpleTable>
+    <Table TItem="User" DataSource="@users" Style="background-color: darkseagreen">
+        <Column Title="Имя пользователя" @bind-Field="@context.Name">
+            @context.Name
+        </Column>
+        <Column Title="Логин" @bind-Field="@context.Login">@context.Login</Column>
+        <Column Title="Пароль" @bind-Field="@context.Password" Style="padding-left: 25px"><img src="https://img.icons8.com/material/24/000000/password--v1.png" /></Column>
+        <ActionColumn Title=" ">
+            <Space Size=@("middle")>
+                <SpaceItem>
+                    <a href="/cms/password/@context.Id">Изменить пароль</a>
+                </SpaceItem>
+                <SpaceItem>
+                    <a @onclick="() => DeleteAsync(context.Id)">Удалить</a>
+                </SpaceItem>
+            </Space>
+        </ActionColumn>
+    </Table>
 </div>
 
 @code {
     bool loading = false;
     string[] messages = new string[] { };
-    string[] headings = { "ID", "Имя пользователя", "Логин", "Пароль" };
     List<User> users = new List<User>();
 
     protected override async Task OnInitializedAsync()

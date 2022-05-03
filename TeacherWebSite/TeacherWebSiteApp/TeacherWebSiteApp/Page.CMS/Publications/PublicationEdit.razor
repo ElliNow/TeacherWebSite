@@ -9,12 +9,11 @@
 <div class="container" style="margin-left:80px; margin-right:40%">
 
     <div>
-
         <Row>
             <label>Название</label>
             <Input @bind-Value="@publication.Name" placeholder="Введите название публикации" />
         </Row>
-        <Row>
+        <Row Style="margin-top: 20px">
             <label>Описание</label>
             <TextArea Rows="4" Placeholder="Введите описание публикации" AutoSize="true" @bind-Value="@publication.Text" />
         </Row>
@@ -44,17 +43,22 @@
                         <Menu>
                             <MenuItem>
                                 <a target="_blank" @onclick="()=> GetStatus(1)" rel="noopener noreferrer">
-                                    Презентация
+                                    Медиа
                                 </a>
                             </MenuItem>
                             <MenuItem>
                                 <a target="_blank" @onclick="()=> GetStatus(2)" rel="noopener noreferrer">
-                                    Видео
+                                    Документ
                                 </a>
                             </MenuItem>
                             <MenuItem>
                                 <a target="_blank" @onclick="()=> GetStatus(3)" rel="noopener noreferrer">
-                                    Методичка
+                                    Лекция
+                                </a>
+                            </MenuItem>
+                            <MenuItem>
+                                <a target="_blank" @onclick="()=> GetStatus(4)" rel="noopener noreferrer">
+                                    Литература
                                 </a>
                             </MenuItem>
                         </Menu>
@@ -81,9 +85,10 @@
             <ValidationBlock Messages="@validationMessages" />
         </div>
         <div class="form-block">
-            <Table DataSource="publication.Attachments" TItem="TeacherWebSiteApp.Data.Models.Attachment" HidePagination="false">
+            <Table DataSource="publication.Attachments.Where(a => a.ContentType > 0)" TItem="TeacherWebSiteApp.Data.Models.Attachment" HidePagination="false">
+
                 <Column Title="Название" @bind-Field="context.Name" TData="string" />
-                <Column Title="Ссылка" @bind-Field="context.Link" TData="string" />
+                <Column Title="Ссылка" @bind-Field="context.Link" TData="string" /> 
                 <Column Title="Тип вложения" @bind-Field="context.ContentType" TData="ContentType" />
                 <Column Title=" " @bind-Field="context.IsActive" TData="bool?">
                     <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">
@@ -125,7 +130,7 @@
 
     TeacherWebSiteApp.Data.Models.Publication publication = new()
     {
-        Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
+       Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
     };
 
 

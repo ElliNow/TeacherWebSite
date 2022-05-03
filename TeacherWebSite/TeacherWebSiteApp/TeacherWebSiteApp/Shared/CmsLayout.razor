@@ -6,7 +6,6 @@
     string cms = "/cms";
     string cmsNewsfeed = "/cms/publications";
     string cmsArticles = "/cms/articles";
-    string cmsAbout = "/cms/about";
     string cmsContacts = "/cms/contacts";
     string publications = "/publications";
 }
@@ -35,7 +34,6 @@
                         </a>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsNewsfeed, true); }">Публикации</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsArticles, true); }">Статьи</MenuItem>
-                        <MenuItem @onclick="() => { Nav.NavigateTo(cmsAbout, true); }">О себе</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsContacts, true); }">Контакты</MenuItem>
                     </Menu>
                 </AntDesign.Col>
@@ -69,7 +67,7 @@
             @Body
         </div>
     </Content>
-    <Footer Style="text-align: center; left: 0; bottom:0;width: 100%; position: fixed">Footer</Footer>
+    @*<Footer Style="text-align: center; left: 0; bottom:0;width: 100%; height: 20px; position:fixed">Footer</Footer>*@
 </Layout>
 
 

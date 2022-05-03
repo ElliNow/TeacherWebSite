@@ -2,50 +2,118 @@
 @inject IDbContextFactory<TeacherContext> DbFactory
 @layout MainLayout
 
-<Skeleton Loading="isLoading || publications == null" Style="padding-bottom: 50px">
-    <MatTabGroup Style="z-index: 999999">
-        <MatTab Label="Все">
-            @foreach (var publication in publications)
-            {
-                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                                              Path="https://img.icons8.com/color/48/000000/document--v1.png"></TeacherWebSiteApp.Components.Publication>
-                </div>
-            }
-        </MatTab>
-        <MatTab Label="Презентации">
-            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
-            {
-                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                 Path="https://img.icons8.com/color/48/000000/pdf-2--v1.png"></TeacherWebSiteApp.Components.Publication>
-                </div>
-            }
-        </MatTab>
-        <MatTab Label="Методички">
-            @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
-            {
-                <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                    <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                 Path="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-book-lifestyle-icongeek26-outline-colour-icongeek26.png"></TeacherWebSiteApp.Components.Publication>
-                </div>
-            }
-        </MatTab>
-        <MatTab>
-            <LabelContent>
-                Видео-уроки
-            </LabelContent>
-            <ChildContent>
-                @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
+<Skeleton Loading="isLoading || publications == null" Style="padding-bottom: 50px; height: 100%">
+    <div id="target" style="height:600vh;padding:8px;">
+
+        <MatTabGroup Style="z-index: 999999">
+            <MatTab Label="Все">
+                @if (!publications.Any())
                 {
-                    <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
-                        <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
-                                     Path="https://img.icons8.com/color/48/000000/video.png"></TeacherWebSiteApp.Components.Publication>
+                    <div style="margin-top:200px">
+                        <Empty Description="false" />
                     </div>
                 }
-            </ChildContent>
-        </MatTab>
-    </MatTabGroup>
+                else
+                {
+                    @foreach (var publication in publications)
+                    {
+                        <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                            <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                      Path="https://img.icons8.com/color/48/000000/document--v1.png"></TeacherWebSiteApp.Components.Publication>
+                        </div>
+                    }
+                }
+
+            </MatTab>
+            <MatTab Label="Медиафайлы">
+                @if (!publications.Any())
+                {
+                    <div style="margin-top:200px">
+                        <Empty Description="false" />
+                    </div>
+
+                }
+                else
+                {
+                    @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Media)))
+                    {
+                        <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                            <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                      Path="https://img.icons8.com/color/48/000000/pdf-2--v1.png"></TeacherWebSiteApp.Components.Publication>
+                        </div>
+                    }
+                }
+            </MatTab>
+            <MatTab Label="Учебно-программная документация">
+                @if (!publications.Any())
+                {
+                    <div style="margin-top:200px">
+                        <Empty Description="false" />
+                    </div>
+
+                }
+                else
+                {
+                    @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Document)))
+                    {
+                        <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                            <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                      Path="https://img.icons8.com/external-icongeek26-outline-colour-icongeek26/64/000000/external-book-lifestyle-icongeek26-outline-colour-icongeek26.png"></TeacherWebSiteApp.Components.Publication>
+                        </div>
+                    }
+                }
+            </MatTab>
+            <MatTab>
+                <LabelContent>
+                    Лекции
+                </LabelContent>
+                <ChildContent>
+                    @if (!publications.Any())
+                    {
+                        <div style="margin-top:200px">
+                            <Empty Description="false" />
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Lecture)))
+                        {
+                            <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                                <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                          Path="https://img.icons8.com/color/48/000000/video.png"></TeacherWebSiteApp.Components.Publication>
+                            </div>
+                        }
+                    }
+                </ChildContent>
+            </MatTab>
+            <MatTab>
+                <LabelContent>
+                    Литература
+                </LabelContent>
+                <ChildContent>
+                    @if (!publications.Any())
+                    {
+                        <div style="margin-top:200px">
+                            <Empty Description="false" />
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Literature)))
+                        {
+                            <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                                <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                          Path="https://img.icons8.com/color/48/000000/video.png"></TeacherWebSiteApp.Components.Publication>
+                            </div>
+                        }
+                    }
+                </ChildContent>
+            </MatTab>
+        </MatTabGroup>
+        <BackTop Style="margin-bottom:60px" OnClick="OnClick">
+            <img src="https://img.icons8.com/fluency/48/000000/long-arrow-up.png" />
+        </BackTop>
+    </div>
 </Skeleton>
 
 
