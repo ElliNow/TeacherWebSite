@@ -5,17 +5,18 @@
                 <NotAuthorized>
                     <center>
                         <h5 style="margin-top:200px">
-                            У вас нет доступа к данной странице.64646456
+                            @*У вас нет доступа к данной странице.*@
+                            You don't have access to this page
                             <br />
-                            <a href="/login">Авторизация</a><br /><a href="#">На главную</a>
+                            <a href="/login">@*Авторизация*@Authorization</a><br /><a href="#">@*На главную*@Home</a>
                         </h5>
                     </center>
 
                 </NotAuthorized>
                 <Authorizing>
                     <center>
-                        <h1 style="margin-top:200px">Загрузка</h1>
-                        <h5>Пожалуйста подождите</h5>
+                        <h1 style="margin-top:200px">@*Загрузка*@Loading</h1>
+                        <h5>@*Пожалуйста подождите*@Please wait</h5>
                     </center>
                 </Authorizing>
             </AuthorizeRouteView>
@@ -23,7 +24,7 @@
         <NotFound>
             <center>
                 <h1 style="margin-top:200px">404</h1>
-                <h5>К сожалению, такой страницы не существует.<br /><a href="#">На главную</a></h5>
+                <h5>@*К сожалению, такой страницы не существует.*@Page not found<br /><a href="#">@*На главную*@Home</a></h5>
             </center>
         </NotFound>
     </Router>

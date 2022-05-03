@@ -6,7 +6,6 @@
     string cms = "/cms";
     string cmsNewsfeed = "/cms/publications";
     string cmsArticles = "/cms/articles";
-    string cmsAbout = "/cms/about";
     string cmsContacts = "/cms/contacts";
     string publications = "/publications";
 }
@@ -35,7 +34,6 @@
                         </a>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsNewsfeed, true); }">Публикации</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsArticles, true); }">Статьи</MenuItem>
-                        <MenuItem @onclick="() => { Nav.NavigateTo(cmsAbout, true); }">О себе</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsContacts, true); }">Контакты</MenuItem>
                     </Menu>
                 </AntDesign.Col>
