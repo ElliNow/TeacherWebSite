@@ -166,13 +166,6 @@ using System.Text.Json;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 4 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Users\ListUser.razor"
-           [Authorize(Roles = "admin")]
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(CmsLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cms/users")]
     public partial class ListUser : Microsoft.AspNetCore.Components.ComponentBase

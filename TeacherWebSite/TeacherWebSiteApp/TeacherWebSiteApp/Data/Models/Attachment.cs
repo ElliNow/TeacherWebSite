@@ -15,8 +15,9 @@ namespace TeacherWebSiteApp.Data.Models
 
     public enum ContentType
     {
-        Presentation = 1,
-        Video = 2,
-        MethodicalBook = 3
+        Media = 1,
+        Document = 2,
+        Lecture = 3,
+        Literature = 4
     }
 }

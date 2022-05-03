@@ -33,7 +33,7 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
             var messages = new List<string>();
 
             if (string.IsNullOrEmpty(attachment.Name)) messages.Add(@"'Название' не должно быть пусто.");
-            else if (attachment.Name.Length > 30) messages.Add(@"'Название не должно превышать длину в 30 символов.'");
+            else if (attachment.Name.Length > 50) messages.Add(@"'Название не должно превышать длину в 50 символов.'");
             if (string.IsNullOrEmpty(attachment.Link)) messages.Add(@"'Ссылка' не должно быть пусто.");
             if (attachment.ContentType <= 0) messages.Add(@"Необходимо выбрать тип вложения");
 

@@ -43,17 +43,22 @@
                         <Menu>
                             <MenuItem>
                                 <a target="_blank" @onclick="()=> GetStatus(1)" rel="noopener noreferrer">
-                                    Презентация
+                                    Медиа
                                 </a>
                             </MenuItem>
                             <MenuItem>
                                 <a target="_blank" @onclick="()=> GetStatus(2)" rel="noopener noreferrer">
-                                    Видео
+                                    Документ
                                 </a>
                             </MenuItem>
                             <MenuItem>
                                 <a target="_blank" @onclick="()=> GetStatus(3)" rel="noopener noreferrer">
-                                    Документ
+                                    Лекция
+                                </a>
+                            </MenuItem>
+                            <MenuItem>
+                                <a target="_blank" @onclick="()=> GetStatus(4)" rel="noopener noreferrer">
+                                    Литература
                                 </a>
                             </MenuItem>
                         </Menu>
@@ -80,9 +85,10 @@
             <ValidationBlock Messages="@validationMessages" />
         </div>
         <div class="form-block">
-            <Table DataSource="publication.Attachments" TItem="TeacherWebSiteApp.Data.Models.Attachment" HidePagination="false">
+            <Table DataSource="publication.Attachments.Where(a => a.ContentType > 0)" TItem="TeacherWebSiteApp.Data.Models.Attachment" HidePagination="false">
+
                 <Column Title="Название" @bind-Field="context.Name" TData="string" />
-                <Column Title="Ссылка" @bind-Field="context.Link" TData="string" />
+                <Column Title="Ссылка" @bind-Field="context.Link" TData="string" /> 
                 <Column Title="Тип вложения" @bind-Field="context.ContentType" TData="ContentType" />
                 <Column Title=" " @bind-Field="context.IsActive" TData="bool?">
                     <Button Danger @onclick="() => DeleteAttachment(context.Name, context.Link)">

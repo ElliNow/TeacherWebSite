@@ -12,7 +12,6 @@
                     <div style="margin-top:200px">
                         <Empty Description="false" />
                     </div>
-
                 }
                 else
                 {
@@ -26,7 +25,7 @@
                 }
 
             </MatTab>
-            <MatTab Label="Презентации">
+            <MatTab Label="Медиафайлы">
                 @if (!publications.Any())
                 {
                     <div style="margin-top:200px">
@@ -36,7 +35,7 @@
                 }
                 else
                 {
-                    @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Presentation)))
+                    @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Media)))
                     {
                         <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
                             <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
@@ -45,7 +44,7 @@
                     }
                 }
             </MatTab>
-            <MatTab Label="Методички">
+            <MatTab Label="Учебно-программная документация">
                 @if (!publications.Any())
                 {
                     <div style="margin-top:200px">
@@ -55,7 +54,7 @@
                 }
                 else
                 {
-                    @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.MethodicalBook)))
+                    @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Document)))
                     {
                         <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
                             <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
@@ -66,7 +65,7 @@
             </MatTab>
             <MatTab>
                 <LabelContent>
-                    Видео-уроки
+                    Лекции
                 </LabelContent>
                 <ChildContent>
                     @if (!publications.Any())
@@ -74,11 +73,33 @@
                         <div style="margin-top:200px">
                             <Empty Description="false" />
                         </div>
-
                     }
                     else
                     {
-                        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Video)))
+                        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Lecture)))
+                        {
+                            <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                                <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                          Path="https://img.icons8.com/color/48/000000/video.png"></TeacherWebSiteApp.Components.Publication>
+                            </div>
+                        }
+                    }
+                </ChildContent>
+            </MatTab>
+            <MatTab>
+                <LabelContent>
+                    Литература
+                </LabelContent>
+                <ChildContent>
+                    @if (!publications.Any())
+                    {
+                        <div style="margin-top:200px">
+                            <Empty Description="false" />
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.Literature)))
                         {
                             <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
                                 <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
@@ -90,7 +111,7 @@
             </MatTab>
         </MatTabGroup>
         <BackTop Style="margin-bottom:60px" OnClick="OnClick">
-            <img src="https://img.icons8.com/nolan/64/up-squared--v1.png" />
+            <img src="https://img.icons8.com/fluency/48/000000/long-arrow-up.png" />
         </BackTop>
     </div>
 </Skeleton>

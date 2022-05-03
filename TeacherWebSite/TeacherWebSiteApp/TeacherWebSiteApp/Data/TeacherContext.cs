@@ -14,8 +14,6 @@ namespace TeacherWebSiteApp.Data
         // Models
         public DbSet<Publication> Publications { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<GroupPublication> GroupPublications { get; set; }
         // PageModels
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArcticleBlock> ArticleBlocks { get; set; }
