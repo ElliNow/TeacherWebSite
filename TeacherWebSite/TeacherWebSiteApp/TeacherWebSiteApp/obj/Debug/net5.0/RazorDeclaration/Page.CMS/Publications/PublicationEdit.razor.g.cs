@@ -188,7 +188,7 @@ using System.ComponentModel.DataAnnotations;
 
     TeacherWebSiteApp.Data.Models.Publication publication = new()
     {
-       Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new() }
+        Attachments = new List<TeacherWebSiteApp.Data.Models.Attachment>() { new()}
     };
 
 
