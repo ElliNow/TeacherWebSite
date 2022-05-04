@@ -4,6 +4,7 @@
 
 @{
     string cms = "/cms";
+    string cmsMainPage = "cms/MainPage";
     string cmsNewsfeed = "/cms/publications";
     string cmsArticles = "/cms/articles";
     string cmsContacts = "/cms/contacts";
@@ -32,6 +33,7 @@
                         <a @onclick="() => { Nav.NavigateTo(publications, true); }">
                             <span class="badge badge-secondary">На сайт</span>
                         </a>
+                        <MenuItem @onclick="() => { Nav.NavigateTo(cmsMainPage, true); }">Главная</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsNewsfeed, true); }">Публикации</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsArticles, true); }">Статьи</MenuItem>
                         <MenuItem @onclick="() => { Nav.NavigateTo(cmsContacts, true); }">Контакты</MenuItem>
