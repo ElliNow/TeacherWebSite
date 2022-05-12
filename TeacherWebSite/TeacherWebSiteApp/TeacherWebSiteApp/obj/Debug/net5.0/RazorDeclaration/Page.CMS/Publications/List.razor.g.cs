@@ -176,9 +176,10 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 29 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+#line 30 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
        
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
+    bool status = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -205,6 +206,7 @@ using System.ComponentModel.DataAnnotations;
             _message.Info($"Публикация {publication.Name} {state}.");
         }
     }
+
 
 #line default
 #line hidden

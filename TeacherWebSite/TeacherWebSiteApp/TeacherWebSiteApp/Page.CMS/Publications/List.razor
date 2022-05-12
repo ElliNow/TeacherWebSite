@@ -24,10 +24,12 @@
             <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" />
         </Column>
     </Table>
+    
   
 
 @code {
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
+    bool status = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,4 +56,5 @@
             _message.Info($"Публикация {publication.Name} {state}.");
         }
     }
+
 }
