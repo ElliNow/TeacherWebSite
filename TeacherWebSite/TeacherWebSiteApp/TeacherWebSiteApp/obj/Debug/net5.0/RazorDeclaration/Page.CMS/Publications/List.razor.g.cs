@@ -176,9 +176,10 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 29 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+#line 30 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
        
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
+    bool status = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -193,18 +194,21 @@ using System.ComponentModel.DataAnnotations;
         }
     }
 
+
     private async Task SwitchActive(int Id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();
-        var publication = await context.Publications.Include(p => p.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
+        var publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
         if (publication != null)
         {
             publication.IsActive = value;
             await context.SaveChangesAsync();
             string state = (publication.IsActive.Value) ? "активированa" : "деактивированa";
             _message.Info($"Публикация {publication.Name} {state}.");
+            NavManager.NavigateTo("/cms/publications");
         }
     }
+
 
 #line default
 #line hidden

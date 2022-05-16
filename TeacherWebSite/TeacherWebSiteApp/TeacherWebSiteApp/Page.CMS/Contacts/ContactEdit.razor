@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-2" style="margin-bottom: 10px">
                     <UploadImage @bind-ImageData="contact.Badge" Text="Загрузите значок"></UploadImage>
-                    @if (contact.Badge != null)
+                    @if(contact.Badge != null)
                     {
                         <img src="data:image/png;base64,@Convert.ToBase64String(contact.Badge)" height="40" />
                     }

@@ -54,7 +54,7 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
             if (Id != 0)
             {
                 using TeacherContext context = DbFactory.CreateDbContext();
-                publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
+                publication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
                 attachments = context.Attachments.Where(item => item.PublicationId == Id).ToList();
                 if (publication == null)
                 {
@@ -109,6 +109,8 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
                 else
                 {
                     publication.Date = DateTime.Now;
+                    var attach = publication.Attachments.FirstOrDefault(a => a.Link == null && a.Name == null && a.ContentType <= 0);
+                    publication.Attachments.Remove(attach);
                     context.Publications.Add(publication);
                     await context.SaveChangesAsync();
                     _message.Success("Публикация добавлена!");
@@ -131,11 +133,14 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
             if(flag == true)
             {
                 using TeacherContext context = DbFactory.CreateDbContext();
-                publication.Attachments.Add(attachment);
-                attachments.Add(attachment);
-                attachment = new();
-                context.SaveChanges();
-                _message.Success("Вложение успешно добавлено!");
+                if (attachment!=null)
+                {
+                    publication.Attachments.Add(attachment);
+                    attachments.Add(attachment);
+                    attachment = new();
+                    context.SaveChanges();
+                    _message.Success("Вложение успешно добавлено!");
+                }    
             }    
         }
 
