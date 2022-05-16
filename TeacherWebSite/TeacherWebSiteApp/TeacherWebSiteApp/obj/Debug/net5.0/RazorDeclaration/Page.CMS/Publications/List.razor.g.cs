@@ -194,16 +194,18 @@ using System.ComponentModel.DataAnnotations;
         }
     }
 
+
     private async Task SwitchActive(int Id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();
-        var publication = await context.Publications.Include(p => p.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
+        var publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
         if (publication != null)
         {
             publication.IsActive = value;
             await context.SaveChangesAsync();
             string state = (publication.IsActive.Value) ? "активированa" : "деактивированa";
             _message.Info($"Публикация {publication.Name} {state}.");
+            NavManager.NavigateTo("/cms/publications");
         }
     }
 
