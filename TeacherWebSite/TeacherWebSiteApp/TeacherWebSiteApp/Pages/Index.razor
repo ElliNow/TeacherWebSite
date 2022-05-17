@@ -6,12 +6,26 @@
 
 @if (data != null && data.IsBannerEnabled)
 {
-     <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
+    <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
 }
 
+@if (data != null && data.IsCardsEnabled)
+{
+    <Row Style="height: 50%; margin-bottom: 100px">
+        <AntDesign.Col Style="height: 320px; width: 30%; margin-left: 40px">
+            <InfoCard BlockTitle="@data.Block1Title" BlockText="@data.Block1Text" BlockData="@data.Block1Data" LinkText="@data.Link1Text" LinkSourse="@data.Link1Sourse" />
+        </AntDesign.Col>
+        <AntDesign.Col Style="height: 320px; width: 30%; margin-left:25px">
+            <InfoCard BlockTitle="@data.Block2Title" BlockText="@data.Block2Text" BlockData="@data.Block2Data" LinkText="@data.Link2Text" LinkSourse="@data.Link2Sourse" />
+        </AntDesign.Col>
+        <AntDesign.Col Style="height: 320px; width: 30%; margin-left: 25px">
+            <InfoCard BlockTitle="@data.Block3Title" BlockText="@data.Block3Text" BlockData="@data.Block3Data" LinkText="@data.Link3Text" LinkSourse="@data.Link3Sourse" />
+        </AntDesign.Col>
+    </Row>
+ }
 
-@code{
-    private MainPage data = new MainPage();
+    @code{
+private MainPage data = new MainPage();
 
     protected override async Task OnInitializedAsync()
     {
@@ -24,5 +38,5 @@
             NavManager.NavigateTo("/publications");
         }
     }
-}
+    }
 

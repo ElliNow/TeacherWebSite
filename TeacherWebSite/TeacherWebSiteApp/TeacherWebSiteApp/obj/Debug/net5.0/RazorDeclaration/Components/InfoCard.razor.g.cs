@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace TeacherWebSiteApp.Pages
+namespace TeacherWebSiteApp.Components
 {
     #line hidden
     using System;
@@ -159,9 +159,7 @@ using System.ComponentModel.DataAnnotations;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(MainLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class InfoCard : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -169,28 +167,23 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 27 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Index.razor"
-          
-private MainPage data = new MainPage();
-
-    protected override async Task OnInitializedAsync()
-    {
-        using var context = DbFactory.CreateDbContext();
-
-        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActiveProfile == true);
-
-        if (data == null)
-        {
-            NavManager.NavigateTo("/publications");
-        }
-    }
+#line 22 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Components\InfoCard.razor"
+        
+    [Parameter]
+    public string BlockTitle { get; set; }
+    [Parameter]
+    public string BlockText { get; set; }
+    [Parameter]
+    public byte[] BlockData { get; set; }
+    [Parameter]
+    public string LinkText { get; set; }
+    [Parameter]
+    public string LinkSourse { get; set; }
     
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDbContextFactory<TeacherContext> DbFactory { get; set; }
     }
 }
 #pragma warning restore 1591
