@@ -173,7 +173,6 @@ using System.ComponentModel.DataAnnotations;
        
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
     bool isLoading;
-
     protected override void OnInitialized()
     {
         using var context = DbFactory.CreateDbContext();

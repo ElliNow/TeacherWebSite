@@ -117,7 +117,7 @@
                     @if (!publications.Any())
                     {
                         <div style="margin-top:200px">
-                            <Empty Description="false" />
+                            <Empty />
                         </div>
                     }
                     else
@@ -145,7 +145,6 @@
 @code {
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
     bool isLoading;
-
     protected override void OnInitialized()
     {
         using var context = DbFactory.CreateDbContext();

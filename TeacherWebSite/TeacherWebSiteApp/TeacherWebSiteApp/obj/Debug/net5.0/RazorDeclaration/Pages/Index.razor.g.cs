@@ -169,22 +169,27 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 27 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Index.razor"
-          
-private MainPage data = new MainPage();
+#line 35 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Pages\Index.razor"
+       
+     private MainPage data = new MainPage();
 
-    protected override async Task OnInitializedAsync()
-    {
-        using var context = DbFactory.CreateDbContext();
+     protected override async Task OnInitializedAsync()
+     {
+         using var context = DbFactory.CreateDbContext();
 
-        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActiveProfile == true);
+         data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActiveProfile == true);
 
-        if (data == null)
-        {
-            NavManager.NavigateTo("/publications");
-        }
-    }
-    
+         if (data == null)
+         {
+             NavManager.NavigateTo("/publications");
+         }
+     }
+
+     private void OnClick()
+     {
+         Console.WriteLine("TOP");
+     }
+ 
 
 #line default
 #line hidden
