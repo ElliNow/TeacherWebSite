@@ -199,6 +199,7 @@ using System.ComponentModel.DataAnnotations;
             await context.SaveChangesAsync();
             string state = (article.IsActive.Value) ? "активированa" : "деактивированa";
             _message.Info($"Статья {article.Name} {state}.");
+            NavManager.NavigateTo("/cms/articles", true);
         }
     }
 

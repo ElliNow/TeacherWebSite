@@ -181,12 +181,12 @@ using System.ComponentModel.DataAnnotations;
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
     bool status = false;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         try
         {
             using TeacherContext context = DbFactory.CreateDbContext();
-            publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
+            publications = context.Publications.Include(p => p.Attachments).ToList();
         }
         catch (Exception ex)
         {
@@ -198,14 +198,14 @@ using System.ComponentModel.DataAnnotations;
     private async Task SwitchActive(int Id, bool? value)
     {
         using var context = DbFactory.CreateDbContext();
-        var publication = await context.Publications.FirstOrDefaultAsync(p => p.Id == Id);
+        var publication = await context.Publications.Include(a => a.Attachments).FirstOrDefaultAsync(p => p.Id == Id);
         if (publication != null)
         {
             publication.IsActive = value;
             await context.SaveChangesAsync();
             string state = (publication.IsActive.Value) ? "активированa" : "деактивированa";
             _message.Info($"Публикация {publication.Name} {state}.");
-            NavManager.NavigateTo("/cms/publications");
+            NavManager.NavigateTo("/cms/publications",true);
         }
     }
 
