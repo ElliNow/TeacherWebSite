@@ -176,22 +176,16 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 30 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
+#line 38 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\Page.CMS\Publications\List.razor"
        
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
     bool status = false;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            publications = context.Publications.Include(p => p.Attachments).ToList();
-        }
-        catch (Exception ex)
-        {
-            _message.Error(ex.Message);
-        }
+        using TeacherContext context = DbFactory.CreateDbContext();
+        publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
+
     }
 
 

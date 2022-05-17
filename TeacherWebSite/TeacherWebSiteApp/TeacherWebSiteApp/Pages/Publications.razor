@@ -65,6 +65,29 @@
             </MatTab>
             <MatTab>
                 <LabelContent>
+                    Практические занятия
+                </LabelContent>
+                <ChildContent>
+                    @if (!publications.Any())
+                    {
+                        <div style="margin-top:200px">
+                            <Empty Description="false" />
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var publication in publications.Where(p => p.Attachments.Any(a => a.ContentType == ContentType.PracticalLesson)))
+                        {
+                            <div style="margin-left: 45px; margin-right: 45px; margin-top: 10px">
+                                <TeacherWebSiteApp.Components.Publication Id="@publication.Id" Name="@publication.Name" Text="@publication.Text" Data="@publication.Date"
+                                                                          Path="https://img.icons8.com/offices/40/000000/school.png"></TeacherWebSiteApp.Components.Publication>
+                            </div>
+                        }
+                    }
+                </ChildContent>
+            </MatTab>
+            <MatTab>
+                <LabelContent>
                     Лекции
                 </LabelContent>
                 <ChildContent>
@@ -94,7 +117,7 @@
                     @if (!publications.Any())
                     {
                         <div style="margin-top:200px">
-                            <Empty Description="false" />
+                            <Empty />
                         </div>
                     }
                     else
@@ -122,7 +145,6 @@
 @code {
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
     bool isLoading;
-
     protected override void OnInitialized()
     {
         using var context = DbFactory.CreateDbContext();

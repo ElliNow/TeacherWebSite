@@ -21,7 +21,15 @@
         <Column Title="Описание" @bind-Field="@context.Text" TData="string" />
         <Column Title="Дата создания" @bind-Field="@context.Date" Format="dd-MM-yyyy" Sortable />
         <Column Title="Активный" @bind-Field="@context.IsActive" TData="bool?">
-            <Switch Checked="@context.IsActive.Value" OnChange="async (val) => await SwitchActive(context.Id, val)" />
+            @if (context.IsActive != null)
+            {
+                <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" Checked="@context.IsActive.Value" />
+            }
+            else
+            {
+                <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" Checked="false" />
+            }
+
         </Column>
     </Table>
     
@@ -31,17 +39,11 @@
     List<TeacherWebSiteApp.Data.Models.Publication> publications;
     bool status = false;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            using TeacherContext context = DbFactory.CreateDbContext();
-            publications = context.Publications.Include(p => p.Attachments).ToList();
-        }
-        catch (Exception ex)
-        {
-            _message.Error(ex.Message);
-        }
+        using TeacherContext context = DbFactory.CreateDbContext();
+        publications = await context.Publications.Include(p => p.Attachments).ToListAsync();
+
     }
 
 

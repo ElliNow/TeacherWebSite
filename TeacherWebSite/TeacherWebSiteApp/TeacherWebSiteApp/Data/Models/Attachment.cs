@@ -18,6 +18,7 @@ namespace TeacherWebSiteApp.Data.Models
         Media = 1,
         Document = 2,
         Lecture = 3,
-        Literature = 4
+        PracticalLesson = 4,
+        Literature = 5
     }
 }
