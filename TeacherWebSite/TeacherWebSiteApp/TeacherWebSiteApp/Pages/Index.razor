@@ -4,25 +4,52 @@
 @layout MainLayout
 @namespace TeacherWebSiteApp.Pages
 
-@if (data != null && data.IsBannerEnabled)
-{
-     <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
-}
-
-
-@code{
-    private MainPage data = new MainPage();
-
-    protected override async Task OnInitializedAsync()
+<div>
+    @if (data != null && data.IsBannerEnabled)
     {
-        using var context = DbFactory.CreateDbContext();
-
-        data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActiveProfile == true);
-
-        if (data == null)
-        {
-            NavManager.NavigateTo("/publications");
-        }
+        <BigBanner Picture="@(data.BigPictureData)" Text="@data.BigPictureText" Title="@data.BigPictureTitle" />
     }
-}
+
+    @if (data != null && data.IsCardsEnabled)
+    {
+        <Row Style="height: 50%; margin-bottom: 300px">
+            <AntDesign.Col Style="height: 320px; width: 30%; margin-left: 40px">
+                <InfoCard BlockTitle="@data.Block1Title" BlockText="@data.Block1Text" BlockData="@data.Block1Data" LinkText="@data.Link1Text" LinkSourse="@data.Link1Sourse" />
+            </AntDesign.Col>
+            <AntDesign.Col Style="height: 320px; width: 30%; margin-left:25px">
+                <InfoCard BlockTitle="@data.Block2Title" BlockText="@data.Block2Text" BlockData="@data.Block2Data" LinkText="@data.Link2Text" LinkSourse="@data.Link2Sourse" />
+            </AntDesign.Col>
+            <AntDesign.Col Style="height: 320px; width: 30%; margin-left: 25px">
+                <InfoCard BlockTitle="@data.Block3Title" BlockText="@data.Block3Text" BlockData="@data.Block3Data" LinkText="@data.Link3Text" LinkSourse="@data.Link3Sourse" />
+            </AntDesign.Col>
+        </Row>
+    }
+
+    <div style="margin-left: 50px">
+        <BackTop Style="margin-bottom:60px" OnClick="OnClick">
+            <img src="https://img.icons8.com/fluency/48/000000/long-arrow-up.png" />
+        </BackTop>
+    </div>
+    
+</div>
+ @code{
+     private MainPage data = new MainPage();
+
+     protected override async Task OnInitializedAsync()
+     {
+         using var context = DbFactory.CreateDbContext();
+
+         data = await context.MainPages.FirstOrDefaultAsync(d => d.IsActiveProfile == true);
+
+         if (data == null)
+         {
+             NavManager.NavigateTo("/publications");
+         }
+     }
+
+     private void OnClick()
+     {
+         Console.WriteLine("TOP");
+     }
+ }
 
