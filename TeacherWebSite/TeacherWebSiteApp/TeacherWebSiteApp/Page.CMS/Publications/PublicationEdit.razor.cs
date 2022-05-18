@@ -109,6 +109,7 @@ namespace TeacherWebSiteApp.Page.CMS.Publications
                 else
                 {
                     publication.Date = DateTime.Now;
+                    publication.IsActive = false;
                     var attach = publication.Attachments.FirstOrDefault(a => a.Link == null && a.Name == null && a.ContentType <= 0);
                     publication.Attachments.Remove(attach);
                     context.Publications.Add(publication);

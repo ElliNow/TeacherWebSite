@@ -20,14 +20,7 @@
     <Column Title="Описание" @bind-Field="@context.Description" TData="string" />
     <Column Title="Дата создания" @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
     <Column Title="Активный" @bind-Field="@context.IsActive">
-        @if (context.IsActive != null)
-        {
-            <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" Checked="@context.IsActive.Value" />
-        }
-        else
-        {
-            <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" Checked="false" />
-        }
+        <Switch OnChange="async (val) => await SwitchActive(context.Id, val)" Checked="@context.IsActive.Value" />
     </Column>
 </Table>
 

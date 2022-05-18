@@ -261,6 +261,7 @@ using System.Collections.Concurrent;
             else
             {
                 article.Date = DateTime.Now;
+                article.IsActive = false;
                 context.Articles.Add(article);
                 await context.SaveChangesAsync();
                 _message.Success("Статья добавлена!");
