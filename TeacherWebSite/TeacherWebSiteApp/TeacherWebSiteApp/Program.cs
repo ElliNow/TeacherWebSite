@@ -22,5 +22,6 @@ namespace TeacherWebSiteApp
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+       
     }
 }
