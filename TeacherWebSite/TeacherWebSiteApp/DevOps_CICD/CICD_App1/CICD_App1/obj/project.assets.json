@@ -1,0 +1,70 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "net5.0": []
+  },
+  "packageFolders": {
+    "C:\\Users\\Эля\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\DevOps_CICD\\CICD_App1\\CICD_App1\\CICD_App1.csproj",
+      "projectName": "CICD_App1",
+      "projectPath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\DevOps_CICD\\CICD_App1\\CICD_App1\\CICD_App1.csproj",
+      "packagesPath": "C:\\Users\\Эля\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Эля\\Documents\\GitHub\\TeacherWebSite\\TeacherWebSite\\TeacherWebSiteApp\\DevOps_CICD\\CICD_App1\\CICD_App1\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Эля\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
