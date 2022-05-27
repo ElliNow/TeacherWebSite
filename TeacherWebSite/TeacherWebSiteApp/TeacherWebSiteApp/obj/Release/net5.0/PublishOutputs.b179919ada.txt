@@ -15,10 +15,14 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Components.Web.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Http.Connections.Client.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.AspNetCore.Metadata.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.SignalR.Common.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.SignalR.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.Azure.SignalR.Protocols.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll

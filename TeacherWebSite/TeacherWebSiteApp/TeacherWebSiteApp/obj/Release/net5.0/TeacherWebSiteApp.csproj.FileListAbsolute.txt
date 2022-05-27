@@ -155,3 +155,7 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\ref\TeacherWebSiteApp.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\TeacherWebSiteApp.pdb
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\TeacherWebSiteApp.genruntimeconfig.cache
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.AspNetCore.Http.Connections.Client.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.Azure.SignalR.Common.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.Azure.SignalR.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.Azure.SignalR.Protocols.dll
