@@ -3,31 +3,53 @@
 @inject NavigationManager NavManager
 @namespace TeacherWebSiteApp.Page.CMS.Users
 
-<div style="margin-left: 450px; margin-top: 150px; border-color: black">
-    
-    <div class="container">
+@*<div style="margin-left: 450px; margin-top: 150px; border-color: black">*@
+
+    @*<div class="container">
+            <ValidationBlock Messages="messages"></ValidationBlock>
+            <Row>
+                <div class="col-md-offset-3 col-md-6">
+                    <form class="form-horizontal">
+                        <span class="heading">Вход в CMS</span>
+                        <div class="form-group">
+                            <input type="text" class="form-control" @bind-value="login" id="inputfield" placeholder="Логин">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="form-group help">
+                            <input type="password" class="form-control" @bind-value="password" id="inputPassword" placeholder="Пароль">
+                            <i class="fa fa-lock"></i>
+                            <a href="#" class="fa fa-question-circle"></a>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default" @onclick="LogIn">ВХОД</button>
+                        </div>
+                    </form>
+                </div>
+            </Row>
+        </div>*@
+    <div style="margin-top:270px">
         <ValidationBlock Messages="messages"></ValidationBlock>
-        <Row>
-            <div class="col-md-offset-3 col-md-6">
-                <form class="form-horizontal">
-                    <span class="heading">Вход в CMS</span>
-                    <div class="form-group">
-                        <input type="text" class="form-control" @bind-value="login" id="inputfield" placeholder="Логин">
-                        <i class="fa fa-user"></i>
-                    </div>
-                    <div class="form-group help">
-                        <input type="password" class="form-control" @bind-value="password" id="inputPassword" placeholder="Пароль">
-                        <i class="fa fa-lock"></i>
-                        <a href="#" class="fa fa-question-circle"></a>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default" @onclick="LogIn">ВХОД</button>
-                    </div>
-                </form>
-            </div>
-        </Row>
+        <div class="form-block">
+            <center>
+                <h4>Вход в CMS</h4>
+                <Row Style="margin-left:400px;margin-bottom:15px;margin-top:20px">
+                    <AntDesign.Col>
+                        <Input @bind-Value="login" Placeholder="Имя пользователя" Type="email" />
+                    </AntDesign.Col>
+                    <AntDesign.Col Style="margin-left:55px">
+                        <Input @bind-Value="password" Placeholder="Пароль" Type="password" />
+                    </AntDesign.Col>
+                </Row>
+                <Row Style="margin-left:590px">
+                    <AntDesign.Col>
+                        <Button Type="@AntDesign.ButtonType.Primary" @onclick="LogIn">Вход</Button>
+                    </AntDesign.Col>
+                </Row>
+            </center>
+        </div>
+       
     </div>
-</div>
+@*</div>*@
 
 @code {
 
