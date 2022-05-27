@@ -37,7 +37,7 @@ namespace TeacherWebSiteApp
             services.AddServerSideBlazor();
             services.AddTransient<ICryptographer, MD5Cryptographer>();
             services.AddDbContextFactory<TeacherContext>(opt =>
-                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
+                opt.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version())
                 ));
             services.AddBlazoredLocalStorage();    
             services.AddAntDesign();
