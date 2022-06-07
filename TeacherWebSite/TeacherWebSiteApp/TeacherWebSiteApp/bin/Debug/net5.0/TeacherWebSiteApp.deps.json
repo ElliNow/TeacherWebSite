@@ -41,7 +41,9 @@
           "Microsoft.AspNetCore.Identity.UI": "5.0.14",
           "Microsoft.Azure.SignalR": "1.4.0",
           "Microsoft.EntityFrameworkCore": "5.0.14",
+          "Microsoft.EntityFrameworkCore.Design": "5.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.14",
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.3",
           "MudBlazor": "5.0.3",
           "Pomelo.EntityFrameworkCore.MySql": "5.0.2",
           "bootstrap": "5.1.3",
@@ -348,6 +350,14 @@
         }
       },
       "bootstrap/5.1.3": {},
+      "Humanizer.Core/2.8.26": {
+        "runtime": {
+          "lib/netstandard2.0/Humanizer.dll": {
+            "assemblyVersion": "2.8.0.0",
+            "fileVersion": "2.8.26.1919"
+          }
+        }
+      },
       "MatBlazor/2.8.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Components": "5.0.5",
@@ -583,7 +593,7 @@
           "lib/netstandard2.0/Microsoft.Azure.SignalR.Protocols.dll": {}
         }
       },
-      "Microsoft.CSharp/4.5.0": {},
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Data.SqlClient/2.0.1": {
         "dependencies": {
           "Microsoft.Data.SqlClient.SNI.runtime": "2.0.1",
@@ -698,6 +708,19 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/5.0.14": {},
+      "Microsoft.EntityFrameworkCore.Design/5.0.9": {
+        "dependencies": {
+          "Humanizer.Core": "2.8.26",
+          "Microsoft.CSharp": "4.7.0",
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.14"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "5.0.9.0",
+            "fileVersion": "5.0.921.36501"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/5.0.14": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.14",
@@ -726,6 +749,11 @@
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/5.0.3": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "5.0.9"
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
@@ -877,7 +905,7 @@
       },
       "Microsoft.Identity.Client/4.14.0": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
           "System.Net.NameResolution": "4.3.0",
           "System.Private.Uri": "4.3.2",
@@ -1074,7 +1102,7 @@
       },
       "Newtonsoft.Json/10.0.1": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "System.Collections": "4.3.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
@@ -3652,6 +3680,13 @@
       "path": "bootstrap/5.1.3",
       "hashPath": "bootstrap.5.1.3.nupkg.sha512"
     },
+    "Humanizer.Core/2.8.26": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
+      "path": "humanizer.core/2.8.26",
+      "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
+    },
     "MatBlazor/2.8.0": {
       "type": "package",
       "serviceable": true,
@@ -3778,12 +3813,12 @@
       "path": "microsoft.azure.signalr.protocols/1.4.0",
       "hashPath": "microsoft.azure.signalr.protocols.1.4.0.nupkg.sha512"
     },
-    "Microsoft.CSharp/4.5.0": {
+    "Microsoft.CSharp/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
-      "path": "microsoft.csharp/4.5.0",
-      "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.Data.SqlClient/2.0.1": {
       "type": "package",
@@ -3820,6 +3855,13 @@
       "path": "microsoft.entityframeworkcore.analyzers/5.0.14",
       "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.14.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.Design/5.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eNf6vkQAdVkYMEADUrXTPtlgxw7EwkbU8jyaOEdz3J/3JFz2yzdVIwJg66RNMuoqDrktAG1bcR64YEys6DXVFw==",
+      "path": "microsoft.entityframeworkcore.design/5.0.9",
+      "hashPath": "microsoft.entityframeworkcore.design.5.0.9.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Relational/5.0.14": {
       "type": "package",
       "serviceable": true,
@@ -3833,6 +3875,13 @@
       "sha512": "sha512-JTw4oJ7fa//hVaETu9UuUBH4DLngWV99Rbf1SOOtB+toLKQltfsLHnUu6CiSwH+MmnYd4rT+HMoxYEGov2sOHA==",
       "path": "microsoft.entityframeworkcore.sqlserver/5.0.14",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.5.0.14.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Tools/5.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SdRxRyr7CvsAETVmWGpgJ8eY+8XNw9NjvKlpGQzqm0Q/+iwNYRo3ENmUDTk8AW/5KpBP885XsdjprGeSb3eUkA==",
+      "path": "microsoft.entityframeworkcore.tools/5.0.3",
+      "hashPath": "microsoft.entityframeworkcore.tools.5.0.3.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
       "type": "package",

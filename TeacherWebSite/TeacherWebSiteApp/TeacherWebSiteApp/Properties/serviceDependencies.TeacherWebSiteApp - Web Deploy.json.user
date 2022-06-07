@@ -3,6 +3,10 @@
     "signalr1": {
       "restored": true,
       "restoreTime": "2022-05-26T22:06:38.7657529Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2022-06-06T06:43:18.3983029Z"
     }
   },
   "parameters": {

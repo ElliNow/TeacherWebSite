@@ -159,3 +159,5 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.Azure.SignalR.Common.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.Azure.SignalR.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.Azure.SignalR.Protocols.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\bin\Release\net5.0\Humanizer.dll

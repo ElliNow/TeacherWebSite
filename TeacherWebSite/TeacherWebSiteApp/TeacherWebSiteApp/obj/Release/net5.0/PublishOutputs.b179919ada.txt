@@ -2,7 +2,6 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\appsettings.json
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\TeacherWebSiteApp.dll
-C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\TeacherWebSiteApp.deps.json
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\TeacherWebSiteApp.runtimeconfig.json
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\TeacherWebSiteApp.pdb
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\AntDesign.dll
@@ -434,3 +433,4 @@ C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\wwwroot\_content\AntDesign\less\upload\style\rtl.less
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\TeacherWebSiteApp.Views.dll
 C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\TeacherWebSiteApp.Views.pdb
+C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\obj\Release\net5.0\PubTmp\Out\TeacherWebSiteApp.deps.json

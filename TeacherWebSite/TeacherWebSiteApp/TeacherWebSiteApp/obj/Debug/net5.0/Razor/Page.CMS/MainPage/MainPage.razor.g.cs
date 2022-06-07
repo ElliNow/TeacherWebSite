@@ -151,6 +151,13 @@ using System.ComponentModel.DataAnnotations;
 #nullable disable
 #nullable restore
 #line 22 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
+using Microsoft.EntityFrameworkCore.Design;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 23 "C:\Users\Эля\Documents\GitHub\TeacherWebSite\TeacherWebSite\TeacherWebSiteApp\TeacherWebSiteApp\_Imports.razor"
 using Microsoft.EntityFrameworkCore;
 
 #line default
